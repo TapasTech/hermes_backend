@@ -1,0 +1,144 @@
+User:
+  # columns
+  email: string
+  password: digest
+  display_name: string
+  gender: string
+
+  business : belongs_to
+
+  # reverse relationship
+  locations: has_many
+  employments: has_many
+  educations: has_many
+  
+  followers(User): has_many, through: followment, inverse_of: followees
+  followees(User): has_many, through: followment, inverse_of: followers
+  
+  following_questions: has_many, through: questions_followment, inverse_of: followers
+
+  topics: has_many
+  questions: has_many
+  answers: has_many
+  comments: has_many
+  reply_comments(Comment): has_many, inverse_of: :reply_to
+
+  uppeds: has_many, through: up
+  downeds: has_many, through: down
+
+Followment:
+  # columns
+  followment: belongs_to
+  followment: belongs_to
+
+Location:
+  # columns
+  user: belongs_to
+  name: string
+
+Business:
+  name: string
+  users: has_many
+  # columns
+  parent_business: belongs_to
+  child_businesses: has_many
+
+Employment:
+  # columns
+  user: belongs_to
+  employment: name
+  position: name
+
+Education:
+  # columns
+  user: belongs_to
+  organization: name
+  direction: name
+
+Topic:
+  # columns
+  name: string
+  description: string
+  logo: picture(attachment)
+  is_alias: bool
+  origin(Topic): belongs_to, inverse_of: aliases
+  aliases(Topic): has_many, inverse_of: origin
+
+  # reverse relationship
+  questions: has_many, through: questions_topics
+
+Question:
+  # columns
+  user: belongs_to
+  title: string
+  content: string
+
+  # reverse relationship
+  topics: has_many, through: questions_topics
+  data_sets: has_many, through: questions_data_sets (※ 任何人可以添加, 虽然和建模没关系不过记录一下)
+  data_reports: has_many, through: questions_data_reports
+  answers: has_many
+
+  followers: has_many, through: questions_followment, inverse_of: following_questions
+
+Answer:
+  Likeable
+  # columns
+  user: belongs_to
+  topic: belongs_to
+  content: string
+
+  # reverse relationship
+  data_sets: has_many, through: answers_data_sets
+  data_reports: has_many, through: answers_data_reports
+  comments: has_many
+
+Comment:
+  Likeable
+  # columns
+  user: belongs_to
+  reply_to(User): belongs_to, inverse_of: reply_comments
+  answers: belongs_to
+  content: string
+
+DataSet:
+  # columns
+  name: string
+  url: string
+
+  # reverse relationship
+  questions: has_many, through: questions_data_sets
+  answers: has_many, through: answer_data_sets
+
+DataReport:
+  # columns
+  name: string
+  url: string
+
+  # reverse relationship
+  questions: has_many, throughy: questions_data_reports
+  answers: has_many, through: answers_data_reports
+
+Likeable:
+  uppers(User): has_many, through: up
+  downers(Uesr): has_many, through: down
+
+Up:
+  # columns
+  upper(User): belongs_to
+  likeable: belongs_to, polymorphic: true
+
+Down:
+  # columns
+  downer(User): belongs_to
+  likeable: belongs_to, polymorphic: true
+
+Activity:
+  # columns
+  target: jsonb
+  user: belongs_to
+  verb: string -> CONSTANT
+        - QUESTION_CREATE
+        - QUESTION_FOLLOW
+        - ANSWER_CREATE
+        - ANSWER_VOTE_UP
