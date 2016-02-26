@@ -6,4 +6,6 @@ class Topic < ApplicationRecord
 
   has_many :questions_topics
   has_many :questions, through: :questions_topics
+
+  validates :name, presence: true
 end

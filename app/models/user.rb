@@ -1,6 +1,10 @@
 class User < ApplicationRecord
-  belongs_to :business
+  belongs_to :business, required: false
   has_secure_password
+
+  validates :email, presence: true,
+                    format: {with: /\A\S+@\S+.\S+\Z/}
+  validates :display_name, presence: true
 
   has_many :locations
   has_many :employments
@@ -16,9 +20,6 @@ class User < ApplicationRecord
   has_many :followees, class_name: 'User',
                        through: :followments,
                        inverse_of: :followers
-
-  validates :email, presence: true
-  validates :display_name, presence: true
 
   has_many :questions
   has_many :answers

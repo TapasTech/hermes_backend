@@ -7,4 +7,6 @@ class Answer < ApplicationRecord
   has_many :answers_data_reports
   has_many :data_reports, through: :answers_data_reports
   has_many :comments
+
+  validates :content, presence: true
 end

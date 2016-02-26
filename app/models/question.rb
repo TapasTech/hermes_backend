@@ -1,4 +1,5 @@
 class Question < ApplicationRecord
+  include Votable
   belongs_to :user
   
   has_many :questions_topics
@@ -11,4 +12,7 @@ class Question < ApplicationRecord
   has_many :data_reports, through: :questions_data_reports
 
   has_many :answers
+
+  validates :title,   presence: true
+  validates :content, presence: true
 end

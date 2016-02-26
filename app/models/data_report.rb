@@ -4,4 +4,7 @@ class DataReport < ApplicationRecord
 
   has_many :answers_data_reports
   has_many :answers, through: :answers_data_reports
+  
+  validates :title, presence: true
+  validates :url,   presence: true
 end

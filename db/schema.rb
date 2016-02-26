@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160226070533) do
+ActiveRecord::Schema.define(version: 20160226075006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -197,6 +197,19 @@ ActiveRecord::Schema.define(version: 20160226070533) do
 
   add_index "users", ["business_id"], name: "index_users_on_business_id", using: :btree
 
+  create_table "votes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "votable_type"
+    t.integer  "votable_id"
+    t.integer  "weight"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "votes", ["user_id"], name: "index_votes_on_user_id", using: :btree
+  add_index "votes", ["votable_type", "votable_id"], name: "index_votes_on_votable_type_and_votable_id", using: :btree
+  add_index "votes", ["weight"], name: "index_votes_on_weight", using: :btree
+
   add_foreign_key "answers", "questions"
   add_foreign_key "answers_data_reports", "answers"
   add_foreign_key "answers_data_reports", "data_reports"
@@ -220,4 +233,5 @@ ActiveRecord::Schema.define(version: 20160226070533) do
   add_foreign_key "questions_topics", "topics"
   add_foreign_key "topics", "topics", column: "origin_id"
   add_foreign_key "users", "businesses"
+  add_foreign_key "votes", "users"
 end

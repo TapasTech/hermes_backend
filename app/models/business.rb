@@ -5,4 +5,6 @@ class Business < ApplicationRecord
   belongs_to :parent_business, class_name: 'Business', required: false
 
   has_many :users
+
+  validates :name, presence: true
 end

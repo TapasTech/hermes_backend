@@ -24,8 +24,7 @@ User:
   comments: has_many
   reply_comments(Comment): has_many, inverse_of: :reply_to
 
-  uppeds: has_many, through: up
-  downeds: has_many, through: down
+  voted: has_many, through: vote
 
 Followment:
   # columns
@@ -122,18 +121,12 @@ DataReport:
   answers: has_many, through: answers_data_reports
 
 # Social activities
-Likeable:
-  uppers(User): has_many, through: up
-  downers(Uesr): has_many, through: down
+Votable:
+  voters, through: votes
 
-Up:
+Vote:
   # columns
   upper(User): belongs_to
-  likeable: belongs_to, polymorphic: true
-
-Down:
-  # columns
-  downer(User): belongs_to
   likeable: belongs_to, polymorphic: true
 
 Activity:
