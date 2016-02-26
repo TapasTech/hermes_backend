@@ -3,7 +3,7 @@ class CreateEducations < ActiveRecord::Migration[5.0]
     create_table :educations do |t|
       t.references :user, foreign_key: true
       t.string :organization
-      t.name :direction
+      t.string :direction
 
       t.timestamps
     end

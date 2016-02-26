@@ -19,4 +19,9 @@ class User < ApplicationRecord
 
   validates :email, presence: true
   validates :display_name, presence: true
+
+  has_many :questions
+  has_many :answers
+  has_many :comments
+  has_many :reply_comments, foreign_key: :reply_to_id
 end

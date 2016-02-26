@@ -1,3 +1,4 @@
+# User profile
 User:
   # columns
   email: string
@@ -55,6 +56,7 @@ Education:
   organization: name
   direction: name
 
+# Question Community
 Topic:
   # columns
   name: string
@@ -85,7 +87,7 @@ Answer:
   Likeable
   # columns
   user: belongs_to
-  topic: belongs_to
+  question: belongs_to
   content: string
 
   # reverse relationship
@@ -103,22 +105,23 @@ Comment:
 
 DataSet:
   # columns
-  name: string
+  title: string
   url: string
 
   # reverse relationship
   questions: has_many, through: questions_data_sets
-  answers: has_many, through: answer_data_sets
+  answers: has_many, through: answers_data_sets
 
 DataReport:
   # columns
-  name: string
+  title: string
   url: string
 
   # reverse relationship
   questions: has_many, throughy: questions_data_reports
   answers: has_many, through: answers_data_reports
 
+# Social activities
 Likeable:
   uppers(User): has_many, through: up
   downers(Uesr): has_many, through: down
