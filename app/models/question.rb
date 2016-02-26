@@ -1,7 +1,8 @@
+# frozen_string_literal: true
 class Question < ApplicationRecord
   include Votable
   belongs_to :user
-  
+
   has_many :questions_topics
   has_many :topics, through: :questions_topics
 

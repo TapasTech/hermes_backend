@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Authenticate user in GraphQL
 GraphQLAuthenticator = Struct.new(:object, :arguments, :context) do
   def authenticate(&block)
@@ -33,4 +34,3 @@ GraphQLAuthenticator = Struct.new(:object, :arguments, :context) do
 
   extend ModuleMethods
 end
-

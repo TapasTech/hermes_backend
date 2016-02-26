@@ -1,7 +1,8 @@
+# frozen_string_literal: true
 FactoryGirl.define do
   factory :answer do
-    user ""
+    user ''
     question nil
-    content "MyString"
+    content 'MyString'
   end
 end

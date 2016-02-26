@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CreateQuestionsDataSets < ActiveRecord::Migration[5.0]
   def change
     create_table :questions_data_sets do |t|

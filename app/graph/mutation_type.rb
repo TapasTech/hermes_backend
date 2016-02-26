@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 MutationType = GraphQL::ObjectType.define do
   name 'Mutation'
   description 'Mutation Root'

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Topic < ApplicationRecord
   belongs_to :origin, class_name: 'Origin',
                       required: false

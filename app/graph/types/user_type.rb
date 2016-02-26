@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 UserType = GraphQL::MutableType.define do
   name 'User'
   description 'User'

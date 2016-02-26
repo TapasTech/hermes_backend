@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CreateAnswersDataReports < ActiveRecord::Migration[5.0]
   def change
     create_table :answers_data_reports do |t|

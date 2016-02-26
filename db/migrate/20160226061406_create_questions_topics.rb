@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CreateQuestionsTopics < ActiveRecord::Migration[5.0]
   def change
     create_table :questions_topics do |t|

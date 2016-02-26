@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Use Pundit in GraphQL
 module GraphQLArgumentProcessor
   # Module Methods
