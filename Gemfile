@@ -36,7 +36,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'graphql'
-gem 'graphql-mutable_type'
+gem 'graphql-mutable_type', github: 'TapasTech/graphql-mutable_type'
 gem 'rolify'
 gem 'pundit'
 gem 'config'
