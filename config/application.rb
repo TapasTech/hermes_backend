@@ -18,6 +18,7 @@ require 'action_cable/engine'
 Bundler.require(*Rails.groups)
 
 module HermesBackend
+  # Hermes Application
   class Application < Rails::Application
     config.autoload_paths += Dir[Rails.root.join('app', 'graph', '*')]
     # Settings in config/environments/* take precedence over those specified here.

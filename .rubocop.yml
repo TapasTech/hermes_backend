@@ -17,8 +17,14 @@ Rails:
 Style/Encoding:
   Enabled: false
 
+# fail for signal exceptions in a business project
 Style/SignalException:
   EnforcedStyle: semantic
+
+# do not check length of a migration
+Stype/MethodLength:
+  Exclude:
+    - 'db/migrate/**/*'
 
 # 80 characters limit is too strict
 Metrics/LineLength:

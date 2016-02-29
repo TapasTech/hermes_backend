@@ -28,7 +28,7 @@ AnswerType = GraphQL::MutableType.define do
 
     field :addDataReport, field: AnswersMutation::AddDataReportField
     field :removeDataReport, field: AnswersMutation::RemoveDataReportField
-    
+
     field :voteUp, field: AnswersMutation::VoteUpField
     field :voteDown, field: AnswersMutation::VoteDownField
 

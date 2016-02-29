@@ -19,11 +19,15 @@ UserType = GraphQL::MutableType.define do
 
   field :followers, field: PaginateField.create(User, property: :followers)
   field :followees, field: PaginateField.create(User, property: :followees)
+  field :followersCount, types.Int, property: :followers_count
+  field :followeesCount, types.Int, property: :followees_count
 
   field :questions, field: PaginateField.create(Question, property: :questions)
   field :answers, field: PaginateField.create(Answer, property: :answers)
   field :comments, field: PaginateField.create(Comment, property: :comments)
   field :replyComments, field: PaginateField.create(Comment, property: :reply_comments)
+  field :questionsCount, types.Int, property: :questions_count
+  field :answersCount, types.Int, property: :answers_count
 
   mutation do
     field :update, field: UsersMutation::UpdateUserField

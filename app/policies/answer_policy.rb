@@ -1,11 +1,5 @@
 # frozen_string_literal: true
 class AnswerPolicy < ApplicationPolicy
-  class Scope < Scope
-    def resolve
-      scope
-    end
-  end
-
   def create?
     user.present?
   end
@@ -28,5 +22,12 @@ class AnswerPolicy < ApplicationPolicy
 
   def vote_down?
     user.present?
+  end
+
+  # Authorized Visible Scope
+  class Scope < Scope
+    def resolve
+      scope
+    end
   end
 end

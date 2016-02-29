@@ -1,12 +1,12 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe UserPolicy do
-
   let(:user) { User.new }
 
   subject { described_class }
 
-  permissions ".scope" do
+  permissions '.scope' do
     pending "add some examples to (or delete) #{__FILE__}"
   end
 

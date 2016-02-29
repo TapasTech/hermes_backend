@@ -36,10 +36,16 @@ class User < ApplicationRecord
                        through: :followments,
                        inverse_of: :followers
 
+  delegate :count, to: :followers, prefix: true
+  delegate :count, to: :followees, prefix: true
+
   has_many :questions
   has_many :answers
   has_many :comments
   has_many :reply_comments, foreign_key: :reply_to_id
+
+  delegate :questions, to: :followers, prefix: true
+  delegate :answers, to: :followees, prefix: true
 
   has_many :votes
 end

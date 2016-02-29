@@ -37,9 +37,13 @@ class PaginateField
   end
 
   def self.define_type(model)
-    paginated_type_name = paginated_type_name(model)
+    PaginateField::PaginateTypeDefinition[model]
+  end
 
+  PaginateType = lambda do |model|
     GraphQL::ObjectType.define do
+      paginated_type_name = PaginateField.paginated_type_name(model)
+
       name paginated_type_name
       description paginated_type_name.titleize
 
