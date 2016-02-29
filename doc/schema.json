@@ -602,7 +602,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "User Mutation",
+                "name": "UserMutation",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -866,7 +866,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "Location Mutation",
+                "name": "LocationMutation",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -882,7 +882,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "Location Mutation",
+          "name": "LocationMutation",
           "description": "Mutations of Location",
           "fields": [
             {
@@ -1031,7 +1031,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "Employment Mutation",
+                "name": "EmploymentMutation",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -1047,7 +1047,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "Employment Mutation",
+          "name": "EmploymentMutation",
           "description": "Mutations of Employment",
           "fields": [
             {
@@ -1206,7 +1206,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "Education Mutation",
+                "name": "EducationMutation",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -1222,7 +1222,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "Education Mutation",
+          "name": "EducationMutation",
           "description": "Mutations of Education",
           "fields": [
             {
@@ -1695,7 +1695,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "Question Mutation",
+                "name": "QuestionMutation",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -2434,7 +2434,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "Answer Mutation",
+                "name": "AnswerMutation",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -2876,7 +2876,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "Comment Mutation",
+                "name": "CommentMutation",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -2892,7 +2892,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "Comment Mutation",
+          "name": "CommentMutation",
           "description": "Mutations of Comment",
           "fields": [
             {
@@ -2933,7 +2933,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "Answer Mutation",
+          "name": "AnswerMutation",
           "description": "Mutations of Answer",
           "fields": [
             {
@@ -3142,7 +3142,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "Question Mutation",
+          "name": "QuestionMutation",
           "description": "Mutations of Question",
           "fields": [
             {
@@ -3409,7 +3409,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "User Mutation",
+          "name": "UserMutation",
           "description": "Mutations of User",
           "fields": [
             {
@@ -3572,7 +3572,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "User with AuthToken",
+                "name": "UserWithAuthToken",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -3586,7 +3586,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "User with AuthToken",
+                "name": "UserWithAuthToken",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -3643,7 +3643,7 @@
         },
         {
           "kind": "OBJECT",
-          "name": "User with AuthToken",
+          "name": "UserWithAuthToken",
           "description": "User with AuthToken",
           "fields": [
             {
