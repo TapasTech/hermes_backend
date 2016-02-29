@@ -25,6 +25,8 @@ module UsersMutation
   # Methods that resolves
   module ResolverMethods
     def create(_object, arguments, _context)
+      GraphQLAuthorizer.authorize nil, User, :update?
+
       build_arguments =
         GraphQLArgumentProcessor.camel_keys_to_underscore arguments
 

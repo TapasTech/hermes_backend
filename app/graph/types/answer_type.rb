@@ -16,8 +16,9 @@ AnswerType = GraphQL::MutableType.define do
   field :dataReports, field: PaginateField.create(DataReport, property: :data_reports)
   field :comments, field: PaginateField.create(Comment, property: :comments)
 
-  field :upsCount, types.Int
-  field :downsCount, types.Int
+  field :upVotesCount, types.Int, property: :up_votes_count
+  field :downVotesCount, types.Int, property: :down_votes_count
+  field :totalVotesCount, types.Int, property: :total_votes_count
 
   mutation do
     field :update, field: AnswersMutation::UpdateAnswerField
@@ -30,5 +31,7 @@ AnswerType = GraphQL::MutableType.define do
     
     field :voteUp, field: AnswersMutation::VoteUpField
     field :voteDown, field: AnswersMutation::VoteDownField
+
+    field :createComment, field: CommentsMutation::CreateCommentField
   end
 end

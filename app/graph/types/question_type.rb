@@ -17,8 +17,9 @@ QuestionType = GraphQL::MutableType.define do
   field :dataReports, field: PaginateField.create(DataReport, property: :data_reports)
   field :answers, field: PaginateField.create(Answer, property: :answers)
 
-  field :upsCount, types.Int
-  field :downsCount, types.Int
+  field :upVotesCount, types.Int, property: :up_votes_count
+  field :downVotesCount, types.Int, property: :down_votes_count
+  field :totalVotesCount, types.Int, property: :total_votes_count
 
   mutation do
     field :update, field: QuestionsMutation::UpdateQuestionField

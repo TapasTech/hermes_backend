@@ -65,7 +65,7 @@ module AnswersMutation
   module ResolverMethods
     def create(_object, arguments, _context)
       GraphQLAuthenticator.authenticate(object, arguments, context) do
-        GraphQLAuthorizer.authorize current_user, object, :create?
+        GraphQLAuthorizer.authorize current_user, Answer, :create?
         build_arguments =
           GraphQLArgumentProcessor.camel_keys_to_underscore arguments
 

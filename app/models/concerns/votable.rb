@@ -6,12 +6,16 @@ module Votable
     has_many :votes, as: :votable
     has_many :users, through: :votes
 
-    def ups_count
+    def up_votes_count
       votes.ups.sum(:weight)
     end
 
-    def down_count
+    def down_votes_count
       votes.downs.sum(:weight)
+    end
+
+    def total_votes_count
+      votes.sum(:weight)
     end
 
     def vote_by(user, weight)
