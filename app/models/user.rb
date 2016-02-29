@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 class User < ApplicationRecord
+  acts_as_paranoid
+
   belongs_to :business, required: false
   has_secure_password
 
@@ -10,6 +12,18 @@ class User < ApplicationRecord
   has_many :locations
   has_many :employments
   has_many :educations
+
+  def location
+    locations.first || locations.build
+  end
+
+  def employment
+    employments.first || employments.build
+  end
+
+  def education
+    educations.first || educations.build
+  end
 
   has_many :follower_followments, foreign_key: :followee_id,
                                   class_name: 'Followment'

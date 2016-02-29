@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 class DataReport < ApplicationRecord
+  acts_as_paranoid
+
   has_many :questions_data_reports
   has_many :questions, through: :questions_data_reports
 

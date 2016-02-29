@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 class Answer < ApplicationRecord
+  acts_as_paranoid
+
+  belongs_to :user
   belongs_to :question
 
   has_many :answers_data_sets
