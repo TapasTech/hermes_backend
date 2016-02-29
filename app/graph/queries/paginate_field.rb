@@ -37,7 +37,7 @@ class PaginateField
   end
 
   def self.define_type(model)
-    PaginateField::PaginateTypeDefinition[model]
+    PaginateField::PaginateType[model]
   end
 
   PaginateType = lambda do |model|

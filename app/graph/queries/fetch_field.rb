@@ -3,7 +3,7 @@
 class FetchField
   def self.create(model)
     GraphQL::Field.define do
-      type { "::#{model.name}Type".constantize }
+      type -> { "::#{model.name}Type".constantize }
 
       argument :id, !types.String
 
