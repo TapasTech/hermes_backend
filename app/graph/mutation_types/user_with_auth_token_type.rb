@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 UserWithAuthTokenType = GraphQL::ObjectType.define do
-  name 'User with AuthToken'
+  name 'UserWithAuthToken'
   description 'User with AuthToken'
 
   field :user,         UserType
