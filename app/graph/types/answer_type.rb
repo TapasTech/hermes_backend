@@ -15,4 +15,20 @@ AnswerType = GraphQL::MutableType.define do
   field :dataSets, field: PaginateField.create(DataSet, property: :data_sets)
   field :dataReports, field: PaginateField.create(DataReport, property: :data_reports)
   field :comments, field: PaginateField.create(Comment, property: :comments)
+
+  field :upsCount, types.Int
+  field :downsCount, types.Int
+
+  mutation do
+    field :update, field: AnswersMutation::UpdateAnswerField
+
+    field :addDataSet, field: AnswersMutation::AddDataSetField
+    field :removeDataSet, field: AnswersMutation::RemoveDataSetField
+
+    field :addDataReport, field: AnswersMutation::AddDataReportField
+    field :removeDataReport, field: AnswersMutation::RemoveDataReportField
+    
+    field :voteUp, field: AnswersMutation::VoteUpField
+    field :voteDown, field: AnswersMutation::VoteDownField
+  end
 end

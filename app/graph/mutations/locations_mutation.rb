@@ -2,7 +2,7 @@
 module LocationsMutation
   # Fields
   UpdateLocationField = GraphQL::Field.define do
-    type LocationType
+    type -> { LocationType }
 
     argument :name, types.String
 

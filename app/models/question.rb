@@ -16,6 +16,5 @@ class Question < ApplicationRecord
 
   has_many :answers
 
-  validates :title,   presence: true
-  validates :content, presence: true
+  validates :title, presence: true
 end

@@ -3,9 +3,12 @@ QueryType = GraphQL::ObjectType.define do
   name 'Query'
   description 'Query Root'
 
-  # Add your queries here
-  # field :user, field: FetchField.create(User)
+  field :user, field: FetchField.create(User)
+  field :me, field: MeField
 
-  # Put your query fields under: queries/
-  # Put your data types under: types/
+  field :topic, field: FetchField.create(Topic)
+  field :topics, field: PaginateField.create(Topic)
+
+  field :question, field: FetchField.create(Question)
+  field :answer, field: FetchField.create(Answer)
 end

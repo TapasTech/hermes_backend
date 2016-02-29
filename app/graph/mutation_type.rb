@@ -3,9 +3,11 @@ MutationType = GraphQL::ObjectType.define do
   name 'Mutation'
   description 'Mutation Root'
 
-  # Add your mutations here
-  # field :createUser, field: FetchField.create(User)
+  # user
+  field :createUser, field: UsersMutation::CreateUserField
+  field :createAuthToken, field: AuthTokensMutation::CreateAuthTokenField
+  field :renewAuthToken, field: AuthTokensMutation::RenewAuthTokenField
 
-  # Put your mutations under: mutations/
-  # Define your mutation specific types under: mutation_types/
+  # question
+  field :createQuestion, field: QuestionsMutation::CreateQuestionField
 end

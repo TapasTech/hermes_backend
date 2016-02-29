@@ -40,4 +40,6 @@ class User < ApplicationRecord
   has_many :answers
   has_many :comments
   has_many :reply_comments, foreign_key: :reply_to_id
+
+  has_many :votes
 end

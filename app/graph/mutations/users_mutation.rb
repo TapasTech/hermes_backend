@@ -2,7 +2,7 @@
 module UsersMutation
   # Fields
   CreateUserField = GraphQL::Field.define do
-    type UserType
+    type -> { UserType }
 
     argument :displayName, !types.String
     argument :password,    !types.String
@@ -12,7 +12,7 @@ module UsersMutation
   end
 
   UpdateUserField = GraphQL::Field.define do
-    type UserType
+    type -> { UserType }
 
     argument :oldPassword, !types.String
     argument :displayName, types.String

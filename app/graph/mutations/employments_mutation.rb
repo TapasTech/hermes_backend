@@ -2,7 +2,7 @@
 module EmploymentsMutation
   # Fields
   UpdateEmploymentField = GraphQL::Field.define do
-    type EmploymentType
+    type -> { EmploymentType }
 
     argument :employment, types.String
     argument :position, types.String

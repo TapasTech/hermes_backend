@@ -2,7 +2,7 @@
 module EducationsMutation
   # Fields
   UpdateEducationField = GraphQL::Field.define do
-    type EducationType
+    type -> { EducationType }
 
     argument :education, types.String
     argument :position, types.String
