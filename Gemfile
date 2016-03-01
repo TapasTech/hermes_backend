@@ -49,9 +49,15 @@ gem 'kaminari'
 gem 'bcrypt', '~> 3.1.7'
 gem 'rack-cors'
 gem 'paranoia', github: 'radar/paranoia', branch: 'core'
+
 group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'rubocop', require: false
+end
+
+group :development, :staging do
+  gem 'mina', require: false
+  gem 'mina-multistage', require: false
 end
