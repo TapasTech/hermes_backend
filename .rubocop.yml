@@ -22,7 +22,7 @@ Style/SignalException:
   EnforcedStyle: semantic
 
 # do not check length of a migration
-Stype/MethodLength:
+Metrics/MethodLength:
   Exclude:
     - 'db/migrate/**/*'
 

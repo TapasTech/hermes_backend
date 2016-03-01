@@ -7,11 +7,15 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create!(email: 'adam@dtcj.com', password: '12345678', display_name: 'Adam')
-User.create!(email: 'betty@dtcj.com', password: '12345678', display_name: 'Betty')
+user_a = User.create!(email: 'adam@dtcj.com', password: '12345678', display_name: 'Adam')
+user_b = User.create!(email: 'betty@dtcj.com', password: '12345678', display_name: 'Betty')
+user_c = User.create!(email: 'cathy@dtcj.com', password: '12345678', display_name: 'Cathy')
+user_d = User.create!(email: 'david@dtcj.com', password: '12345678', display_name: 'David')
+user_e = User.create!(email: 'elizabeth@dtcj.com', password: '12345678', display_name: 'Elizabeth')
+user_f = User.create!(email: 'fatimah@dtcj.com', password: '12345678', display_name: 'Fatimah')
 
-Topic.create!(name: 'P2P')
-Topic.create!(name: '互联网金融')
+t_p2p = Topic.create!(name: 'P2P')
+t_efinance = Topic.create!(name: '互联网金融')
 t_bigdata = Topic.create!(name: '大数据')
 t_market  = Topic.create!(name: '消费行为')
 
@@ -21,3 +25,18 @@ question = User.first.questions.create!(title: '中国高端化妆品市场走�
 question.topics << t_bigdata
 question.topics << t_market
 question.data_reports << data_report
+
+question_2 = User.first.questions.create!(title: '易付宝对金融市场产生什么影响?', content: '')
+question_2.topics << t_p2p
+question_2.topics << t_efinance
+
+question.vote_by(user_a, 1)
+question.vote_by(user_b, 1)
+question.vote_by(user_c, -1)
+
+question_2.vote_by(user_a, 1)
+question_2.vote_by(user_b, 1)
+question_2.vote_by(user_c, -1)
+question_2.vote_by(user_d, 1)
+question_2.vote_by(user_e, 1)
+question_2.vote_by(user_f, -1)
