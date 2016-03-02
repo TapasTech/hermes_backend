@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_160_302_061_328) do
+ActiveRecord::Schema.define(version: 20_160_302_121_447) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20_160_302_061_328) do
   end
 
   add_index 'activities', ['answer_id'], name: 'index_activities_on_answer_id', using: :btree
+  add_index 'activities', ['created_at'], name: 'index_activities_on_created_at', using: :btree
   add_index 'activities', ['payload'], name: 'index_activities_on_payload', using: :btree
   add_index 'activities', ['question_id'], name: 'index_activities_on_question_id', using: :btree
   add_index 'activities', ['user_id'], name: 'index_activities_on_user_id', using: :btree

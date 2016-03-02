@@ -6,7 +6,7 @@ class GraphQLController < ApplicationController
   end
 
   def query
-    render ApplicationSchema.execute(params[:query], context: {current_user: current_user}),
+    render json: ApplicationSchema.execute(params[:query], context: {current_user: current_user}),
            status: :ok
   end
 end
