@@ -80,7 +80,7 @@ class User < ApplicationRecord
 
   def follow_question(question)
     followee_questions << question
-    Activity.create_follow_question_activity(self, question)
+    Activity.create_follow_question_activity!(self, question)
   end
 
   def unfollow_question(question)
@@ -89,7 +89,7 @@ class User < ApplicationRecord
 
   def vote_up_question(question)
     question.vote_by(user, 1)
-    Activity.create_vote_up_answer_activity(self, answer)
+    Activity.create_vote_up_answer_activity!(self, answer)
   end
 
   def vote_down_question(question)

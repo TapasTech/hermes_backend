@@ -41,7 +41,7 @@ question.topics << t_bigdata
 question.topics << t_market
 question.topics << t_efinance
 question.data_reports << data_report
-user_a.follow_question(question_1)
+user_a.follow_question(question)
 
 question_2 = user_b.ask(title: '易付宝对金融市场产生什么影响?', content: '')
 question_2.topics << t_p2p
