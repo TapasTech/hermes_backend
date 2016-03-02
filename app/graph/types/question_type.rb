@@ -34,8 +34,11 @@ QuestionType = GraphQL::MutableType.define do
     field :addDataReport, field: QuestionsMutation::AddDataReportField
     field :removeDataReport, field: QuestionsMutation::RemoveDataReportField
 
-    field :voteUp, field: AnswersMutation::VoteUpField
-    field :voteDown, field: AnswersMutation::VoteDownField
+    field :voteUp, field: QuestionsMutation::VoteUpField
+    field :voteDown, field: QuestionsMutation::VoteDownField
+
+    field :follow, field: QuestionsMutation::FollowField
+    field :unfollow, field: QuestionsMutation::UnfollowField
 
     field :createAnswer, field: AnswersMutation::CreateAnswerField
   end
