@@ -31,5 +31,8 @@ UserType = GraphQL::MutableType.define do
 
   mutation do
     field :update, field: UsersMutation::UpdateUserField
+
+    field :follow, field: UsersMutation::FollowField
+    field :unfollow, field: UsersMutation::UnfollowField
   end
 end

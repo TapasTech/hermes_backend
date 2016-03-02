@@ -22,6 +22,18 @@ module UsersMutation
     resolve ->(*p) { UsersMutation.update(*p) }
   end
 
+  FollowField = GraphQL::Field.define do
+    type -> { UserType }
+
+    resolve ->(*p) { UsersMutation.follow(*p) }
+  end
+
+  UnfollowField = GraphQL::Field.define do
+    type -> { UserType }
+
+    resolve ->(*p) { UsersMutation.unfollow(*p) }
+  end
+
   # Methods that resolves
   module ResolverMethods
     def create(_object, arguments, _context)
@@ -44,6 +56,25 @@ module UsersMutation
         fail TapasGraphQLErrors::WrongPasswordError unless current_user.authenticate(old_password)
 
         object.update!(update_arguments)
+        object
+      end
+    end
+
+    # Following
+    def follow(object, arguments, context)
+      GraphQLAuthenticator.authenticate(object, arguments, context) do
+        GraphQLAuthorizer.authorize current_user, object, :follow?
+
+        current_user.follow(object)
+        object
+      end
+    end
+
+    def unfollow(object, arguments, context)
+      GraphQLAuthenticator.authenticate(object, arguments, context) do
+        GraphQLAuthorizer.authorize current_user, object, :unfollow?
+
+        current_user.unfollow(object)
         object
       end
     end

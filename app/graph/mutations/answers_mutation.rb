@@ -69,8 +69,8 @@ module AnswersMutation
         build_arguments =
           GraphQLArgumentProcessor.camel_keys_to_underscore arguments
 
-        build_arguments.merge(user: current_user)
-        object.answers.create!(build_arguments)
+        build_arguments.merge(question: object)
+        user.answer(build_arguments)
       end
     end
 
@@ -134,7 +134,7 @@ module AnswersMutation
       GraphQLAuthenticator.authenticate(object, arguments, context) do
         GraphQLAuthorizer.authorize current_user, object, :vote_up?
 
-        object.vote_by(current_user, 1)
+        current_user.vote_up_answer(object)
         object
       end
     end
@@ -143,7 +143,7 @@ module AnswersMutation
       GraphQLAuthenticator.authenticate(object, arguments, context) do
         GraphQLAuthorizer.authorize current_user, object, :vote_down?
 
-        object.vote_by(current_user, -1)
+        current_user.vote_down_answer(current_user)
         object
       end
     end

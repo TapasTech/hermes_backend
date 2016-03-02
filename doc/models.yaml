@@ -126,12 +126,12 @@ Votable:
 
 Vote:
   # columns
-  upper(User): belongs_to
-  likeable: belongs_to, polymorphic: true
+  voter: belongs_to
+  votable: belongs_to, polymorphic: true
 
 Activity:
   # columns
-  target: jsonb
+  payload: jsonb
   user: belongs_to
   verb: string -> CONSTANT
         - QUESTION_CREATE
