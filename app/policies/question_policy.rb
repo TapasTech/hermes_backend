@@ -40,6 +40,14 @@ class QuestionPolicy < ApplicationPolicy
     user.present?
   end
 
+  def follow?
+    user.present?
+  end
+
+  def unfollow?
+    user.present?
+  end
+
   # Authorized Visible Scope
   class Scope < Scope
     def resolve

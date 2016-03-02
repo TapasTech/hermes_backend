@@ -1,0 +1,2 @@
+class QuestionsFollowment < ApplicationRecord
+end

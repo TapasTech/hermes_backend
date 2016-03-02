@@ -79,6 +79,18 @@ module QuestionsMutation
     resolve ->(*p) { QuestionsMutation.vote_down(*p) }
   end
 
+  FollowField = GraphQL::Field.define do
+    type -> { QuestionType }
+
+    resolve ->(*p) { QuestionsMutation.follow(*p) }
+  end
+
+  UnfollowField = GraphQL::Field.define do
+    type -> { QuestionType }
+
+    resolve ->(*p) { QuestionsMutation.unfollow(*p) }
+  end
+
   # Methods that resolves
   module ResolverMethods
     def create(_object, arguments, _context)
@@ -87,7 +99,7 @@ module QuestionsMutation
         build_arguments =
           GraphQLArgumentProcessor.camel_keys_to_underscore arguments
 
-        current_user.questions.create!(build_arguments)
+        current_user.ask(build_arguments)
       end
     end
 
@@ -171,7 +183,7 @@ module QuestionsMutation
       GraphQLAuthenticator.authenticate(object, arguments, context) do
         GraphQLAuthorizer.authorize current_user, object, :vote_up?
 
-        object.vote_by(current_user, 1)
+        current_user.vote_up_question(object)
         object
       end
     end
@@ -180,7 +192,26 @@ module QuestionsMutation
       GraphQLAuthenticator.authenticate(object, arguments, context) do
         GraphQLAuthorizer.authorize current_user, object, :vote_down?
 
-        object.vote_by(current_user, -1)
+        current_user.vote_down_question(object)
+        object
+      end
+    end
+
+    # Following
+    def follow(object, arguments, context)
+      GraphQLAuthenticator.authenticate(object, arguments, context) do
+        GraphQLAuthorizer.authorize current_user, object, :follow?
+
+        current_user.follow_question(object)
+        object
+      end
+    end
+
+    def unfollow(object, arguments, context)
+      GraphQLAuthenticator.authenticate(object, arguments, context) do
+        GraphQLAuthorizer.authorize current_user, object, :unfollow?
+
+        current_user.unfollow_question(object)
         object
       end
     end

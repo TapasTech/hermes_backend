@@ -11,15 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301125115) do
+ActiveRecord::Schema.define(version: 20160302061328) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activities", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "question_id"
+    t.integer  "answer_id"
+    t.jsonb    "payload"
+    t.string   "verb"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "activities", ["answer_id"], name: "index_activities_on_answer_id", using: :btree
+  add_index "activities", ["payload"], name: "index_activities_on_payload", using: :btree
+  add_index "activities", ["question_id"], name: "index_activities_on_question_id", using: :btree
+  add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
+  add_index "activities", ["verb"], name: "index_activities_on_verb", using: :btree
 
   create_table "answers", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "question_id"
     t.string   "content"
+    t.datetime "edited_at"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.datetime "deleted_at"
@@ -156,6 +173,7 @@ ActiveRecord::Schema.define(version: 20160301125115) do
     t.integer  "user_id"
     t.string   "title"
     t.string   "content"
+    t.datetime "edited_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
@@ -185,6 +203,16 @@ ActiveRecord::Schema.define(version: 20160301125115) do
 
   add_index "questions_data_sets", ["data_set_id"], name: "index_questions_data_sets_on_data_set_id", using: :btree
   add_index "questions_data_sets", ["question_id"], name: "index_questions_data_sets_on_question_id", using: :btree
+
+  create_table "questions_followments", force: :cascade do |t|
+    t.integer  "follower_id"
+    t.integer  "followee_question_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "questions_followments", ["followee_question_id"], name: "index_questions_followments_on_followee_question_id", using: :btree
+  add_index "questions_followments", ["follower_id"], name: "index_questions_followments_on_follower_id", using: :btree
 
   create_table "questions_topics", force: :cascade do |t|
     t.integer  "question_id"
@@ -236,6 +264,9 @@ ActiveRecord::Schema.define(version: 20160301125115) do
   add_index "votes", ["votable_type", "votable_id"], name: "index_votes_on_votable_type_and_votable_id", using: :btree
   add_index "votes", ["weight"], name: "index_votes_on_weight", using: :btree
 
+  add_foreign_key "activities", "answers"
+  add_foreign_key "activities", "questions"
+  add_foreign_key "activities", "users"
   add_foreign_key "answers", "questions"
   add_foreign_key "answers_data_reports", "answers"
   add_foreign_key "answers_data_reports", "data_reports"
@@ -255,6 +286,8 @@ ActiveRecord::Schema.define(version: 20160301125115) do
   add_foreign_key "questions_data_reports", "questions"
   add_foreign_key "questions_data_sets", "data_sets"
   add_foreign_key "questions_data_sets", "questions"
+  add_foreign_key "questions_followments", "questions", column: "followee_question_id"
+  add_foreign_key "questions_followments", "users", column: "follower_id"
   add_foreign_key "questions_topics", "questions"
   add_foreign_key "questions_topics", "topics"
   add_foreign_key "topics", "topics", column: "origin_id"

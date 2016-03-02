@@ -66,7 +66,6 @@ module Votable
     def update_confidence_rank!
       update!(confidence: calculate_confidence)
     end
-
   end
 
   # Calculate HOT answer
