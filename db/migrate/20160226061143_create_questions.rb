@@ -5,6 +5,7 @@ class CreateQuestions < ActiveRecord::Migration[5.0]
       t.references :user, foreign_key: true
       t.string :title
       t.string :content
+      t.datetime :edited_at
 
       t.timestamps
     end

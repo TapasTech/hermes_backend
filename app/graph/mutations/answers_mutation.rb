@@ -80,6 +80,7 @@ module AnswersMutation
 
         update_arguments =
           GraphQLArgumentProcessor.camel_keys_to_underscore arguments
+        update_arguments.merge(edited_at: Time.zone.now) if update_arguments[:content]&.!= object.content
 
         object.update!(update_arguments)
         object

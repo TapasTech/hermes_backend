@@ -64,7 +64,7 @@ module Votable
     end
 
     def update_confidence_rank!
-      update!(hot: calculate_confidence)
+      update!(confidence: calculate_confidence)
     end
 
   end

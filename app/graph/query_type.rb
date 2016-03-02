@@ -11,4 +11,7 @@ QueryType = GraphQL::ObjectType.define do
 
   field :question, field: FetchField.create(Question)
   field :answer, field: FetchField.create(Answer)
+
+  field :hotAnswers, field: PaginateField.create(Topic),
+                     transform: ->(a) { a.includes(:question).order(hot: :desc) }
 end

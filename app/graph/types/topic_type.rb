@@ -12,5 +12,6 @@ TopicType = GraphQL::MutableType.define do
   field :origin, -> { TopicType }
   field :aliases, field: PaginateField.create(Topic, property: :aliases)
 
-  field :questions, field: PaginateField.create(Question, property: :questions)
+  field :questions, field: PaginateField.create(Question, property: :questions),
+                    transform: ->(a) { a.order(hot: :desc) }
 end

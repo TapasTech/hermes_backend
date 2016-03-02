@@ -24,6 +24,7 @@ data_report = DataReport.create(title: '天猫美妆: 2016中国没装消费趋�
 question = User.first.questions.create!(title: '中国高端化妆品市场走势在2016将会怎么样?', content: '')
 question.topics << t_bigdata
 question.topics << t_market
+question.topics << t_efinance
 question.data_reports << data_report
 
 question_2 = User.first.questions.create!(title: '易付宝对金融市场产生什么影响?', content: '')
@@ -40,3 +41,23 @@ question_2.vote_by(user_c, -1)
 question_2.vote_by(user_d, 1)
 question_2.vote_by(user_e, 1)
 question_2.vote_by(user_f, -1)
+
+answer_1 = question.answers.build(content: 'blah, blah, blah! BLAHBLAH!')
+answer_1.user = user_b
+answer_1.save!
+answer_1.data_reports << data_report
+
+answer_2 = question.answers.build(content: 'Ummmmm....')
+answer_2.user = user_c
+answer_2.save!
+
+answer_1.vote_by(user_a, 1)
+answer_1.vote_by(user_c, 1)
+answer_1.vote_by(user_d, 1)
+answer_1.vote_by(user_e, -1)
+
+answer_2.vote_by(user_a, -1)
+answer_2.vote_by(user_b, 1)
+answer_2.vote_by(user_d, -1)
+answer_2.vote_by(user_e, -1)
+answer_2.vote_by(user_f, -1)
