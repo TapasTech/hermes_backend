@@ -29,6 +29,9 @@ UserType = GraphQL::MutableType.define do
   field :questionsCount, types.Int, property: :questions_count
   field :answersCount, types.Int, property: :answers_count
 
+  field :dataSets, field: PaginateField.create(DataSet, property: :data_sets)
+  field :dataReports, field: PaginateField.create(DataReport, property: :data_reports)
+
   field :activities, field: PaginateField.create(Activity, property: :activities,
                                                            transform: ->(a) { a.order(created_at: :desc) })
 

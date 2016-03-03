@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160302121447) do
+ActiveRecord::Schema.define(version: 20160303075826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,10 +104,12 @@ ActiveRecord::Schema.define(version: 20160302121447) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
+    t.integer  "user_id"
   end
 
   add_index "data_reports", ["deleted_at"], name: "index_data_reports_on_deleted_at", using: :btree
   add_index "data_reports", ["url"], name: "index_data_reports_on_url", using: :btree
+  add_index "data_reports", ["user_id"], name: "index_data_reports_on_user_id", using: :btree
 
   create_table "data_sets", force: :cascade do |t|
     t.text     "title"
@@ -115,10 +117,12 @@ ActiveRecord::Schema.define(version: 20160302121447) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
+    t.integer  "user_id"
   end
 
   add_index "data_sets", ["deleted_at"], name: "index_data_sets_on_deleted_at", using: :btree
   add_index "data_sets", ["url"], name: "index_data_sets_on_url", using: :btree
+  add_index "data_sets", ["user_id"], name: "index_data_sets_on_user_id", using: :btree
 
   create_table "educations", force: :cascade do |t|
     t.integer  "user_id"
@@ -277,6 +281,8 @@ ActiveRecord::Schema.define(version: 20160302121447) do
   add_foreign_key "comments", "answers"
   add_foreign_key "comments", "users"
   add_foreign_key "comments", "users", column: "reply_to_id"
+  add_foreign_key "data_reports", "users"
+  add_foreign_key "data_sets", "users"
   add_foreign_key "educations", "users"
   add_foreign_key "employments", "users"
   add_foreign_key "followments", "users", column: "followee_id"

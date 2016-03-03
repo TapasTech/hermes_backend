@@ -50,6 +50,10 @@ class User < ApplicationRecord
     followees.destroy(followee)
   end
 
+  # Data Reports
+  has_many :data_sets
+  has_many :data_reports
+
   # community
   has_many :questions
   has_many :answers

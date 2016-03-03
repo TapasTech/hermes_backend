@@ -10,11 +10,20 @@ RSpec.describe DataReportPolicy do
     let(:user) { nil }
 
     it { should_not permit(:create) }
+    it { should_not permit(:update) }
   end
 
-  context 'for any user' do
-    let(:user) { create(:user) }
+  context 'for the owner' do
+    let(:user) { data_report.user }
 
     it { should permit(:create) }
+    it { should permit(:update) }
+  end
+
+  context 'for another user' do
+    let(:user) { create(:user) }
+
+    it { should permit(:create)     }
+    it { should_not permit(:update) }
   end
 end

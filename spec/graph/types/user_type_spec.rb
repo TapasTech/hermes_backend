@@ -27,6 +27,8 @@ RSpec.describe UserType, type: :model do
       replyComments
       questionsCount
       answersCount
+      dataSets
+      dataReports
       activities
       mutation
     )

@@ -17,6 +17,8 @@ FactoryGirl.define do
     locations []
     educations []
     employments []
+    data_sets []
+    data_reports []
 
     factory :user_with_full_profile do
       business

@@ -10,15 +10,18 @@ RSpec.describe DataSetType, type: :model do
       createdAt
       updatedAt
       deletedAt
+      user
       title
       url
       questions
       answers
+      mutation
     )
   end
 
   let(:expected_mutation_fields) do
     %w(
+      update
     )
   end
 

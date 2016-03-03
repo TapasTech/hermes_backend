@@ -4,6 +4,10 @@ class DataReportPolicy < ApplicationPolicy
     user.present?
   end
 
+  def update?
+    user == record.user
+  end
+
   # Authorized Visible Scope
   class Scope < Scope
     def resolve
