@@ -25,7 +25,7 @@ group :development, :test, :staging do
   gem 'byebug'
 
   gem 'pry-rails'
-  gem 'rspec-rails', '~> 3.0'
+  gem 'rspec-rails', '~> 3.5.0.beta1'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'rubocop', require: false
   gem 'database_cleaner'
