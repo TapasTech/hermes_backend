@@ -18,7 +18,7 @@ module EducationsMutation
 
         update_arguments = GraphQLArgumentProcessor.camel_keys_to_underscore(arguments)
 
-        if GraphQLArgumentProcessor.blank?(update_arguments)
+        if !GraphQLArgumentProcessor.blank?(update_arguments)
           object.update!(update_arguments)
           object
         else

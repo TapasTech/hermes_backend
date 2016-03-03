@@ -16,5 +16,12 @@ class Question < ApplicationRecord
 
   has_many :answers
 
+  has_many :questions_followments, foreign_key: :followee_question_id
+  has_many :followers, through: :questions_followments,
+                       class_name: 'User',
+                       inverse_of: :followee_questions
+
+  delegate :count, to: :followers, prefix: true
+
   validates :title, presence: true
 end

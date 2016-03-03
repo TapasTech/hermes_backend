@@ -1,26 +1,26 @@
 # frozen_string_literal: true
 # Fetch paginated list
 class PaginateField
-  def self.create(model, property: nil, &block)
+  def self.create(model, property: nil, transform: nil)
     GraphQL::Field.define do
       type PaginateField.paginated_type(model)
 
       argument :page,  types.Int
       argument :count, types.Int
 
-      resolve PaginateField.resolver(model, property: property, &block)
+      resolve PaginateField.resolver(model, property: property, transform: transform)
     end
   end
 
-  def self.resolver(model, property: nil, &block)
+  def self.resolver(model, property: nil, transform: nil)
     lambda do |object, arguments, context|
       GraphQLAuthenticator.execute(object, arguments, context) do
         records =
           property.present? ? object.public_send(property) : model
 
         records = GraphQLAuthorizer.policy_scope current_user, records.page(arguments[:page]).per(arguments[:count])
-        return records unless block_given?
-        block.call(records)
+        return records unless transform.present?
+        transform.call(records)
       end
     end
   end

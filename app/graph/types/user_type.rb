@@ -9,7 +9,7 @@ UserType = GraphQL::MutableType.define do
   field :deletedAt, -> { DateType }, property: :deleted_at
 
   field :email, types.String
-  field :display_name, types.String
+  field :displayName, types.String, property: :display_name
   field :gender, types.String
 
   field :business, -> { BusinessType }
@@ -29,7 +29,16 @@ UserType = GraphQL::MutableType.define do
   field :questionsCount, types.Int, property: :questions_count
   field :answersCount, types.Int, property: :answers_count
 
+  field :dataSets, field: PaginateField.create(DataSet, property: :data_sets)
+  field :dataReports, field: PaginateField.create(DataReport, property: :data_reports)
+
+  field :activities, field: PaginateField.create(Activity, property: :activities,
+                                                           transform: ->(a) { a.order(created_at: :desc) })
+
   mutation do
     field :update, field: UsersMutation::UpdateUserField
+
+    field :follow, field: UsersMutation::FollowField
+    field :unfollow, field: UsersMutation::UnfollowField
   end
 end

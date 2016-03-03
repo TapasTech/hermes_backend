@@ -2,27 +2,25 @@
 require 'rails_helper'
 
 RSpec.describe LocationPolicy do
-  let(:user) { User.new }
+  subject { LocationPolicy.new(user, location) }
 
-  subject { described_class }
+  let(:location) { create(:location) }
 
-  permissions '.scope' do
-    pending "add some examples to (or delete) #{__FILE__}"
+  context 'for a visitor' do
+    let(:user) { nil }
+
+    it { should_not permit(:update) }
   end
 
-  permissions :show? do
-    pending "add some examples to (or delete) #{__FILE__}"
+  context 'for the owner' do
+    let(:user) { location.user }
+
+    it { should permit(:update) }
   end
 
-  permissions :create? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
+  context 'for another user' do
+    let(:user) { create(:user) }
 
-  permissions :update? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :destroy? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it { should_not permit(:update) }
   end
 end

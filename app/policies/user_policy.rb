@@ -8,6 +8,14 @@ class UserPolicy < ApplicationPolicy
     record == user
   end
 
+  def follow?
+    user&.!= record
+  end
+
+  def unfollow?
+    user.present?
+  end
+
   # Authorized Visible Scope
   class Scope < Scope
     def resolve

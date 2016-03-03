@@ -12,7 +12,7 @@ class QuestionPolicy < ApplicationPolicy
     user.present?
   end
 
-  def remove_topc?
+  def remove_topic?
     record.user == user
   end
 
@@ -37,6 +37,14 @@ class QuestionPolicy < ApplicationPolicy
   end
 
   def vote_down?
+    user.present?
+  end
+
+  def follow?
+    user.present?
+  end
+
+  def unfollow?
     user.present?
   end
 

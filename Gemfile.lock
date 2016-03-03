@@ -66,6 +66,7 @@ GEM
     config (1.0.0)
       activesupport (>= 3.0)
       deep_merge (~> 1.0.0)
+    database_cleaner (1.5.1)
     deep_merge (1.0.1)
     diff-lcs (1.2.5)
     erubis (2.7.0)
@@ -93,11 +94,19 @@ GEM
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
     mime-types (2.99.1)
+    mina (0.3.8)
+      open4 (~> 1.3.4)
+      rake
+    mina-multistage (1.0.2)
+      mina (>= 0.2.1)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
+    multi_json (1.11.2)
     nio4r (1.2.1)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
+    oj (2.14.5)
+    open4 (1.3.4)
     parser (2.3.0.6)
       ast (~> 2.2)
     parslet (1.7.1)
@@ -207,12 +216,17 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   byebug
   config
+  database_cleaner
   factory_girl_rails (~> 4.0)
   graphql
   graphql-mutable_type!
   kaminari
   listen (~> 3.0.5)
+  mina
+  mina-multistage
+  multi_json
   nokogiri
+  oj
   paranoia!
   pg (~> 0.18)
   pry-rails

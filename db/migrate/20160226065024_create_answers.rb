@@ -4,7 +4,8 @@ class CreateAnswers < ActiveRecord::Migration[5.0]
     create_table :answers do |t|
       t.references :user
       t.references :question, foreign_key: true
-      t.string :content
+      t.text :content
+      t.datetime :edited_at
 
       t.timestamps
     end

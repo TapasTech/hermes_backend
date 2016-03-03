@@ -15,7 +15,8 @@ QuestionType = GraphQL::MutableType.define do
 
   field :dataSets, field: PaginateField.create(DataSet, property: :data_sets)
   field :dataReports, field: PaginateField.create(DataReport, property: :data_reports)
-  field :answers, field: PaginateField.create(Answer, property: :answers)
+  field :answers, field: PaginateField.create(Answer, property: :answers,
+                                                      transform: ->(a) { a.order(confidence: :desc) })
 
   field :upVotesCount, types.Int, property: :up_votes_count
   field :downVotesCount, types.Int, property: :down_votes_count
@@ -33,8 +34,11 @@ QuestionType = GraphQL::MutableType.define do
     field :addDataReport, field: QuestionsMutation::AddDataReportField
     field :removeDataReport, field: QuestionsMutation::RemoveDataReportField
 
-    field :voteUp, field: AnswersMutation::VoteUpField
-    field :voteDown, field: AnswersMutation::VoteDownField
+    field :voteUp, field: QuestionsMutation::VoteUpField
+    field :voteDown, field: QuestionsMutation::VoteDownField
+
+    field :follow, field: QuestionsMutation::FollowField
+    field :unfollow, field: QuestionsMutation::UnfollowField
 
     field :createAnswer, field: AnswersMutation::CreateAnswerField
   end

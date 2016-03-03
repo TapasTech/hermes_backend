@@ -3,8 +3,8 @@ class CreateEmployments < ActiveRecord::Migration[5.0]
   def change
     create_table :employments do |t|
       t.references :user, foreign_key: true
-      t.string :employment
-      t.string :position
+      t.text :employment
+      t.text :position
 
       t.timestamps
     end

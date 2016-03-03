@@ -10,4 +10,10 @@ MutationType = GraphQL::ObjectType.define do
 
   # question
   field :createQuestion, field: QuestionsMutation::CreateQuestionField
+
+  # data set
+  field :createDataSet, field: DataSetsMutation::CreateDataSetField
+
+  # data report
+  field :createDataReport, field: DataReportsMutation::CreateDataReportField
 end

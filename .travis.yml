@@ -1,0 +1,11 @@
+---
+language: ruby
+rvm:
+  - "2.3.0"
+addons:
+  postgresql: "9.4"
+services:
+  - postgresql
+before_script:
+  - psql -c 'create database hermes_backend_test;' -U postgres
+  - cp config/database.travis.yml config/database.yml

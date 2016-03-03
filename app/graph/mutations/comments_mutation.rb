@@ -45,7 +45,7 @@ module CommentsMutation
       GraphQLAuthenticator.authenticate(object, arguments, context) do
         GraphQLAuthorizer.authorize current_user, object, :vote_up?
 
-        object.vote_by(current_user, 1)
+        current_user.vote_up_comment(object)
         object
       end
     end
@@ -54,7 +54,7 @@ module CommentsMutation
       GraphQLAuthenticator.authenticate(object, arguments, context) do
         GraphQLAuthorizer.authorize current_user, object, :vote_down?
 
-        object.vote_by(current_user, -1)
+        current_user.vote_down_comment(object)
         object
       end
     end
