@@ -15,6 +15,7 @@ class Question < ApplicationRecord
   has_many :data_reports, through: :questions_data_reports
 
   has_many :answers
+  delegate :count, to: :answers, prefix: true
 
   has_many :questions_followments, foreign_key: :followee_question_id
   has_many :followers, through: :questions_followments,

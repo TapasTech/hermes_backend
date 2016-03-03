@@ -2,27 +2,16 @@
 require 'rails_helper'
 
 RSpec.describe ActivityPolicy do
-  let(:user) { User.new }
+  subject { ActivityPolicy.new(user, the_user) }
 
-  subject { described_class }
+  let(:activity) { create(:activity) }
 
-  permissions '.scope' do
-    pending "add some examples to (or delete) #{__FILE__}"
+  context 'for a visitor' do
   end
 
-  permissions :show? do
-    pending "add some examples to (or delete) #{__FILE__}"
+  context 'for a user' do
   end
 
-  permissions :create? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :update? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :destroy? do
-    pending "add some examples to (or delete) #{__FILE__}"
+  context 'for other user' do
   end
 end
