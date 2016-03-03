@@ -2,6 +2,5 @@
 module CustomGraphQLErrors
   class Error < StandardError; end
 
-  # add your own errrors here
-  # class YourOwnError < Error; end
+  class AuthenticationError < Error; end
 end

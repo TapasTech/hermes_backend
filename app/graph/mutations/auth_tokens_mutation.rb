@@ -21,7 +21,7 @@ module AuthTokensMutation
     def create(_object, arguments, _context)
       user = User.where(email: arguments[:email]).first
 
-      fail TapasGraphQLErrors::AuthenticationError unless user.try(:authenticate, arguments[:password])
+      fail CustomGraphQLErrors::AuthenticationError unless user.try(:authenticate, arguments[:password])
       auth_token = AuthToken.new(user.id, user.password_digest).generate
       UserWithAuthTokenType.wrap(user: user, auth_token: auth_token)
     end

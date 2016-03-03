@@ -93,7 +93,7 @@ module QuestionsMutation
 
   # Methods that resolves
   module ResolverMethods
-    def create(_object, arguments, _context)
+    def create(object, arguments, _context)
       GraphQLAuthenticator.authenticate(object, arguments, context) do
         GraphQLAuthorizer.authorize current_user, Question, :create?
         build_arguments =
