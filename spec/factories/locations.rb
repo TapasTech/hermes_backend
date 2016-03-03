@@ -2,6 +2,6 @@
 FactoryGirl.define do
   factory :location do
     user nil
-    name 'MyString'
+    sequence(:name) { |n| "#{n}番市" }
   end
 end

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 FactoryGirl.define do
   factory :comment do
-    user nil
-    reply_to_id 1
+    user
+    reply_to_id nil
     answer nil
-    content 'MyString'
+    sequence(:content) { |n| "分析得不错#{n}" }
   end
 end

@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 FactoryGirl.define do
   factory :activity do
-    user nil
-    question nil
-    answer nil
-    payload ''
-    verb 'MyString'
+    user
+    question
+    answer
+    payload nil
+    verb nil
   end
 end

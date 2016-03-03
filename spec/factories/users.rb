@@ -13,6 +13,19 @@ FactoryGirl.define do
     password '12345678'
     display_name
     gender ''
-    bussiness nil
+    business nil
+    locations []
+    educations []
+    employments []
+
+    factory :user_with_full_profile do
+      business
+
+      after(:create) do |user, _evaluator|
+        create(:location, user: user)
+        create(:education, user: user)
+        create(:employment, user: user)
+      end
+    end
   end
 end
