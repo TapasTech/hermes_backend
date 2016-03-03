@@ -11,9 +11,9 @@ class User < ApplicationRecord
                     uniqueness: true
   validates :display_name, presence: true
 
-  has_many :locations
-  has_many :employments
-  has_many :educations
+  has_many :locations, dependent: :destroy
+  has_many :employments, dependent: :destroy
+  has_many :educations, dependent: :destroy
 
   def location
     locations.first || locations.build

@@ -66,6 +66,7 @@ GEM
     config (1.0.0)
       activesupport (>= 3.0)
       deep_merge (~> 1.0.0)
+    database_cleaner (1.5.1)
     deep_merge (1.0.1)
     diff-lcs (1.2.5)
     erubis (2.7.0)
@@ -215,6 +216,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   byebug
   config
+  database_cleaner
   factory_girl_rails (~> 4.0)
   graphql
   graphql-mutable_type!

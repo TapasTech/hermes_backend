@@ -9,7 +9,7 @@ UserType = GraphQL::MutableType.define do
   field :deletedAt, -> { DateType }, property: :deleted_at
 
   field :email, types.String
-  field :display_name, types.String
+  field :displayName, types.String, property: :display_name
   field :gender, types.String
 
   field :business, -> { BusinessType }
