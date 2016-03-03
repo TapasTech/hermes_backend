@@ -4,6 +4,7 @@ rvm:
   - "2.3.0"
 addons:
   postgresql: "9.4"
+  code_climate: "eabaf4117a558b1fca7d8a9711d4ade101a2623c9442d694130a5735ae60637f"
 services:
   - postgresql
 before_script:
