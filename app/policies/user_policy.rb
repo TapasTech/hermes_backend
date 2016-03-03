@@ -9,7 +9,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def follow?
-    user.present?
+    user&.!= record
   end
 
   def unfollow?

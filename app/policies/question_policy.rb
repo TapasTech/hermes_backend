@@ -12,7 +12,7 @@ class QuestionPolicy < ApplicationPolicy
     user.present?
   end
 
-  def remove_topc?
+  def remove_topic?
     record.user == user
   end
 

@@ -2,27 +2,31 @@
 require 'rails_helper'
 
 RSpec.describe UserPolicy do
-  let(:user) { User.new }
+  subject { UserPolicy.new(user, the_user) }
 
-  subject { described_class }
+  let(:the_user) { create(:user) }
 
-  permissions '.scope' do
-    pending "add some examples to (or delete) #{__FILE__}"
+  context 'for a visitor' do
+    let(:user) { nil }
+
+    it { should permit(:create)       }
+    it { should_not permit(:follow)   }
+    it { should_not permit(:unfollow) }
   end
 
-  permissions :show? do
-    pending "add some examples to (or delete) #{__FILE__}"
+  context 'for a user' do
+    let(:user) { the_user }
+
+    it { should permit(:create)     }
+    it { should_not permit(:follow) }
+    it { should permit(:unfollow)   }
   end
 
-  permissions :create? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
+  context 'for other user' do
+    let(:user) { create(:user) }
 
-  permissions :update? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :destroy? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it { should permit(:create)   }
+    it { should permit(:follow)   }
+    it { should permit(:unfollow) }
   end
 end

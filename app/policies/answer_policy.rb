@@ -12,7 +12,15 @@ class AnswerPolicy < ApplicationPolicy
     record.user == user
   end
 
+  def remove_data_set?
+    record.user == user
+  end
+
   def add_data_report?
+    record.user == user
+  end
+
+  def remove_data_report?
     record.user == user
   end
 

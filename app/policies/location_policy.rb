@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class LocationPolicy < ApplicationPolicy
-  def create?
+  def update?
     record.user == user
   end
 

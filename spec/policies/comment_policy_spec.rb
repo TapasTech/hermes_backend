@@ -2,27 +2,31 @@
 require 'rails_helper'
 
 RSpec.describe CommentPolicy do
-  let(:user) { User.new }
+  subject { CommentPolicy.new(user, comment) }
 
-  subject { described_class }
+  let(:comment) { create(:comment) }
 
-  permissions '.scope' do
-    pending "add some examples to (or delete) #{__FILE__}"
+  context 'for a visitor' do
+    let(:user) { nil }
+
+    it { should_not permit(:create)    }
+    it { should_not permit(:vote_up)   }
+    it { should_not permit(:vote_down) }
   end
 
-  permissions :show? do
-    pending "add some examples to (or delete) #{__FILE__}"
+  context 'for a user' do
+    let(:user) { comment.user }
+
+    it { should permit(:create)    }
+    it { should permit(:vote_up)   }
+    it { should permit(:vote_down) }
   end
 
-  permissions :create? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
+  context 'for other user' do
+    let(:user) { create(:user) }
 
-  permissions :update? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :destroy? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it { should permit(:create)    }
+    it { should permit(:vote_up)   }
+    it { should permit(:vote_down) }
   end
 end

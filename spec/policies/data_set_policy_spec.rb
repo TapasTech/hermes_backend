@@ -2,27 +2,19 @@
 require 'rails_helper'
 
 RSpec.describe DataSetPolicy do
-  let(:user) { User.new }
+  subject { DataSetPolicy.new(user, data_set) }
 
-  subject { described_class }
+  let(:data_set) { create(:data_set) }
 
-  permissions '.scope' do
-    pending "add some examples to (or delete) #{__FILE__}"
+  context 'for a visitor' do
+    let(:user) { nil }
+
+    it { should_not permit(:create) }
   end
 
-  permissions :show? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
+  context 'for any user' do
+    let(:user) { create(:user) }
 
-  permissions :create? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :update? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :destroy? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it { should permit(:create) }
   end
 end
