@@ -1,5 +1,5 @@
 ## Hermes
-[![Build Status](https://travis-ci.org/TapasTech/hermes_backend.svg?branch=master)](https://travis-ci.org/TapasTech/hermes_backend)[![Code Climate](https://codeclimate.com/github/TapasTech/hermes_backend/badges/gpa.svg)](https://codeclimate.com/github/TapasTech/hermes_backend)[![Issue Count](https://codeclimate.com/github/TapasTech/hermes_backend/badges/issue_count.svg)](https://codeclimate.com/github/TapasTech/hermes_backend)
+[![Build Status](https://travis-ci.org/TapasTech/hermes_backend.svg?branch=master)](https://travis-ci.org/TapasTech/hermes_backend) [![Code Climate](https://codeclimate.com/github/TapasTech/hermes_backend/badges/gpa.svg)](https://codeclimate.com/github/TapasTech/hermes_backend) [![Issue Count](https://codeclimate.com/github/TapasTech/hermes_backend/badges/issue_count.svg)](https://codeclimate.com/github/TapasTech/hermes_backend)
 
 A Q&A Community supported by data.
 
