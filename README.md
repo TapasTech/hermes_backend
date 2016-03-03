@@ -1,24 +1,60 @@
 ## README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A Q&A Community supported by data.
 
-Things you may want to cover:
+Backend Graphql Server
 
-* Ruby version
+### Ruby version
 
-* System dependencies
++ ruby: ~> 2.3.0
++ rails: ~> 5.0.0
 
-* Configuration
+### System dependencies
 
-* Database creation
++ PostgreSQL: ~> 9.4
 
-* Database initialization
+### Configuration
 
-* How to run the test suite
++ config/database.yml
 
-* Services (job queues, cache servers, search engines, etc.)
+### Database creation
 
-* Deployment instructions
+```sh
+bundle exec rails db:create
+```
 
-* ...
+### Database initialization
+
+```sh
+bundle exec rails db:setup
+```
+
+### How to run the test suite
+
+```sh
+rspec
+```
+
+### Deployment instructions
+
+Set variables in 'config/deploy/#{environment}.rb'
+
+* Initialize
+
+```sh
+bundle exec mina #{environment} setup
+```
+
+and follow the instructions
+
+* Update
+
+```sh
+bundle exec mina #{environment} deplay
+```
+
+### See also
+
++ [GraphQL Spec](http://facebook.github.io/graphql/)
++ [graphql-ruby](https://github.com/rmosolgo/graphql-ruby)
++ [graphql-mutable_type](https://github.com/TapasTech/graphql-mutable_type)

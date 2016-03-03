@@ -1,5 +1,6 @@
 set :domain, ''
 set :deploy_to, ''
-set :repository, ''
-set :branch, ''
+set :repository, 'git@github.com:TapasTech/hermes_backend.git'
+set :branch, 'master'
 set :user, ''
+set :rails_env, 'production'
