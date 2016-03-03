@@ -29,7 +29,7 @@ group :development, :test, :staging do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'rubocop', require: false
   gem 'database_cleaner'
-  gem "codeclimate-test-reporter", require: false
+  gem 'codeclimate-test-reporter', require: false
 end
 
 group :development, :staging do
