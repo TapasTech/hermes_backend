@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe UserType, type: :model do
+RSpec.describe CommentType, type: :model do
   let(:fields) { described_class.fields }
   let(:mutation_fields) { fields['mutation']&.type&.fields }
   let(:expected_fields) do
@@ -10,33 +10,21 @@ RSpec.describe UserType, type: :model do
       createdAt
       updatedAt
       deletedAt
-      email
-      displayName
-      gender
-      business
-      location
-      employment
-      education
-      followers
-      followees
-      followersCount
-      followeesCount
-      questions
-      answers
-      comments
-      replyComments
-      questionsCount
-      answersCount
-      activities
+      user
+      replyTo
+      answer
+      content
+      upVotesCount
+      downVotesCount
+      totalVotesCount
       mutation
     )
   end
 
   let(:expected_mutation_fields) do
     %w(
-      update
-      follow
-      unfollow
+      voteUp
+      voteDown
     )
   end
 
