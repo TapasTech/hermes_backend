@@ -13,6 +13,7 @@ class GraphQLController < ApplicationController
   end
 
   protected
+
   def bad_graphql_query(exception)
     render json: {error: exception.message}, status: :bad_request
   end
