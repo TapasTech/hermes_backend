@@ -105,6 +105,7 @@ GEM
     mini_portile2 (2.0.0)
     minitest (5.8.4)
     multi_json (1.11.2)
+    newrelic_rpm (3.15.0.314)
     nio4r (1.2.1)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
@@ -235,6 +236,7 @@ DEPENDENCIES
   mina
   mina-multistage
   multi_json
+  newrelic_rpm
   nokogiri
   oj
   paranoia!

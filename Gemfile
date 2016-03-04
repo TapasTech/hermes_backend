@@ -58,6 +58,7 @@ gem 'kaminari'
 gem 'bcrypt', '~> 3.1.7'
 gem 'rack-cors'
 gem 'paranoia', github: 'radar/paranoia', branch: 'core'
+gem 'newrelic_rpm'
 # Object Serializer
 gem 'multi_json'
 gem 'oj'
