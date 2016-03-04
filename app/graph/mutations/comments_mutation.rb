@@ -30,7 +30,8 @@ module CommentsMutation
         build_arguments =
           GraphQLArgumentProcessor.camel_keys_to_underscore arguments
 
-        build_arguments.merge!(user: current_user, reply_to: CommentsMutation.extract_reply_to!(build_arguments))
+        build_arguments[:user] = current_user
+        build_arguments[:reply_to] = CommentsMutation.extract_reply_to!(build_arguments)
         object.comments.create!(build_arguments)
       end
     end

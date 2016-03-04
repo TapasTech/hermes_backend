@@ -9,7 +9,7 @@ module DataReportsMutation
 
     resolve ->(*p) { DataReportsMutation.create(*p) }
   end
-  
+
   UpdateDataReportField = GraphQL::Field.define do
     type -> { DataReportType }
 
