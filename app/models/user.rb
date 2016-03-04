@@ -68,8 +68,6 @@ class User < ApplicationRecord
   delegate :count, to: :questions, prefix: true
   delegate :count, to: :answers, prefix: true
 
-  has_many :votes
-
   def ask(title:, content: nil)
     question = questions.create!(title: title, content: content)
     Activity.create_create_question_activity!(self, question)
