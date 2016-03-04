@@ -203,7 +203,7 @@ module QuestionsMutation
         GraphQLAuthorizer.authorize current_user, object, :follow?
 
         current_user.follow_question(object)
-        object
+        object.reload
       end
     end
 
@@ -212,7 +212,7 @@ module QuestionsMutation
         GraphQLAuthorizer.authorize current_user, object, :unfollow?
 
         current_user.unfollow_question(object)
-        object
+        object.reload
       end
     end
   end

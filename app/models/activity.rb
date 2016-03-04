@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 class Activity < ApplicationRecord
-  VERBS = %w(QUESTION_CREATE QUESTION_FOLLOW ANSWER_CREATE ANSWER_VOTE_UP).freeze
+  VERBS =
+    %w(
+      QUESTION_CREATE
+      QUESTION_FOLLOW
+      ANSWER_CREATE
+      ANSWER_VOTE_UP
+    ).freeze
+
   VERBS.each { |verb| const_set(verb, verb) }
 
   belongs_to :user
