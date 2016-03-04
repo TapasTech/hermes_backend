@@ -30,14 +30,14 @@ module CommentsMutation
         build_arguments =
           GraphQLArgumentProcessor.camel_keys_to_underscore arguments
 
-        build_arguments.merge(user: current_user, reply_to: CommentsMutation.extract_reply_to!(build_arguments))
+        build_arguments.merge!(user: current_user, reply_to: CommentsMutation.extract_reply_to!(build_arguments))
         object.comments.create!(build_arguments)
       end
     end
 
     def extract_reply_to!(arguments)
       reply_to_id = arguments.delete(:reply_to_id)
-      User.find(reply_to_id) if reply_to_id.present
+      User.find(reply_to_id) if reply_to_id.present?
     end
 
     # Voting
