@@ -17,13 +17,20 @@ RSpec.describe DataSetsMutation do
 
     context 'with proper argument and context' do
       let(:arguments) do
-        {}
+        {
+          title: '2016 社区指数',
+          url: 'http://data.set.com/'
+        }
       end
 
-      let(:current_user) { user }
+      let(:current_user) { create(:user) }
 
       it 'resolves correctly' do
         expect(resolution).to be_truthy
+        expect(resolution).to have_attributes(
+          title: arguments[:title],
+          url: arguments[:url])
+        expect(resolution.user).to eq(current_user)
       end
     end
   end
@@ -40,13 +47,19 @@ RSpec.describe DataSetsMutation do
 
     context 'with proper argument and context' do
       let(:arguments) do
-        {}
+        {
+          title: '2016 社区指数(修正版)',
+          url: 'http://data.set.com/2'
+        }
       end
 
-      let(:current_user) { user }
+      let(:current_user) { data_set.user }
 
       it 'resolves correctly' do
         expect(resolution).to be_truthy
+        expect(resolution).to have_attributes(
+          title: arguments[:title],
+          url: arguments[:url])
       end
     end
   end

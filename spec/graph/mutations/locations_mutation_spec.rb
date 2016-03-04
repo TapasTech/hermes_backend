@@ -17,13 +17,17 @@ RSpec.describe LocationsMutation do
 
     context 'with proper argument and context' do
       let(:arguments) do
-        {}
+        {
+          name: '一个好地方'
+        }
       end
 
-      let(:current_user) { user }
+      let(:current_user) { location.user }
 
       it 'resolves correctly' do
         expect(resolution).to be_truthy
+        expect(resolution).to have_attributes(
+          name: arguments[:name])
       end
     end
   end

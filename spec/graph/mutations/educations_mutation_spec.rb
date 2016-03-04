@@ -17,13 +17,19 @@ RSpec.describe EducationsMutation do
 
     context 'with proper argument and context' do
       let(:arguments) do
-        {}
+        {
+          organization: '一所好学校',
+          direction: '一个好方向'
+        }
       end
 
-      let(:current_user) { user }
+      let(:current_user) { education.user }
 
       it 'resolves correctly' do
         expect(resolution).to be_truthy
+        expect(resolution).to have_attributes(
+          organization: arguments[:organization],
+          direction: arguments[:direction])
       end
     end
   end
