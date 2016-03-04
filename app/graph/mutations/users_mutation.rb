@@ -16,7 +16,7 @@ module UsersMutation
 
     argument :oldPassword, !types.String
     argument :displayName, types.String
-    argument :password,    !types.String
+    argument :password,    types.String
     argument :email,       types.String
 
     resolve ->(*p) { UsersMutation.update(*p) }

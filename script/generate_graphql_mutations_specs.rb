@@ -7,32 +7,33 @@ template = lambda do |mutation_name, model_name, field_codes|
 require 'rails_helper'
 
 RSpec.describe #{mutation_name} do
-  let(:#{model_name}) do
-    # load record
-  end
   subject { described_class }
+  let(:#{model_name}) { create(:#{model_name}) }
 
-  #{field_codes}
+#{field_codes}
 end
 "
 end
 
 field_template = lambda do |mutation_name, model_name, field_name|
-"  describe '::#{field_name}' do
+  "  describe '::#{field_name}' do
+    let(:resolution) do
+      ::#{mutation_name}::#{field_name}.resolve(
+        #{model_name},
+        GraphQL::Query::Arguments.new(arguments),
+        context)
+    end
+
+    let(:context) { {current_user: current_user} }
+
     context 'with proper argument and context' do
       let(:arguments) do
-        # arguments
+        {}
       end
 
-      let(:user) do
-        # Load User
-      end
-
-      let(:context) { {current_user: user} }
+      let(:current_user) { user }
 
       it 'resolves correctly' do
-        resolution = ::#{mutation_name}::#{field_name}.resolve(
-          #{model_name}, arguments, context: context)
         expect(resolution).to be_truthy
       end
     end
@@ -57,7 +58,7 @@ FILE_PATHS.each do |file_path|
   next if spec_path.exist?
   fields = find_fields(mutation).map { |f| field_template[mutation.name, model_name, f] }
   text = template[mutation.name, model_name, fields.join("\n\n")]
-  
+
   File.open(spec_path, 'w') do |file|
     file.puts text
   end

@@ -16,7 +16,7 @@ GraphQLAuthenticator = Struct.new(:object, :arguments, :context) do
   end
 
   def current_user
-    @current_user ||= context.instance_variable_get(:'@values').present? && context[:current_user]
+    @current_user ||= context&.[] :current_user
   end
 
   # Module Methods
