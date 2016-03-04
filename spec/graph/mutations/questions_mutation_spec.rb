@@ -16,6 +16,7 @@ RSpec.describe QuestionsMutation do
         context)
     end
 
+    let(:question) { nil }
     let(:context) { {current_user: current_user} }
 
     context 'with proper argument and context' do

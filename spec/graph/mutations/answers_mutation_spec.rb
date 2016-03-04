@@ -3,27 +3,37 @@ require 'rails_helper'
 
 RSpec.describe AnswersMutation do
   subject { described_class }
+
   let(:answer) { create(:answer) }
+  let(:data_set) { create(:data_set) }
+  let(:data_report) { create(:data_report) }
 
   describe '::CreateAnswerField' do
     let(:resolution) do
       ::AnswersMutation::CreateAnswerField.resolve(
-        answer,
+        question,
         GraphQL::Query::Arguments.new(arguments),
         context)
     end
 
+    let(:question) { create(:question) }
     let(:context) { {current_user: current_user} }
 
     context 'with proper argument and context' do
       let(:arguments) do
-        {}
+        {
+          content: '我是一个有深度的答案'
+        }
       end
 
-      let(:current_user) { user }
+      let(:current_user) { create(:user) }
 
       it 'resolves correctly' do
         expect(resolution).to be_truthy
+        expect(resolution).to have_attributes(
+          content: arguments[:content])
+        expect(resolution.user).to eq(current_user)
+        expect(resolution.question).to eq(question)
       end
     end
   end
