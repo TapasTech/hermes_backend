@@ -1,12 +1,13 @@
 ---
 language: ruby
 rvm:
-  - "2.3.0"
+  - 2.3.0
 addons:
   postgresql: "9.4"
-  code_climate: "eabaf4117a558b1fca7d8a9711d4ade101a2623c9442d694130a5735ae60637f"
+env: CODECLIMATE_REPO_TOKEN=eabaf4117a558b1fca7d8a9711d4ade101a2623c9442d694130a5735ae60637f
 services:
   - postgresql
+  - redis-server
 before_script:
   - psql -c 'create database hermes_backend_test;' -U postgres
   - cp config/database.travis.yml config/database.yml

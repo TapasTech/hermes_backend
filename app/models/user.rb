@@ -68,8 +68,6 @@ class User < ApplicationRecord
   delegate :count, to: :questions, prefix: true
   delegate :count, to: :answers, prefix: true
 
-  has_many :votes
-
   def ask(title:, content: nil)
     question = questions.create!(title: title, content: content)
     Activity.create_create_question_activity!(self, question)
@@ -92,28 +90,28 @@ class User < ApplicationRecord
   end
 
   def vote_up_question(question)
-    question.vote_by(user, 1)
-    Activity.create_vote_up_answer_activity!(self, answer)
+    question.vote_by(self, 1)
   end
 
   def vote_down_question(question)
-    question.vote_by(user, -1)
+    question.vote_by(self, -1)
   end
 
   def vote_up_answer(answer)
-    answer.vote_by(user, 1)
+    answer.vote_by(self, 1)
+    Activity.create_vote_up_answer_activity!(self, answer)
   end
 
   def vote_down_answer(answer)
-    answer.vote_by(user, -1)
+    answer.vote_by(self, -1)
   end
 
   def vote_up_comment(comment)
-    comment.vote_by(user, 1)
+    comment.vote_by(self, 1)
   end
 
   def vote_down_comment(comment)
-    comment.vote_by(user, -1)
+    comment.vote_by(self, -1)
   end
 
   # activity feeds

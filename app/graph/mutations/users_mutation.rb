@@ -16,7 +16,7 @@ module UsersMutation
 
     argument :oldPassword, !types.String
     argument :displayName, types.String
-    argument :password,    !types.String
+    argument :password,    types.String
     argument :email,       types.String
 
     resolve ->(*p) { UsersMutation.update(*p) }
@@ -53,7 +53,7 @@ module UsersMutation
           GraphQLArgumentProcessor.camel_keys_to_underscore arguments
 
         old_password = update_arguments.delete(:old_password)
-        fail TapasGraphQLErrors::WrongPasswordError unless current_user.authenticate(old_password)
+        fail CustomGraphQLErrors::WrongPasswordError unless current_user.authenticate(old_password)
 
         object.update!(update_arguments)
         object

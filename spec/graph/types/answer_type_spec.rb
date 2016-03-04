@@ -16,6 +16,7 @@ RSpec.describe AnswerType, type: :model do
       dataSets
       dataReports
       comments
+      commentsCount
       upVotesCount
       downVotesCount
       totalVotesCount

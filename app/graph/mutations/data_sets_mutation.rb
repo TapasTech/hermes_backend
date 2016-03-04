@@ -9,6 +9,7 @@ module DataSetsMutation
 
     resolve ->(*p) { DataSetsMutation.create(*p) }
   end
+
   UpdateDataSetField = GraphQL::Field.define do
     type -> { DataSetType }
 

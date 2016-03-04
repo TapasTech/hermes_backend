@@ -12,6 +12,7 @@ class Answer < ApplicationRecord
   has_many :answers_data_reports
   has_many :data_reports, through: :answers_data_reports
   has_many :comments
+  delegate :count, to: :comments, prefix: true
 
   validates :content, presence: true
 end

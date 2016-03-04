@@ -63,14 +63,14 @@ module AnswersMutation
 
   # Methods that resolves
   module ResolverMethods
-    def create(_object, arguments, _context)
+    def create(object, arguments, context)
       GraphQLAuthenticator.authenticate(object, arguments, context) do
         GraphQLAuthorizer.authorize current_user, Answer, :create?
         build_arguments =
           GraphQLArgumentProcessor.camel_keys_to_underscore arguments
 
-        build_arguments.merge(question: object)
-        user.answer(build_arguments)
+        build_arguments[:question] = object
+        current_user.answer(build_arguments)
       end
     end
 
@@ -143,7 +143,7 @@ module AnswersMutation
       GraphQLAuthenticator.authenticate(object, arguments, context) do
         GraphQLAuthorizer.authorize current_user, object, :vote_down?
 
-        current_user.vote_down_answer(current_user)
+        current_user.vote_down_answer(object)
         object
       end
     end

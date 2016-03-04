@@ -12,11 +12,11 @@ GraphQLAuthenticator = Struct.new(:object, :arguments, :context) do
   end
 
   def authenticate_user!
-    fail TapasGraphQLErrors::AuthenticationError if current_user.blank?
+    fail CustomGraphQLErrors::AuthenticationError if current_user.blank?
   end
 
   def current_user
-    @current_user ||= context.instance_variable_get(:'@values').present? && context[:current_user]
+    @current_user ||= context&.[] :current_user
   end
 
   # Module Methods
