@@ -69,8 +69,8 @@ module AnswersMutation
         build_arguments =
           GraphQLArgumentProcessor.camel_keys_to_underscore arguments
 
-        build_arguments.merge(question: object)
-        user.answer(build_arguments)
+        build_arguments[:question] = object
+        current_user.answer(build_arguments)
       end
     end
 
