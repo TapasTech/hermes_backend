@@ -50,13 +50,17 @@ RSpec.describe AnswersMutation do
 
     context 'with proper argument and context' do
       let(:arguments) do
-        {}
+        {
+          content: '我是一个有真相的答案'
+        }
       end
 
-      let(:current_user) { user }
+      let(:current_user) { answer.user }
 
       it 'resolves correctly' do
         expect(resolution).to be_truthy
+        expect(resolution).to have_attributes(
+          content: arguments[:content])
       end
     end
   end
@@ -73,13 +77,16 @@ RSpec.describe AnswersMutation do
 
     context 'with proper argument and context' do
       let(:arguments) do
-        {}
+        {
+          id: data_set.id
+        }
       end
 
-      let(:current_user) { user }
+      let(:current_user) { answer.user }
 
       it 'resolves correctly' do
         expect(resolution).to be_truthy
+        expect(resolution.data_sets).to include(data_set)
       end
     end
   end
@@ -95,14 +102,21 @@ RSpec.describe AnswersMutation do
     let(:context) { {current_user: current_user} }
 
     context 'with proper argument and context' do
-      let(:arguments) do
-        {}
+      before do
+        answer.data_sets << data_set
       end
 
-      let(:current_user) { user }
+      let(:arguments) do
+        {
+          id: data_set.id
+        }
+      end
+
+      let(:current_user) { answer.user }
 
       it 'resolves correctly' do
         expect(resolution).to be_truthy
+        expect(resolution.data_sets).not_to include(data_set)
       end
     end
   end
@@ -119,13 +133,16 @@ RSpec.describe AnswersMutation do
 
     context 'with proper argument and context' do
       let(:arguments) do
-        {}
+        {
+          id: data_report.id
+        }
       end
 
-      let(:current_user) { user }
+      let(:current_user) { answer.user }
 
       it 'resolves correctly' do
         expect(resolution).to be_truthy
+        expect(resolution.data_reports).to include(data_report)
       end
     end
   end
@@ -141,14 +158,21 @@ RSpec.describe AnswersMutation do
     let(:context) { {current_user: current_user} }
 
     context 'with proper argument and context' do
-      let(:arguments) do
-        {}
+      before do
+        answer.data_reports << data_report
       end
 
-      let(:current_user) { user }
+      let(:arguments) do
+        {
+          id: data_report.id
+        }
+      end
+
+      let(:current_user) { answer.user }
 
       it 'resolves correctly' do
         expect(resolution).to be_truthy
+        expect(resolution.data_reports).not_to include(data_report)
       end
     end
   end
@@ -164,14 +188,14 @@ RSpec.describe AnswersMutation do
     let(:context) { {current_user: current_user} }
 
     context 'with proper argument and context' do
-      let(:arguments) do
-        {}
-      end
+      let(:arguments) { {} }
 
-      let(:current_user) { user }
+      let(:current_user) { create(:user) }
 
       it 'resolves correctly' do
-        expect(resolution).to be_truthy
+        expect { resolution }
+          .to change { answer.up_votes_count }
+          .from(0).to(1)
       end
     end
   end
@@ -187,14 +211,14 @@ RSpec.describe AnswersMutation do
     let(:context) { {current_user: current_user} }
 
     context 'with proper argument and context' do
-      let(:arguments) do
-        {}
-      end
+      let(:arguments) { {} }
 
-      let(:current_user) { user }
+      let(:current_user) { create(:user) }
 
       it 'resolves correctly' do
-        expect(resolution).to be_truthy
+        expect { resolution }
+          .to change { answer.down_votes_count }
+          .from(0).to(1)
       end
     end
   end

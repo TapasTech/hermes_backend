@@ -143,7 +143,7 @@ module AnswersMutation
       GraphQLAuthenticator.authenticate(object, arguments, context) do
         GraphQLAuthorizer.authorize current_user, object, :vote_down?
 
-        current_user.vote_down_answer(current_user)
+        current_user.vote_down_answer(object)
         object
       end
     end
