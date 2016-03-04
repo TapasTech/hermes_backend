@@ -61,5 +61,6 @@ RSpec.configure do |config|
     DatabaseCleaner.cleaning do
       example.run
     end
+    Redis::Objects.redis.flushdb
   end
 end

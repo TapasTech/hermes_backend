@@ -2,10 +2,11 @@
 require 'rails_helper'
 
 RSpec.describe QuestionsMutation do
-  let(:question) do
-    # load record
-  end
   subject { described_class }
+  let(:question) { create(:question) }
+  let(:topic) { create(:topic) }
+  let(:data_set) { create(:data_set) }
+  let(:data_report) { create(:data_report) }
 
   describe '::CreateQuestionField' do
     let(:resolution) do
@@ -15,23 +16,25 @@ RSpec.describe QuestionsMutation do
         context)
     end
 
-    let(:question) { create(:question) }
-
     let(:context) { {current_user: current_user} }
 
     context 'with proper argument and context' do
+      let(:question) { nil }
       let(:arguments) do
         {
-          # arguments
+          title: '我是一个问题',
+          content: '这是个很严肃的问题!'
         }
       end
 
-      let(:current_user) do
-        # Load User
-      end
+      let(:current_user) { create(:user) }
 
       it 'resolves correctly' do
         expect(resolution).to be_truthy
+        expect(resolution).to have_attributes(
+          title: arguments[:title],
+          content: arguments[:content])
+        expect(resolution.user).to eq(current_user)
       end
     end
   end
@@ -44,23 +47,24 @@ RSpec.describe QuestionsMutation do
         context)
     end
 
-    let(:question) { create(:question) }
-
     let(:context) { {current_user: current_user} }
 
     context 'with proper argument and context' do
       let(:arguments) do
         {
-          # arguments
+          title: '我是一个问题! 更新!',
+          content: '这个问题超级有价值!'
         }
       end
 
-      let(:current_user) do
-        # Load User
-      end
+      let(:current_user) { question.user }
 
       it 'resolves correctly' do
         expect(resolution).to be_truthy
+        expect(resolution).to have_attributes(
+          title: arguments[:title],
+          content: arguments[:content])
+        expect(resolution.user).to eq(current_user)
       end
     end
   end
@@ -73,23 +77,20 @@ RSpec.describe QuestionsMutation do
         context)
     end
 
-    let(:question) { create(:question) }
-
     let(:context) { {current_user: current_user} }
 
     context 'with proper argument and context' do
       let(:arguments) do
         {
-          # arguments
+          id: topic.id
         }
       end
 
-      let(:current_user) do
-        # Load User
-      end
+      let(:current_user) { question.user }
 
       it 'resolves correctly' do
         expect(resolution).to be_truthy
+        expect(resolution.topics).to include(topic)
       end
     end
   end
@@ -102,23 +103,24 @@ RSpec.describe QuestionsMutation do
         context)
     end
 
-    let(:question) { create(:question) }
-
     let(:context) { {current_user: current_user} }
 
     context 'with proper argument and context' do
+      before do
+        question.topics << topic
+      end
+
       let(:arguments) do
         {
-          # arguments
+          id: topic.id
         }
       end
 
-      let(:current_user) do
-        # Load User
-      end
+      let(:current_user) { question.user }
 
       it 'resolves correctly' do
         expect(resolution).to be_truthy
+        expect(resolution.topics).not_to include(:topic)
       end
     end
   end
@@ -131,23 +133,20 @@ RSpec.describe QuestionsMutation do
         context)
     end
 
-    let(:question) { create(:question) }
-
     let(:context) { {current_user: current_user} }
 
     context 'with proper argument and context' do
       let(:arguments) do
         {
-          # arguments
+          id: data_set.id
         }
       end
 
-      let(:current_user) do
-        # Load User
-      end
+      let(:current_user) { question.user }
 
       it 'resolves correctly' do
         expect(resolution).to be_truthy
+        expect(resolution.data_sets).to include(data_set)
       end
     end
   end
@@ -160,23 +159,24 @@ RSpec.describe QuestionsMutation do
         context)
     end
 
-    let(:question) { create(:question) }
-
     let(:context) { {current_user: current_user} }
 
     context 'with proper argument and context' do
+      before do
+        question.data_sets << data_set
+      end
+
       let(:arguments) do
         {
-          # arguments
+          id: data_set.id
         }
       end
 
-      let(:current_user) do
-        # Load User
-      end
+      let(:current_user) { question.user }
 
       it 'resolves correctly' do
         expect(resolution).to be_truthy
+        expect(resolution.data_sets).not_to include(data_set)
       end
     end
   end
@@ -189,23 +189,20 @@ RSpec.describe QuestionsMutation do
         context)
     end
 
-    let(:question) { create(:question) }
-
     let(:context) { {current_user: current_user} }
 
     context 'with proper argument and context' do
       let(:arguments) do
         {
-          # arguments
+          id: data_report.id
         }
       end
 
-      let(:current_user) do
-        # Load User
-      end
+      let(:current_user) { question.user }
 
       it 'resolves correctly' do
         expect(resolution).to be_truthy
+        expect(resolution.data_reports).to include(data_report)
       end
     end
   end
@@ -218,23 +215,23 @@ RSpec.describe QuestionsMutation do
         context)
     end
 
-    let(:question) { create(:question) }
-
     let(:context) { {current_user: current_user} }
 
     context 'with proper argument and context' do
+      before do
+        question.data_reports << data_report
+      end
       let(:arguments) do
         {
-          # arguments
+          id: data_report.id
         }
       end
 
-      let(:current_user) do
-        # Load User
-      end
+      let(:current_user) { question.user }
 
       it 'resolves correctly' do
         expect(resolution).to be_truthy
+        expect(resolution.data_reports).not_to include(data_report)
       end
     end
   end
@@ -247,23 +244,17 @@ RSpec.describe QuestionsMutation do
         context)
     end
 
-    let(:question) { create(:question) }
-
     let(:context) { {current_user: current_user} }
 
     context 'with proper argument and context' do
-      let(:arguments) do
-        {
-          # arguments
-        }
-      end
+      let(:arguments) { {} }
 
-      let(:current_user) do
-        # Load User
-      end
+      let(:current_user) { create(:user) }
 
       it 'resolves correctly' do
-        expect(resolution).to be_truthy
+        expect { resolution }
+          .to change { question.up_votes_count }
+          .from(0).to(1)
       end
     end
   end
@@ -276,23 +267,17 @@ RSpec.describe QuestionsMutation do
         context)
     end
 
-    let(:question) { create(:question) }
-
     let(:context) { {current_user: current_user} }
 
     context 'with proper argument and context' do
-      let(:arguments) do
-        {
-          # arguments
-        }
-      end
+      let(:arguments) { {} }
 
-      let(:current_user) do
-        # Load User
-      end
+      let(:current_user) { create(:user) }
 
       it 'resolves correctly' do
-        expect(resolution).to be_truthy
+        expect { resolution }
+          .to change { question.down_votes_count }
+          .from(0).to(1)
       end
     end
   end
@@ -305,23 +290,16 @@ RSpec.describe QuestionsMutation do
         context)
     end
 
-    let(:question) { create(:question) }
-
     let(:context) { {current_user: current_user} }
 
     context 'with proper argument and context' do
-      let(:arguments) do
-        {
-          # arguments
-        }
-      end
+      let(:arguments) { {} }
 
-      let(:current_user) do
-        # Load User
-      end
+      let(:current_user) { create(:user) }
 
       it 'resolves correctly' do
         expect(resolution).to be_truthy
+        expect(resolution.followers).to include(current_user)
       end
     end
   end
@@ -334,23 +312,19 @@ RSpec.describe QuestionsMutation do
         context)
     end
 
-    let(:question) { create(:question) }
-
     let(:context) { {current_user: current_user} }
 
     context 'with proper argument and context' do
-      let(:arguments) do
-        {
-          # arguments
-        }
+      before do
+        question.followers << current_user
       end
 
-      let(:current_user) do
-        # Load User
-      end
+      let(:arguments) { {} }
+      let(:current_user) { create(:user) }
 
       it 'resolves correctly' do
         expect(resolution).to be_truthy
+        expect(resolution.followers).not_to include(current_user)
       end
     end
   end
