@@ -23,6 +23,14 @@ QuestionType = GraphQL::MutableType.define do
   field :downVotesCount, types.Int, property: :down_votes_count
   field :totalVotesCount, types.Int, property: :total_votes_count
 
+  field :followed, types.Boolean do
+    resolve lambda { |object, arguments, context|
+      GraphQLAuthenticator.execute(object, arguments, context) do
+        object.followed_by?(current_user)
+      end
+    }
+  end
+
   mutation do
     field :update, field: QuestionsMutation::UpdateQuestionField
 

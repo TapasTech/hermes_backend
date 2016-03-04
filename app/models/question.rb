@@ -24,5 +24,9 @@ class Question < ApplicationRecord
 
   delegate :count, to: :followers, prefix: true
 
+  def followed_by?(user)
+    followers.exists?(user)
+  end
+
   validates :title, presence: true
 end
