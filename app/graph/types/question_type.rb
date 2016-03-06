@@ -23,6 +23,8 @@ QuestionType = GraphQL::MutableType.define do
   field :downVotesCount, types.Int, property: :down_votes_count
   field :totalVotesCount, types.Int, property: :total_votes_count
 
+  field :followers, field: PaginateField.create(User, property: :followers)
+  field :followersCount, types.Int, property: :followers_count
   field :followed, types.Boolean do
     resolve lambda { |object, arguments, context|
       GraphQLAuthenticator.execute(object, arguments, context) do

@@ -21,6 +21,8 @@ RSpec.describe QuestionType, type: :model do
       upVotesCount
       downVotesCount
       totalVotesCount
+      followers
+      followersCount
       followed
       mutation
     )
