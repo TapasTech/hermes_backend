@@ -11,6 +11,7 @@ QueryType = GraphQL::ObjectType.define do
 
   field :question, field: FetchField.create(Question)
   field :answer, field: FetchField.create(Answer)
+  field :comment, field: FetchField.create(Comment)
 
   field :data_sets, field: PaginateField.create(DataSet)
   field :data_reports, field: PaginateField.create(DataReport)
