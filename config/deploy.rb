@@ -62,7 +62,8 @@ task setup: :environment do
 
   queue! %(touch "#{deploy_to}/#{shared_path}/config/database.yml")
   queue! %(touch "#{deploy_to}/#{shared_path}/config/secrets.yml")
-  queue  %(echo "-----> Be sure to edit '#{deploy_to}/#{shared_path}/config/database.yml' and 'secrets.yml'.")
+  queue! %(touch "#{deploy_to}/#{shared_path}/config/settings/#{rails_env}.yml")
+  queue  %(echo "-----> Be sure to edit files under '#{deploy_to}/#{shared_path}/config'.")
 
   if repository
     repo_host = repository.split(%r{@|://}).last.split(%r{:|\/}).first
