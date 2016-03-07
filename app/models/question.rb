@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 class Question < ApplicationRecord
   include Votable
+  include ReadCountable
+
   acts_as_paranoid
 
   belongs_to :user
