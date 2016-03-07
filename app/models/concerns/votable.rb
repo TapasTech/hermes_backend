@@ -74,7 +74,7 @@ module Votable
 
   def calculate_confidence
     weights = seperate_votes_counts
-    Votable.confidence(weights[1], weights[1] - weights[-1])
+    Votable.confidence(weights[1], weights[1] + weights[-1])
   end
 
   def update_rank!
@@ -119,24 +119,26 @@ module Votable
     # Wilson score interval
     def confidence(ups, total)
       return 0 if total == 0
-      z = 1.44 # 1.44 is 85%, 1.96 is 95%
+      z = 1.281551565545 # 80% confidence, 1.44 for 85%, 1.96 for 95%
       phat = ups.to_f / total
 
       params = [phat, total, z]
       (wilson_left(*params) - wilson_right(*params)) /
         wilson_under(*params)
+    rescue Math::DomainError
+      0
     end
 
     def wilson_left(phat, total, z)
-      phat + 1 / (2 * total) * z * z
+      phat + 1 / (2 * total) * z**2
     end
 
     def wilson_right(phat, total, z)
-      z * Math.sqrt(phat * (1 - phat) / total + z * z / (4 * total * total))
+      z * Math.sqrt(phat * (1 - phat) / total + z**2 / (4 * total**2))
     end
 
     def wilson_under(_phat, total, z)
-      1 + 1 / total * z * z
+      1 + 1 / total * z**2
     end
   end
   extend ConfidentAnswer
