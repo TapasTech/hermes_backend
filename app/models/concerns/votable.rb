@@ -3,7 +3,7 @@ module Votable
   extend ActiveSupport::Concern
 
   included do
-    include Redis::Objects
+    include Redis::Objects unless included_modules.include?(Redis::Objects)
     set :up_voters
     set :down_voters
 

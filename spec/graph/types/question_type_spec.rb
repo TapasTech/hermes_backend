@@ -14,6 +14,7 @@ RSpec.describe QuestionType, type: :model do
       title
       content
       topics
+      readCount
       dataSets
       dataReports
       answers
