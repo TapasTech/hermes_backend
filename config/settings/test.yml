@@ -3,3 +3,4 @@ redis_objects:
     size: 5
     timeout: 5
   client:
+    db: 1
