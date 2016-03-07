@@ -20,6 +20,7 @@ RSpec.describe UsersMutation do
         {
           displayName: 'Valid User',
           email: 'valid_user@user.com',
+          description: 'I\'m Valid User',
           password: '12345678'
         }
       end
@@ -97,6 +98,7 @@ RSpec.describe UsersMutation do
         oldPassword: '12345678',
         displayName: 'Neo Valid User',
         email: 'neo_valid_user@user',
+        description: 'I\'m a Neo Valid User.',
         password: '22345678'
       }
     end
