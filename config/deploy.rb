@@ -101,11 +101,8 @@ task deploy: :environment do
   end
 end
 
-desc 'Shows tailing the logs of the server.'
-task log: :environment do
-  queue "cd #{deploy_to}/#{shared_path}/log"
-  queue "tail -f #{rails_env}.log"
-end
+task l: :log
+task c: :console
 
 # For help in making your deploy script, see the Mina documentation:
 #
