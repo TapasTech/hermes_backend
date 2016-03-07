@@ -44,34 +44,34 @@ end
 # Put any custom mkdir's in here for when `mina setup` is ran.
 # For Rails apps, we'll make some of the shared paths that are shared between
 # all releases.
-task :setup => :environment do
-  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/log"]
-  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/log"]
+task setup: :environment do
+  queue! %(mkdir -p "#{deploy_to}/#{shared_path}/log")
+  queue! %(chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/log")
 
-  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/tmp"]
-  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/tmp"]
+  queue! %(mkdir -p "#{deploy_to}/#{shared_path}/tmp")
+  queue! %(chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/tmp")
 
-  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/config"]
-  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/config"]
+  queue! %(mkdir -p "#{deploy_to}/#{shared_path}/config")
+  queue! %(chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/config")
 
-  queue! %[touch "#{deploy_to}/#{shared_path}/config/database.yml"]
-  queue! %[touch "#{deploy_to}/#{shared_path}/config/secrets.yml"]
-  queue  %[echo "-----> Be sure to edit '#{deploy_to}/#{shared_path}/config/database.yml' and 'secrets.yml'."]
+  queue! %(touch "#{deploy_to}/#{shared_path}/config/database.yml")
+  queue! %(touch "#{deploy_to}/#{shared_path}/config/secrets.yml")
+  queue  %(echo "-----> Be sure to edit '#{deploy_to}/#{shared_path}/config/database.yml' and 'secrets.yml'.")
 
   if repository
     repo_host = repository.split(%r{@|://}).last.split(%r{:|\/}).first
     repo_port = /:([0-9]+)/.match(repository) && /:([0-9]+)/.match(repository)[1] || '22'
 
-    queue %[
+    queue %(
       if ! ssh-keygen -H  -F #{repo_host} &>/dev/null; then
         ssh-keyscan -t rsa -p #{repo_port} -H #{repo_host} >> ~/.ssh/known_hosts
       fi
-    ]
+    )
   end
 end
 
-desc "Deploys the current version to the server."
-task :deploy => :environment do
+desc 'Deploys the current version to the server.'
+task deploy: :environment do
   to :before_hook do
     # Put things to run locally before ssh
   end
@@ -92,6 +92,12 @@ task :deploy => :environment do
       queue! "kill -9 `cat tmp/pids/server.pid`; #{rails} server -b 0.0.0.0 -p 23000 -d"
     end
   end
+end
+
+desc 'Shows tailing the logs of the server.'
+task log: :environment do
+  queue "cd #{deploy_to}/#{shared_path}/log"
+  queue "tail -f #{rails_env}.log"
 end
 
 # For help in making your deploy script, see the Mina documentation:
