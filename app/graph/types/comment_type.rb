@@ -3,19 +3,19 @@ CommentType = GraphQL::MutableType.define do
   name 'Comment'
   description 'Comment'
 
-  field :id, !types.ID
-  field :createdAt, -> { DateType }, property: :created_at
-  field :updatedAt, -> { DateType }, property: :updated_at
-  field :deletedAt, -> { DateType }, property: :deleted_at
+  field :id, !types.ID, 'ID'
+  field :createdAt, -> { DateType }, 'Create datetime', property: :created_at
+  field :updatedAt, -> { DateType }, 'Update datetime', property: :updated_at
+  field :deletedAt, -> { DateType }, 'Detele datetime', property: :deleted_at
 
-  field :user, -> { UserType }
-  field :replyTo, -> { UserType }, property: :reply_to
-  field :answer, -> { AnswerType }
-  field :content, types.String
+  field :user, -> { UserType }, 'Commenter'
+  field :replyTo, -> { UserType }, 'Reply to uesr', property: :reply_to
+  field :answer, -> { AnswerType }, 'Commented answer'
+  field :content, types.String, 'Content'
 
-  field :upVotesCount, types.Int, property: :up_votes_count
-  field :downVotesCount, types.Int, property: :down_votes_count
-  field :totalVotesCount, types.Int, property: :total_votes_count
+  field :upVotesCount, types.Int, 'Up vote count', property: :up_votes_count
+  field :downVotesCount, types.Int, 'Down vote count', property: :down_votes_count
+  field :totalVotesCount, types.Int, 'Total vote count', property: :total_votes_count
 
   mutation do
     field :voteUp, field: CommentsMutation::VoteUpField

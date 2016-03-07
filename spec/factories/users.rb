@@ -12,6 +12,7 @@ FactoryGirl.define do
     email
     password '12345678'
     display_name
+    description { "I'm #{display_name}" }
     gender ''
     business nil
     locations []

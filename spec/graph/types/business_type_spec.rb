@@ -10,7 +10,6 @@ RSpec.describe BusinessType, type: :model do
       createdAt
       updatedAt
       deletedAt
-      user
       parentBusiness
       childBusinesses
     )

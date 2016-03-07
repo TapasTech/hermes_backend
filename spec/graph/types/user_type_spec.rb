@@ -12,6 +12,7 @@ RSpec.describe UserType, type: :model do
       deletedAt
       email
       displayName
+      description
       gender
       business
       location

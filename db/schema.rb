@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_160_303_075_826) do
+ActiveRecord::Schema.define(version: 20_160_307_013_909) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -251,6 +251,7 @@ ActiveRecord::Schema.define(version: 20_160_303_075_826) do
     t.datetime 'created_at',      null: false
     t.datetime 'updated_at',      null: false
     t.datetime 'deleted_at'
+    t.text     'description'
   end
 
   add_index 'users', ['business_id'], name: 'index_users_on_business_id', using: :btree

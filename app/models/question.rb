@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 class Question < ApplicationRecord
   include Votable
+  include ReadCountable
+
   acts_as_paranoid
 
   belongs_to :user
@@ -23,6 +25,10 @@ class Question < ApplicationRecord
                        inverse_of: :followee_questions
 
   delegate :count, to: :followers, prefix: true
+
+  def followed_by?(user)
+    followers.exists?(user&.id)
+  end
 
   validates :title, presence: true
 end

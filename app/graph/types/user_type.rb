@@ -3,31 +3,32 @@ UserType = GraphQL::MutableType.define do
   name 'User'
   description 'User'
 
-  field :id, !types.ID
-  field :createdAt, -> { DateType }, property: :created_at
-  field :updatedAt, -> { DateType }, property: :updated_at
-  field :deletedAt, -> { DateType }, property: :deleted_at
+  field :id, !types.ID, 'ID'
+  field :createdAt, -> { DateType }, 'Create datetime', property: :created_at
+  field :updatedAt, -> { DateType }, 'Update datetime', property: :updated_at
+  field :deletedAt, -> { DateType }, 'Detele datetime', property: :deleted_at
 
-  field :email, types.String
-  field :displayName, types.String, property: :display_name
-  field :gender, types.String
+  field :email, types.String, 'E-mail'
+  field :displayName, types.String, 'Display name', property: :display_name
+  field :description, types.String, 'Description'
+  field :gender, types.String, 'Gender'
 
-  field :business, -> { BusinessType }
-  field :location, -> { LocationType }
-  field :employment, -> { EmploymentType }
-  field :education, -> { EducationType }
+  field :business, -> { BusinessType }, 'Business'
+  field :location, -> { LocationType }, 'Location'
+  field :employment, -> { EmploymentType }, 'Employment'
+  field :education, -> { EducationType }, 'Education'
 
   field :followers, field: PaginateField.create(User, property: :followers)
   field :followees, field: PaginateField.create(User, property: :followees)
-  field :followersCount, types.Int, property: :followers_count
-  field :followeesCount, types.Int, property: :followees_count
+  field :followersCount, types.Int, 'Follower count', property: :followers_count
+  field :followeesCount, types.Int, 'Followee count', property: :followees_count
 
   field :questions, field: PaginateField.create(Question, property: :questions)
   field :answers, field: PaginateField.create(Answer, property: :answers)
   field :comments, field: PaginateField.create(Comment, property: :comments)
   field :replyComments, field: PaginateField.create(Comment, property: :reply_comments)
-  field :questionsCount, types.Int, property: :questions_count
-  field :answersCount, types.Int, property: :answers_count
+  field :questionsCount, types.Int, 'Question count', property: :questions_count
+  field :answersCount, types.Int, 'Answer count', property: :answers_count
 
   field :dataSets, field: PaginateField.create(DataSet, property: :data_sets)
   field :dataReports, field: PaginateField.create(DataReport, property: :data_reports)
