@@ -1,0 +1,5 @@
+redis_objects:
+  pool:
+    size: 5
+    timeout: 5
+  client:
