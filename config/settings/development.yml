@@ -1,0 +1,8 @@
+redis_objects:
+  pool:
+    size: 5
+    timeout: 5
+  client:
+    host: localhost
+    port: 6379
+    db: 0

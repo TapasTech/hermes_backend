@@ -20,6 +20,9 @@ Bundler.require(*Rails.groups)
 module HermesBackend
   # Hermes Application
   class Application < Rails::Application
+    # Preload config
+    Config::Integration::Rails::Railtie.preload
+
     config.autoload_paths += Dir[Rails.root.join('app', 'graph', '*')]
     config.autoload_paths += Dir[Rails.root.join('lib')]
     # Settings in config/environments/* take precedence over those specified here.

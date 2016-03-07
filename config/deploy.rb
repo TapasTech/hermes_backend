@@ -23,7 +23,11 @@ require 'mina/rbenv' # for rbenv support. (http://rbenv.org)
 
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
-set :shared_paths, ['config/database.yml', 'config/secrets.yml', 'log', 'tmp']
+set :shared_paths, [
+  'config/database.yml',
+  'config/secrets.yml',
+  "config/settings/#{rails_env}.yml",
+  'log', 'tmp']
 
 # Optional settings:
 #   set :user, 'foobar'    # Username in the server to SSH to.
@@ -53,6 +57,8 @@ task setup: :environment do
 
   queue! %(mkdir -p "#{deploy_to}/#{shared_path}/config")
   queue! %(chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/config")
+  queue! %(mkdir -p "#{deploy_to}/#{shared_path}/config/settings")
+  queue! %(chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/config/settings")
 
   queue! %(touch "#{deploy_to}/#{shared_path}/config/database.yml")
   queue! %(touch "#{deploy_to}/#{shared_path}/config/secrets.yml")

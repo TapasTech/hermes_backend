@@ -66,6 +66,7 @@ GEM
     config (1.0.0)
       activesupport (>= 3.0)
       deep_merge (~> 1.0.0)
+    connection_pool (2.2.0)
     database_cleaner (1.5.1)
     deep_merge (1.0.1)
     diff-lcs (1.2.5)
@@ -225,6 +226,7 @@ DEPENDENCIES
   byebug
   codeclimate-test-reporter
   config
+  connection_pool
   database_cleaner
   factory_girl_rails (~> 4.0)
   goldiloader

@@ -44,6 +44,9 @@ gem 'puma'
 ## APM
 gem 'newrelic_rpm'
 
+# Network
+gem 'connection_pool'
+
 group :development, :test, :staging do
   # Debugging
   gem 'byebug'
