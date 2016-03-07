@@ -3,11 +3,14 @@ ActivityType = GraphQL::MutableType.define do
   name 'Activity'
   description 'Activity'
 
-  field :id, !types.ID
-  field :createdAt, -> { DateType }, property: :created_at
-  field :updatedAt, -> { DateType }, property: :updated_at
+  field :id, !types.ID, 'ID'
+  field :createdAt, -> { DateType }, 'Create datetime', property: :created_at
+  field :updatedAt, -> { DateType }, 'Update datetime', property: :updated_at
 
-  field :user, -> { UserType }
-  field :verb, types.String
-  field :payload, HashType
+  field :user, -> { UserType }, 'User'
+  field :verb, types.String, 'Activity Name'
+  field :payload, HashType, 'Activity Payload'
+
+  field :answer, -> { AnswerType }
+  field :question, -> { QuestionType }
 end

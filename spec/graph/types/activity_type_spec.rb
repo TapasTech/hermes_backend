@@ -11,6 +11,8 @@ RSpec.describe ActivityType, type: :model do
       updatedAt
       user
       verb
+      answer
+      question
       payload
     )
   end
