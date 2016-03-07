@@ -4,12 +4,17 @@ class PaginateField
   def self.create(model, property: nil, transform: nil)
     GraphQL::Field.define do
       type PaginateField.paginated_type(model)
+      description PaginateField.description(model, property: property)
 
       argument :page,  types.Int
       argument :count, types.Int
 
       resolve PaginateField.resolver(model, property: property, transform: transform)
     end
+  end
+
+  def self.description(model, property: nil)
+    property ? property.to_s.humanize : model.name.underscore.pluralize.humanize
   end
 
   def self.resolver(model, property: nil, transform: nil)

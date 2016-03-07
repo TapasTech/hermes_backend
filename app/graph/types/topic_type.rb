@@ -8,8 +8,8 @@ TopicType = GraphQL::MutableType.define do
   field :updatedAt, -> { DateType }, 'Update datetime', property: :updated_at
   field :deletedAt, -> { DateType }, 'Detele datetime', property: :deleted_at
 
-  field :name, types.String
-  field :origin, -> { TopicType }
+  field :name, types.String, 'Name'
+  field :origin, -> { TopicType }, 'The origin of this alias, if this topic is an alias of other topics'
   field :aliases, field: PaginateField.create(Topic, property: :aliases)
 
   field :questions, field: PaginateField.create(Question, property: :questions,

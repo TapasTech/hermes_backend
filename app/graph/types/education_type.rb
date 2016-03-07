@@ -9,8 +9,8 @@ EducationType = GraphQL::MutableType.define do
   field :deletedAt, -> { DateType }, 'Detele datetime', property: :deleted_at
 
   field :user, -> { UserType }
-  field :organization, types.String
-  field :direction, types.String
+  field :organization, types.String, 'School, academic institution or scholar organization'
+  field :direction, types.String, 'Direction'
 
   mutation do
     field :update, field: EducationsMutation::UpdateEducationField

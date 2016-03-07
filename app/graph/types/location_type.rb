@@ -9,7 +9,7 @@ LocationType = GraphQL::MutableType.define do
   field :deletedAt, -> { DateType }, 'Detele datetime', property: :deleted_at
 
   field :user, -> { UserType }
-  field :name, types.String
+  field :name, types.String, 'Name'
 
   mutation do
     field :update, field: LocationsMutation::UpdateLocationField

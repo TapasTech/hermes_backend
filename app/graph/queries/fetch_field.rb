@@ -4,7 +4,8 @@ class FetchField
   def self.create(model, transform: nil)
     GraphQL::Field.define do
       type -> { "::#{model.name}Type".constantize }
-
+      description model.name.humanize
+      
       argument :id, !types.String
 
       resolve FetchField.resolver(model, transform: transform)

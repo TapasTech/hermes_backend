@@ -9,8 +9,8 @@ EmploymentType = GraphQL::MutableType.define do
   field :deletedAt, -> { DateType }, 'Detele datetime', property: :deleted_at
 
   field :user, -> { UserType }
-  field :employment, types.String
-  field :position, types.String
+  field :employment, types.String, 'Enterprise'
+  field :position, types.String, 'Position'
 
   mutation do
     field :update, field: EmploymentsMutation::UpdateEmploymentField

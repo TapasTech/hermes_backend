@@ -19,15 +19,15 @@ QuestionType = GraphQL::MutableType.define do
   field :dataReports, field: PaginateField.create(DataReport, property: :data_reports)
   field :answers, field: PaginateField.create(Answer, property: :answers,
                                                       transform: ->(a) { a.order(confidence: :desc) })
-  field :answersCount, types.Int, property: :answers_count
+  field :answersCount, types.Int, 'Answer count', property: :answers_count
 
-  field :upVotesCount, types.Int, property: :up_votes_count
-  field :downVotesCount, types.Int, property: :down_votes_count
-  field :totalVotesCount, types.Int, property: :total_votes_count
+  field :upVotesCount, types.Int, 'Up vote count', property: :up_votes_count
+  field :downVotesCount, types.Int, 'Down vote count', property: :down_votes_count
+  field :totalVotesCount, types.Int, 'Total vote count', property: :total_votes_count
 
   field :followers, field: PaginateField.create(User, property: :followers)
-  field :followersCount, types.Int, property: :followers_count
-  field :followed, types.Boolean do
+  field :followersCount, types.Int, 'Follower count', property: :followers_count
+  field :followed, types.Boolean, 'Is followed by current user' do
     resolve lambda { |object, arguments, context|
       GraphQLAuthenticator.execute(object, arguments, context) do
         object.followed_by?(current_user)
