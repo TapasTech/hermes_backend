@@ -37,6 +37,9 @@ Rails.application.configure do
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
+  # Use default logging formatter so that PID and timestamp are not suppressed.
+  config.log_formatter = ::Logger::Formatter.new
+
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
 
