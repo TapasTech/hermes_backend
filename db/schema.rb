@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_160_303_075_826) do
+ActiveRecord::Schema.define(version: 20_160_307_013_909) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20_160_303_075_826) do
     t.integer  'question_id'
     t.integer  'answer_id'
     t.jsonb    'payload'
-    t.text     'verb'
+    t.string   'verb'
     t.datetime 'created_at',  null: false
     t.datetime 'updated_at',  null: false
   end
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20_160_303_075_826) do
   create_table 'answers', force: :cascade do |t|
     t.integer  'user_id'
     t.integer  'question_id'
-    t.text     'content'
+    t.string   'content'
     t.datetime 'edited_at'
     t.datetime 'created_at',  null: false
     t.datetime 'updated_at',  null: false
@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 20_160_303_075_826) do
   add_index 'answers_data_sets', ['data_set_id'], name: 'index_answers_data_sets_on_data_set_id', using: :btree
 
   create_table 'businesses', force: :cascade do |t|
-    t.text     'name'
+    t.string   'name'
     t.integer  'parent_business_id'
     t.datetime 'created_at',         null: false
     t.datetime 'updated_at',         null: false
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 20_160_303_075_826) do
     t.integer  'user_id'
     t.integer  'reply_to_id'
     t.integer  'answer_id'
-    t.text     'content'
+    t.string   'content'
     t.datetime 'created_at',  null: false
     t.datetime 'updated_at',  null: false
     t.datetime 'deleted_at'
@@ -99,8 +99,8 @@ ActiveRecord::Schema.define(version: 20_160_303_075_826) do
   add_index 'comments', ['user_id'], name: 'index_comments_on_user_id', using: :btree
 
   create_table 'data_reports', force: :cascade do |t|
-    t.text     'title'
-    t.text     'url'
+    t.string   'title'
+    t.string   'url'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.datetime 'deleted_at'
@@ -112,8 +112,8 @@ ActiveRecord::Schema.define(version: 20_160_303_075_826) do
   add_index 'data_reports', ['user_id'], name: 'index_data_reports_on_user_id', using: :btree
 
   create_table 'data_sets', force: :cascade do |t|
-    t.text     'title'
-    t.text     'url'
+    t.string   'title'
+    t.string   'url'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.datetime 'deleted_at'
@@ -126,8 +126,8 @@ ActiveRecord::Schema.define(version: 20_160_303_075_826) do
 
   create_table 'educations', force: :cascade do |t|
     t.integer  'user_id'
-    t.text     'organization'
-    t.text     'direction'
+    t.string   'organization'
+    t.string   'direction'
     t.datetime 'created_at',   null: false
     t.datetime 'updated_at',   null: false
     t.datetime 'deleted_at'
@@ -140,8 +140,8 @@ ActiveRecord::Schema.define(version: 20_160_303_075_826) do
 
   create_table 'employments', force: :cascade do |t|
     t.integer  'user_id'
-    t.text     'employment'
-    t.text     'position'
+    t.string   'employment'
+    t.string   'position'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.datetime 'deleted_at'
@@ -164,7 +164,7 @@ ActiveRecord::Schema.define(version: 20_160_303_075_826) do
 
   create_table 'locations', force: :cascade do |t|
     t.integer  'user_id'
-    t.text     'name'
+    t.string   'name'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.datetime 'deleted_at'
@@ -176,8 +176,8 @@ ActiveRecord::Schema.define(version: 20_160_303_075_826) do
 
   create_table 'questions', force: :cascade do |t|
     t.integer  'user_id'
-    t.text     'title'
-    t.text     'content'
+    t.string   'title'
+    t.string   'content'
     t.datetime 'edited_at'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
@@ -230,8 +230,8 @@ ActiveRecord::Schema.define(version: 20_160_303_075_826) do
   add_index 'questions_topics', ['topic_id'], name: 'index_questions_topics_on_topic_id', using: :btree
 
   create_table 'topics', force: :cascade do |t|
-    t.text     'name'
-    t.text     'description'
+    t.string   'name'
+    t.string   'description'
     t.integer  'origin_id'
     t.datetime 'created_at',  null: false
     t.datetime 'updated_at',  null: false
@@ -243,18 +243,32 @@ ActiveRecord::Schema.define(version: 20_160_303_075_826) do
   add_index 'topics', ['origin_id'], name: 'index_topics_on_origin_id', using: :btree
 
   create_table 'users', force: :cascade do |t|
-    t.text     'email'
-    t.text     'password_digest'
-    t.text     'display_name'
-    t.text     'gender'
+    t.string   'email'
+    t.string   'password_digest'
+    t.string   'display_name'
+    t.string   'gender'
     t.integer  'business_id'
     t.datetime 'created_at',      null: false
     t.datetime 'updated_at',      null: false
     t.datetime 'deleted_at'
+    t.text     'description'
   end
 
   add_index 'users', ['business_id'], name: 'index_users_on_business_id', using: :btree
   add_index 'users', ['deleted_at'], name: 'index_users_on_deleted_at', using: :btree
+
+  create_table 'votes', force: :cascade do |t|
+    t.integer  'user_id'
+    t.string   'votable_type'
+    t.integer  'votable_id'
+    t.integer  'weight'
+    t.datetime 'created_at',   null: false
+    t.datetime 'updated_at',   null: false
+  end
+
+  add_index 'votes', ['user_id'], name: 'index_votes_on_user_id', using: :btree
+  add_index 'votes', %w(votable_type votable_id), name: 'index_votes_on_votable_type_and_votable_id', using: :btree
+  add_index 'votes', ['weight'], name: 'index_votes_on_weight', using: :btree
 
   add_foreign_key 'activities', 'answers'
   add_foreign_key 'activities', 'questions'
@@ -286,4 +300,5 @@ ActiveRecord::Schema.define(version: 20_160_303_075_826) do
   add_foreign_key 'questions_topics', 'topics'
   add_foreign_key 'topics', 'topics', column: 'origin_id'
   add_foreign_key 'users', 'businesses'
+  add_foreign_key 'votes', 'users'
 end
