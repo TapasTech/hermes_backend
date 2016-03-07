@@ -3,17 +3,17 @@ QuestionType = GraphQL::MutableType.define do
   name 'Question'
   description 'Question'
 
-  field :id, !types.ID
-  field :createdAt, -> { DateType }, property: :created_at
-  field :updatedAt, -> { DateType }, property: :updated_at
-  field :deletedAt, -> { DateType }, property: :deleted_at
+  field :id, !types.ID, 'ID'
+  field :createdAt, -> { DateType }, 'Create datetime', property: :created_at
+  field :updatedAt, -> { DateType }, 'Update datetime', property: :updated_at
+  field :deletedAt, -> { DateType }, 'Detele datetime', property: :deleted_at
 
-  field :user, -> { UserType }
-  field :title, types.String
-  field :content, types.String
-  field :topics, -> { types[TopicType] }
+  field :user, -> { UserType }, 'Questioner'
+  field :title, types.String, 'Title'
+  field :content, types.String, 'Content'
+  field :topics, -> { types[TopicType] }, 'Related topics'
 
-  field :readCount, types.Int, property: :read_count
+  field :readCount, types.Int, 'Read count', property: :read_count
 
   field :dataSets, field: PaginateField.create(DataSet, property: :data_sets)
   field :dataReports, field: PaginateField.create(DataReport, property: :data_reports)

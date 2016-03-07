@@ -3,10 +3,10 @@ TopicType = GraphQL::MutableType.define do
   name 'Topic'
   description 'Topic'
 
-  field :id, !types.ID
-  field :createdAt, -> { DateType }, property: :created_at
-  field :updatedAt, -> { DateType }, property: :updated_at
-  field :deletedAt, -> { DateType }, property: :deleted_at
+  field :id, !types.ID, 'ID'
+  field :createdAt, -> { DateType }, 'Create datetime', property: :created_at
+  field :updatedAt, -> { DateType }, 'Update datetime', property: :updated_at
+  field :deletedAt, -> { DateType }, 'Detele datetime', property: :deleted_at
 
   field :name, types.String
   field :origin, -> { TopicType }

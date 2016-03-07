@@ -11,6 +11,6 @@ ActivityType = GraphQL::MutableType.define do
   field :verb, types.String, 'Activity Name'
   field :payload, HashType, 'Activity Payload'
 
-  field :answer, -> { AnswerType }
-  field :question, -> { QuestionType }
+  field :answer, -> { AnswerType }, 'Related Answer'
+  field :question, -> { QuestionType }, 'Related Question'
 end

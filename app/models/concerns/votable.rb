@@ -1,84 +1,93 @@
 # frozen_string_literal: true
 module Votable
   extend ActiveSupport::Concern
+  include RedisObjectable
 
   included do
-    include Redis::Objects unless included_modules.include?(Redis::Objects)
     set :up_voters
     set :down_voters
 
-    # Countable
-    def up_votes_count
-      up_voters.count
-    end
+    delegate :key, to: :up_voters, prefix: true
+    delegate :key, to: :down_voters, prefix: true
+  end
 
-    def down_votes_count
-      down_voters.count
-    end
+  # Countable
+  def up_votes_count
+    up_voters.count
+  end
 
-    def seperate_votes_counts
-      {
-        -1 => down_votes_count,
-        1 => up_votes_count
-      }
-    end
+  def down_votes_count
+    down_voters.count
+  end
 
-    def total_votes_count
-      up_votes_count - down_votes_count
-    end
+  def seperate_votes_counts
+    {
+      -1 => down_votes_count,
+      1 => up_votes_count
+    }
+  end
 
-    # Votable
-    def vote_by(user, weight)
-      if weight > 0
-        up_vote_by(user)
-      elsif weight < 0
-        down_vote_by(user)
-      else
-        unvote_by(user)
-      end
-    end
+  def total_votes_count
+    up_votes_count - down_votes_count
+  end
 
-    def up_vote_by(user)
-      up_voters << user.id
-      down_voters.delete(user.id)
-      update_rank!
+  # Votable
+  def vote_by(user, weight)
+    if weight > 0
+      up_vote_by(user)
+    elsif weight < 0
+      down_vote_by(user)
+    else
+      unvote_by(user)
     end
+  end
 
-    def down_vote_by(user)
-      down_voters << user.id
-      up_voters.delete(user.id)
-      update_rank!
+  def up_vote_by(user)
+    redis.pipelined do
+      redis.sadd up_voters_key,   user.id
+      redis.srem down_voters_key, user.id
     end
+    update_rank!
+  end
 
-    def unvote_by(user)
-      up_voters.delete(user.id)
-      down_votes_count.delete(user.id)
-      update_rank!
+  def down_vote_by(user)
+    redis.pipelined do
+      redis.sadd down_voters_key, user.id
+      redis.srem up_voters_key,   user.id
     end
+    update_rank!
+  end
 
-    # Rankable
-    def calculate_hot
-      weights = seperate_votes_counts
-      Votable.hot(weights[1], weights[-1], created_at)
+  def unvote_by(user)
+    redis.pipelined do
+      redis.srem up_voters_key,   user.id
+      redis.srem down_voters_key, user.id
     end
+    update_rank!
+  end
 
-    def calculate_confidence
-      weights = seperate_votes_counts
-      Votable.confidence(weights[1], weights[1] - weights[-1])
-    end
+  # Rankable
+  def calculate_hot
+    weights = seperate_votes_counts
+    Votable.hot(weights[1], weights[-1], created_at)
+  end
 
-    def update_rank!
-      update_hot_rank! if self.class.column_names.include?('hot')
-      update_confidence_rank! if self.class.column_names.include?('confidence')
-    end
+  def calculate_confidence
+    weights = seperate_votes_counts
+    Votable.confidence(weights[1], weights[1] - weights[-1])
+  end
 
-    def update_hot_rank!
-      update!(hot: calculate_hot)
-    end
+  def update_rank!
+    update_hot_rank! if self.class.column_names.include?('hot')
+    update_confidence_rank! if self.class.column_names.include?('confidence')
+  end
 
-    def update_confidence_rank!
-      update!(confidence: calculate_confidence)
-    end
+  def update_hot_rank!
+    update!(hot: calculate_hot)
+  end
+
+  def update_confidence_rank!
+    update!(confidence: calculate_confidence)
   end
 
   # Calculate HOT answer
