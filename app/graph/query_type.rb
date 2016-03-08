@@ -17,6 +17,7 @@ QueryType = GraphQL::ObjectType.define do
   field :dataReports, field: PaginateField.create(DataReport)
 
   field :hotAnswers, field: PaginateField.create(Answer, transform: ->(a) { a.includes(:question).order(hot: :desc) })
+  field :bestAnalysts, field: GlobalDataAnalystRankingField
 
   field :searchQuestions, field: SearchQuestionField
 end

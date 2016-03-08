@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-module Votable
+module Rankable
   extend ActiveSupport::Concern
   include RedisObjectable
 
@@ -31,7 +31,7 @@ module Votable
     up_votes_count - down_votes_count
   end
 
-  # Votable
+  # Rankable
   def vote_by(user, weight)
     if weight > 0
       up_vote_by(user)
@@ -69,12 +69,12 @@ module Votable
   # Rankable
   def calculate_hot
     weights = seperate_votes_counts
-    Votable.hot(weights[1], weights[-1], created_at)
+    Rankable.hot(weights[1], weights[-1], created_at)
   end
 
   def calculate_confidence
     weights = seperate_votes_counts
-    Votable.confidence(weights[1], weights[1] + weights[-1])
+    Rankable.confidence(weights[1], weights[1] + weights[-1])
   end
 
   def update_rank!
