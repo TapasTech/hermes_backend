@@ -16,7 +16,7 @@ QueryType = GraphQL::ObjectType.define do
   field :dataSets, field: PaginateField.create(DataSet)
   field :dataReports, field: PaginateField.create(DataReport)
 
-  field :hotAnswers, field: PaginateField.create(Answer, transform: ->(a) { a.where('hot IS NOT NULL').order(hot: :desc) })
+  field :hotAnswers, field: PaginateField.create(Answer, transform: ->(a) { a.order('hot DESC NULLS LAST') })
   field :bestAnalysts, field: GlobalDataAnalystRankingField
 
   field :searchQuestions, field: SearchQuestionField
