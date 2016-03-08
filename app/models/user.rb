@@ -71,14 +71,11 @@ class User < ApplicationRecord
   delegate :count, to: :answers, prefix: true
 
   ## Votes get from answer
-  value :up_votes_count, marshal: true
-  value :down_votes_count, marshal: true
+  counter :up_votes_count
+  counter :down_votes_count
 
   def sum_votes!
-    user_answers = answers.select(:id)
-    self.up_votes_count = user_answers.map(&:up_votes_count).reduce
-    self.down_votes_count = user_answers.map(&:down_votes_count).reduce
-    [up_votes_count, down_votes_count]
+    [up_votes_count.value, down_votes_count.value]
   end
 
   def sum_votes_and_update_rank!
@@ -118,13 +115,17 @@ class User < ApplicationRecord
   end
 
   def vote_up_answer(answer)
+    return if answer.has_up_vote_by? self
     answer.vote_by(self, 1)
+    answer.user.up_votes_count.increment
     answer.user.sum_votes_and_update_rank!
     Activity.create_vote_up_answer_activity!(self, answer)
   end
 
   def vote_down_answer(answer)
+    return if answer.has_down_vote_by? self
     answer.vote_by(self, -1)
+    answer.user.down_votes_count.increment
     answer.user.sum_votes_and_update_rank!
   end
 
