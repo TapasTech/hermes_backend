@@ -7,6 +7,11 @@ FactoryGirl.define do
     topics []
     answers []
 
+    factory :question_blank do
+      title '空白标题'
+      content '空白内容'
+    end
+
     factory :question_with_answers do
       transient do
         answer_count 5
