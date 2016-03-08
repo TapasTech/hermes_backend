@@ -30,6 +30,8 @@ RSpec.describe UserType, type: :model do
       answersCount
       dataSets
       dataReports
+      upVotesCount
+      downVotesCount
       activities
       mutation
     )

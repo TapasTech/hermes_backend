@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class Question < ApplicationRecord
-  include Votable
+  include Rankable
   include ReadCountable
 
   acts_as_paranoid

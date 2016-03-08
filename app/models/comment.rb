@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class Comment < ApplicationRecord
-  include Votable
+  include Rankable
   acts_as_paranoid
 
   belongs_to :user

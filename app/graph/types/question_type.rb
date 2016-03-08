@@ -18,7 +18,7 @@ QuestionType = GraphQL::MutableType.define do
   field :dataSets, field: PaginateField.create(DataSet, property: :data_sets)
   field :dataReports, field: PaginateField.create(DataReport, property: :data_reports)
   field :answers, field: PaginateField.create(Answer, property: :answers,
-                                                      transform: ->(a) { a.order(confidence: :desc) })
+                                                      transform: ->(a) { a.order('confidence DESC NULLS LAST') })
   field :answersCount, types.Int, 'Answer count', property: :answers_count
 
   field :upVotesCount, types.Int, 'Up vote count', property: :up_votes_count

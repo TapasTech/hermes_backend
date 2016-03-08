@@ -121,7 +121,7 @@ DataReport:
   answers: has_many, through: answers_data_reports
 
 # Social activities
-Votable:
+Rankable:
   voters, through: votes
 
 Vote:
