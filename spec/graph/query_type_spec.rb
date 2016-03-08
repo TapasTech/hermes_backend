@@ -11,6 +11,7 @@ RSpec.describe QueryType do
       topic
       topics
       question
+      questions
       answer
       comment
       dataSets
