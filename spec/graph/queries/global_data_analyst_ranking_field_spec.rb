@@ -25,9 +25,11 @@ RSpec.describe GlobalDataAnalystRankingField do
 
   describe 'resolve' do
     let(:context) { {current_user: create(:user)} }
+    let(:confidences) { resolution.map(&:confidence) }
 
     it 'resolves answerers desc order by confidence' do
       expect(resolution).to eq(answers.reverse[0, 9].map(&:user))
+      expect(confidences).to eq(confidences.sort.reverse)
     end
   end
 end
