@@ -94,5 +94,4 @@ RSpec.describe FetchField do
       end
     end
   end
-
 end
