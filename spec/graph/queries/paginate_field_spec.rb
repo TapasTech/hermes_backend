@@ -78,7 +78,7 @@ RSpec.describe PaginateField do
     context 'with transformer' do
       let(:transformer) { ->(array) { array.map(&:name) } }
       let(:field) { described_class.create(PaginateFieldDummyModel, transform: transformer) }
-      
+
       it 'resolves great' do
         expect(resolution).to eq(transformer.call(PaginateFieldDummyModel.page(arguments[:page]).per(arguments[:count])))
       end

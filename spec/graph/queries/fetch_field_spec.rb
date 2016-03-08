@@ -61,7 +61,7 @@ RSpec.describe FetchField do
 
     context 'with transformer' do
       let(:transformer) { ->(record) { record.id } }
-      let(:field) { described_class.create(FetchFieldDummyModel, transformer: transformer) }
+      let(:field) { described_class.create(FetchFieldDummyModel, transform: transformer) }
 
       it 'transforms resolution' do
         expect(resolution).to eq(transformer.call(FetchFieldDummyData[arguments[:id]]))
