@@ -12,7 +12,7 @@ end
 
 def GlobalDataAnalystRankingField.query(object, arguments, context)
   GraphQLAuthenticator.execute(object, arguments, context) do
-    records = User.order(desc: :confidence)
+    records = User.where('confidence IS NOT NULL').order(confidence: :desc)
 
     GraphQLAuthorizer.policy_scope current_user, records.page(arguments[:page]).per(arguments[:count])
   end
