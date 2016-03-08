@@ -68,8 +68,6 @@ RSpec.describe PaginateField do
     end
 
     context 'with proper setup' do
-      
-
       it 'resolves great' do
         expect(resolution).to eq(PaginateFieldDummyModel.page(arguments[:page]).per(arguments[:count]))
       end
