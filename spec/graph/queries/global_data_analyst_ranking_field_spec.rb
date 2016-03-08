@@ -13,11 +13,11 @@ RSpec.describe GlobalDataAnalystRankingField do
 
   let(:arguments) { {page: 1, count: 10} }
   let(:answers) { create_list(:answer, 10) }
-  let(:voters) { create_list(:user, 10) }
+  let(:voters) { create_list(:user, 11) }
 
   before do
     (0..9).each do |index_a|
-      index_a.times do |index_v|
+      (index_a + 1).times do |index_v|
         voters[index_v].vote_up_answer(answers[index_a])
       end
     end
@@ -28,7 +28,7 @@ RSpec.describe GlobalDataAnalystRankingField do
     let(:confidences) { resolution.map(&:confidence) }
 
     it 'resolves answerers desc order by confidence' do
-      expect(resolution).to eq(answers.reverse[0, 9].map(&:user))
+      expect(resolution).to eq(answers.reverse.map(&:user))
       expect(confidences).to eq(confidences.sort.reverse)
     end
   end
