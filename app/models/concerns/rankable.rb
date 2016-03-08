@@ -9,6 +9,8 @@ module Rankable
 
     delegate :key, to: :up_voters, prefix: true
     delegate :key, to: :down_voters, prefix: true
+
+    after_create :update_rank!
   end
 
   # Countable
