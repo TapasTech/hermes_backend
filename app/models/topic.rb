@@ -2,6 +2,9 @@
 class Topic < ApplicationRecord
   acts_as_paranoid
 
+  max_paginates_per 50
+  paginates_per 50
+
   belongs_to :origin, class_name: 'Origin',
                       required: false
   has_many :aliases, class_name: 'Origin',
