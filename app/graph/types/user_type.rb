@@ -36,6 +36,7 @@ UserType = GraphQL::MutableType.define do
   field :replyComments, field: PaginateField.create(Comment, property: :reply_comments)
   field :questionsCount, types.Int, 'Question count', property: :questions_count
   field :answersCount, types.Int, 'Answer count', property: :answers_count
+  field :goodAtTopics, -> { types[TopicType] }, 'Topics the user is good at', property: :good_at_topics
 
   field :dataSets, field: PaginateField.create(DataSet, property: :data_sets)
   field :dataReports, field: PaginateField.create(DataReport, property: :data_reports)
