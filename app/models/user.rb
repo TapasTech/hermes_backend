@@ -118,7 +118,7 @@ class User < ApplicationRecord
   end
 
   def vote_up_answer(answer)
-    return if answer.has_up_vote_by? self
+    return if answer.up_vote_by? self
     answer.vote_by(self, 1)
     answer.user.up_votes_count.increment
     answer.user.update_rank!
@@ -126,7 +126,7 @@ class User < ApplicationRecord
   end
 
   def vote_down_answer(answer)
-    return if answer.has_down_vote_by? self
+    return if answer.down_vote_by? self
     answer.vote_by(self, -1)
     answer.user.down_votes_count.increment
     answer.user.update_rank!
