@@ -51,6 +51,10 @@ class User < ApplicationRecord
     followees.destroy(followee)
   end
 
+  def followed_by?(user)
+    followers.exists?(user&.id)
+  end
+
   # Data Reports
   has_many :data_sets
   has_many :data_reports
