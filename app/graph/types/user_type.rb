@@ -22,6 +22,13 @@ UserType = GraphQL::MutableType.define do
   field :followees, field: PaginateField.create(User, property: :followees)
   field :followersCount, types.Int, 'Follower count', property: :followers_count
   field :followeesCount, types.Int, 'Followee count', property: :followees_count
+  field :followed, types.Boolean, 'Is followed by current user' do
+    resolve lambda { |object, arguments, context|
+      GraphQLAuthenticator.execute(object, arguments, context) do
+        object.followed_by?(current_user)
+      end
+    }
+  end
 
   field :questions, field: PaginateField.create(Question, property: :questions)
   field :answers, field: PaginateField.create(Answer, property: :answers)
@@ -29,6 +36,7 @@ UserType = GraphQL::MutableType.define do
   field :replyComments, field: PaginateField.create(Comment, property: :reply_comments)
   field :questionsCount, types.Int, 'Question count', property: :questions_count
   field :answersCount, types.Int, 'Answer count', property: :answers_count
+  field :goodAtTopics, -> { types[TopicType] }, 'Topics the user is good at', property: :good_at_topics
 
   field :dataSets, field: PaginateField.create(DataSet, property: :data_sets)
   field :dataReports, field: PaginateField.create(DataReport, property: :data_reports)
