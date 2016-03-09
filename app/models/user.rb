@@ -94,8 +94,10 @@ class User < ApplicationRecord
     question
   end
 
+  # one question should be answered only once
   def answer(content:, question:)
-    answer = answers.create!(content: content, question: question)
+    answer = answers.find_or_initialize_by(question: question)
+    answer.update!(content: content)
     Activity.create_create_answer_activity!(self, answer)
     answer
   end
