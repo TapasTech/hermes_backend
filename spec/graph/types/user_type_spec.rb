@@ -29,6 +29,7 @@ RSpec.describe UserType do
       replyComments
       questionsCount
       answersCount
+      goodAtTopics
       dataSets
       dataReports
       upVotesCount
