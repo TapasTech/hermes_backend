@@ -14,8 +14,8 @@ class Activity < ApplicationRecord
   belongs_to :question
   belongs_to :answer, required: false
 
-  validates :verb, presence: true,
-                   inclusion: {in: VERBS}
+  as_enum :verb, VERBS, map: :string, source: :verb
+  validates :verb, presence: true
 
   # Factory methods for building activities
   module Factory

@@ -10,11 +10,12 @@ QueryType = GraphQL::ObjectType.define do
   field :topics, field: PaginateField.create(Topic)
 
   field :question, field: FetchField.create(Question, transform: ->(question) { question.tap(&:read) })
+  field :questions, field: PaginateField.create(Question, transform: ->(a) { a.order(created_at: :desc) })
   field :answer, field: FetchField.create(Answer)
   field :comment, field: FetchField.create(Comment)
 
-  field :dataSets, field: PaginateField.create(DataSet)
-  field :dataReports, field: PaginateField.create(DataReport)
+  field :dataSets, field: PaginateField.create(DataSet, transform: ->(a) { a.order(created_at: :desc) })
+  field :dataReports, field: PaginateField.create(DataReport, transform: ->(a) { a.order(created_at: :desc) })
 
   field :hotAnswers, field: PaginateField.create(Answer, transform: ->(a) { a.order('hot DESC NULLS LAST') })
   field :bestAnalysts, field: GlobalDataAnalystRankingField

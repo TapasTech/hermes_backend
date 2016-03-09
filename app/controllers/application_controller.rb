@@ -8,5 +8,7 @@ class ApplicationController < ActionController::API
     return nil unless auth_token.valid?
 
     auth_token.user
+  rescue ActiveSupport::MessageVerifier::InvalidSignature
+    nil # if invalid token, assume current user is nil
   end
 end

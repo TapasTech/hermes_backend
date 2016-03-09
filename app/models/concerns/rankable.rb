@@ -68,6 +68,14 @@ module Rankable
     update_rank!
   end
 
+  def up_vote_by?(user)
+    up_voters.member? user.id
+  end
+
+  def down_vote_by?(user)
+    down_voters.member? user.id
+  end
+
   # Rankable
   def calculate_hot
     weights = seperate_votes_counts

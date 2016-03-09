@@ -17,6 +17,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'goldiloader'
 ## Soft deletion
 gem 'paranoia', github: 'radar/paranoia', branch: 'core'
+## Enum Field
+gem 'simple_enum'
 ## Use Redis for hot data
 gem 'redis-objects'
 ## Authorization pack
@@ -48,6 +50,10 @@ gem 'newrelic_rpm'
 
 # Network
 gem 'connection_pool'
+
+# Services
+## Qiniu serves pictures
+gem 'qiniu', '~> 6.4.1'
 
 group :development, :test, :staging do
   # Debugging
