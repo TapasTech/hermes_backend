@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 set :domain, 'localhost'
 set :deploy_to, '/Users/Karloku/Workspace/Tapas/deploy/hermes'
 set :repository, 'git@github.com:TapasTech/hermes_backend.git'
