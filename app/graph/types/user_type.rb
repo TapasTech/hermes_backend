@@ -34,10 +34,10 @@ UserType = GraphQL::MutableType.define do
   field :dataReports, field: PaginateField.create(DataReport, property: :data_reports)
 
   field :upVotesCount, types.Int, 'Up votes got through answers' do
-    resolve ->(object, _arguments, _context) { up_votes_count.value }
+    resolve ->(object, _arguments, _context) { object.up_votes_count.value }
   end
   field :downVotesCount, types.Int, 'Down votes got through answers' do
-    resolve ->(object, _arguments, _context) { down_votes_count.value }
+    resolve ->(object, _arguments, _context) { object.down_votes_count.value }
   end
 
   field :activities, field: PaginateField.create(Activity, property: :activities,
