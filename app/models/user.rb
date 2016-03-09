@@ -51,6 +51,10 @@ class User < ApplicationRecord
     followees.destroy(followee)
   end
 
+  def followed_by?(user)
+    followers.exists?(user&.id)
+  end
+
   # Data Reports
   has_many :data_sets
   has_many :data_reports
@@ -59,6 +63,14 @@ class User < ApplicationRecord
   has_many :questions
   has_many :answers
   has_many :comments
+
+  def good_at_topics
+    question_ids = answers.map(&:question_id)
+    topics_with_count = Question.where('questions.id in (?)', question_ids).joins(:topics).group('topics.id').count
+    topic_ids = topics_with_count.sort_by { |topic_with_count| topic_with_count[1] }.reverse[0, 3]
+    Topic.find(topic_ids)
+  end
+
   ## Comments reply to you
   has_many :reply_comments, foreign_key: :reply_to_id
 
