@@ -51,6 +51,10 @@ gem 'newrelic_rpm'
 # Network
 gem 'connection_pool'
 
+# Services
+## Qiniu serves pictures
+gem 'qiniu', '~> 6.4.1'
+
 group :development, :test, :staging do
   # Debugging
   gem 'byebug'

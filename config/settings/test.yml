@@ -4,3 +4,6 @@ redis_objects:
     timeout: 5
   client:
     db: 1
+qiniu:
+  access_key: <%= ENV["HERMES_QINIU_ACCESS_KEY"] %>
+  secret_key: <%= ENV["HERMES_QINIU_SECRET_KEY"] %>
