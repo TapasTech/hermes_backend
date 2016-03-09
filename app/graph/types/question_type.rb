@@ -13,7 +13,9 @@ QuestionType = GraphQL::MutableType.define do
   field :content, types.String, 'Content'
   field :topics, -> { types[TopicType] }, 'Related topics'
 
-  field :readCount, types.Int, 'Read count', property: :read_count
+  field :readCount, types.Int, 'Read count' do
+    resolve -> (object, _arguments, _context) { object.read_count.value }
+  end
 
   field :dataSets, field: PaginateField.create(DataSet, property: :data_sets)
   field :dataReports, field: PaginateField.create(DataReport, property: :data_reports)
