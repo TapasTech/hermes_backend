@@ -3,10 +3,7 @@ QuestionType = GraphQL::MutableType.define do
   name 'Question'
   description 'Question'
 
-  field :id, !types.ID, 'ID'
-  field :createdAt, -> { DateType }, 'Create datetime', property: :created_at
-  field :updatedAt, -> { DateType }, 'Update datetime', property: :updated_at
-  field :deletedAt, -> { DateType }, 'Detele datetime', property: :deleted_at
+  BaseModelTypeMixin.apply(self)
 
   field :user, -> { UserType }, 'Questioner'
   field :title, types.String, 'Title'

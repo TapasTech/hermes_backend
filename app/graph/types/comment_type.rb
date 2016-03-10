@@ -3,10 +3,7 @@ CommentType = GraphQL::MutableType.define do
   name 'Comment'
   description 'Comment'
 
-  field :id, !types.ID, 'ID'
-  field :createdAt, -> { DateType }, 'Create datetime', property: :created_at
-  field :updatedAt, -> { DateType }, 'Update datetime', property: :updated_at
-  field :deletedAt, -> { DateType }, 'Detele datetime', property: :deleted_at
+  BaseModelTypeMixin.apply(self)
 
   field :user, -> { UserType }, 'Commenter'
   field :replyTo, -> { UserType }, 'Reply to uesr', property: :reply_to

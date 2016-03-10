@@ -3,9 +3,7 @@ ActivityType = GraphQL::MutableType.define do
   name 'Activity'
   description 'Activity'
 
-  field :id, !types.ID, 'ID'
-  field :createdAt, -> { DateType }, 'Create datetime', property: :created_at
-  field :updatedAt, -> { DateType }, 'Update datetime', property: :updated_at
+  BaseModelTypeMixin.apply(self, paranoia: false)
 
   field :user, -> { UserType }, 'User'
   field :verb, -> { ActivityVerbEnum }, 'Activity Name'
