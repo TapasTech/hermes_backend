@@ -8,7 +8,9 @@ ActivityType = GraphQL::MutableType.define do
   field :updatedAt, -> { DateType }, 'Update datetime', property: :updated_at
 
   field :user, -> { UserType }, 'User'
-  field :verb, -> { ActivityVerbEnum }, 'Activity Name'
+  field :verb, -> { ActivityVerbEnum }, 'Activity Name' do
+    resolve -> (object, _arguments, _context) { object.verb.to_s }
+  end
   field :payload, HashType, 'Activity Payload'
 
   field :answer, -> { AnswerType }, 'Related Answer'
