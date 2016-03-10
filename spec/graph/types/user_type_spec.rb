@@ -42,6 +42,7 @@ RSpec.describe UserType do
   let(:expected_mutation_fields) do
     %w(
       update
+      updatePassword
       follow
       unfollow
     )

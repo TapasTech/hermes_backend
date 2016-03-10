@@ -8,7 +8,9 @@ UserType = GraphQL::MutableType.define do
   field :email, types.String, 'E-mail'
   field :displayName, types.String, 'Display name', property: :display_name
   field :description, types.String, 'Description'
-  field :gender, types.String, 'Gender'
+  field :gender, -> { GenderEnum }, 'Gender' do
+    resolve -> (object, _arguments, _context) { object.gender.to_s }
+  end
 
   field :business, -> { BusinessType }, 'Business'
   field :location, -> { LocationType }, 'Location'
@@ -43,6 +45,7 @@ UserType = GraphQL::MutableType.define do
 
   mutation do
     field :update, field: UsersMutation::UpdateUserField
+    field :updatePassword, field: UsersMutation::UpdatePasswordField
 
     field :follow, field: UsersMutation::FollowField
     field :unfollow, field: UsersMutation::UnfollowField

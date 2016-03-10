@@ -4,7 +4,16 @@ class User < ApplicationRecord
   acts_as_paranoid
   has_secure_password
 
+  GENDERS =
+    %w(
+      secret
+      female
+      male
+      other
+    ).freeze
+
   # profile
+  as_enum :gender, GENDERS, map: :string, source: :gender
   belongs_to :business, required: false
 
   validates :email, presence: true,
