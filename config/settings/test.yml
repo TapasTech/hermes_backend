@@ -7,3 +7,4 @@ redis_objects:
 qiniu:
   access_key: <%= ENV["HERMES_QINIU_ACCESS_KEY"] %>
   secret_key: <%= ENV["HERMES_QINIU_SECRET_KEY"] %>
+  bucket: <%= ENV["HERMES_QINIU_BUCKET"] %>

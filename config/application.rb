@@ -24,6 +24,7 @@ module HermesBackend
     Config::Integration::Rails::Railtie.preload
 
     config.autoload_paths += Dir[Rails.root.join('app', 'graph', '*')]
+    config.autoload_paths += Dir[Rails.root.join('app', 'graph', '*', 'mixin')]
     config.autoload_paths += Dir[Rails.root.join('lib')]
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
