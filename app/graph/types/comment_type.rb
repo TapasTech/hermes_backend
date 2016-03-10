@@ -10,9 +10,7 @@ CommentType = GraphQL::MutableType.define do
   field :answer, -> { AnswerType }, 'Commented answer'
   field :content, types.String, 'Content'
 
-  field :upVotesCount, types.Int, 'Up vote count', property: :up_votes_count
-  field :downVotesCount, types.Int, 'Down vote count', property: :down_votes_count
-  field :totalVotesCount, types.Int, 'Total vote count', property: :total_votes_count
+  RankableTypeMixin.apply(self)
 
   mutation do
     field :voteUp, field: CommentsMutation::VoteUpField

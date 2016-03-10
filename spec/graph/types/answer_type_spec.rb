@@ -20,6 +20,8 @@ RSpec.describe AnswerType do
       upVotesCount
       downVotesCount
       totalVotesCount
+      votedUp
+      votedDown
       mutation
     )
   end

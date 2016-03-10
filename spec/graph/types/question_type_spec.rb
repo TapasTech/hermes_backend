@@ -22,6 +22,8 @@ RSpec.describe QuestionType do
       upVotesCount
       downVotesCount
       totalVotesCount
+      votedUp
+      votedDown
       followers
       followersCount
       followed
