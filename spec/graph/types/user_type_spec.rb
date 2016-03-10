@@ -14,6 +14,7 @@ RSpec.describe UserType do
       displayName
       description
       gender
+      avatar
       business
       location
       employment

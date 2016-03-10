@@ -6,7 +6,7 @@ module UsersMutation
 
     argument :displayName, !types.String
     argument :password,    !types.String
-    argument :email,       types.String
+    argument :email,       !types.String
     argument :description, types.String
     argument :gender,      GenderEnum
 
