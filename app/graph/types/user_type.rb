@@ -9,7 +9,7 @@ UserType = GraphQL::MutableType.define do
   field :displayName, types.String, 'Display name', property: :display_name
   field :description, types.String, 'Description'
   field :gender, -> { GenderEnum }, 'Gender' do
-    resolve -> (object, _arguments, _context) { object.gender.to_s }
+    resolve -> (object, _arguments, _context) { object.gender&.to_s }
   end
   field :avatar, types.String, 'Avatar'
 
