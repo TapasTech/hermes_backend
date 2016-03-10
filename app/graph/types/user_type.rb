@@ -11,6 +11,7 @@ UserType = GraphQL::MutableType.define do
   field :gender, -> { GenderEnum }, 'Gender' do
     resolve -> (object, _arguments, _context) { object.gender.to_s }
   end
+  field :avatar, types.String, 'Avatar'
 
   field :business, -> { BusinessType }, 'Business'
   field :location, -> { LocationType }, 'Location'
