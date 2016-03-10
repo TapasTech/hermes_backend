@@ -91,6 +91,12 @@ module QuestionsMutation
     resolve ->(*p) { QuestionsMutation.unfollow(*p) }
   end
 
+  ReadField = GraphQL::Field.define do
+    type -> { QuestionType }
+
+    resolve ->(*p) { QuestionsMutation.read(*p) }
+  end
+
   # Methods that resolves
   module ResolverMethods
     def create(object, arguments, context)
@@ -213,6 +219,15 @@ module QuestionsMutation
 
         current_user.unfollow_question(object)
         object.reload
+      end
+    end
+
+    # Reading
+    def read(object, arguments, context)
+      GraphQLAuthenticator.authenticate(object, arguments, context) do
+        GraphQLAuthorizer.authorize current_user, object, :show?
+
+        object.tap(&:read)
       end
     end
   end
