@@ -41,5 +41,7 @@ QuestionType = GraphQL::MutableType.define do
     field :unfollow, field: QuestionsMutation::UnfollowField
 
     field :createAnswer, field: AnswersMutation::CreateAnswerField
+
+    field :read, field: QuestionsMutation::ReadField
   end
 end

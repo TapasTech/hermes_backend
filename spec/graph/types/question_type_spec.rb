@@ -45,6 +45,7 @@ RSpec.describe QuestionType do
       follow
       unfollow
       createAnswer
+      read
     )
   end
 
