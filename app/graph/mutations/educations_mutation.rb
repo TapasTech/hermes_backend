@@ -5,7 +5,7 @@ module EducationsMutation
     type -> { EducationType }
 
     argument :education, types.String
-    argument :position, types.String
+    argument :direction, types.String
 
     resolve ->(*p) { EducationsMutation.update(*p) }
   end
