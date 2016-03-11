@@ -81,7 +81,8 @@ class User < ApplicationRecord
   end
 
   ## Comments reply to you
-  has_many :reply_comments, foreign_key: :reply_to_id
+  has_many :reply_comments, class_name: 'Comment',
+                            foreign_key: :reply_to_id
 
   has_many :questions_followments, foreign_key: :follower_id
   has_many :followee_questions, class_name: 'Question',
