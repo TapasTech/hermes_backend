@@ -4,8 +4,8 @@ module EducationsMutation
   UpdateEducationField = GraphQL::Field.define do
     type -> { EducationType }
 
-    argument :education, types.String
-    argument :position, types.String
+    argument :organization, types.String
+    argument :direction, types.String
 
     resolve ->(*p) { EducationsMutation.update(*p) }
   end

@@ -6,8 +6,9 @@ module UsersMutation
 
     argument :displayName, !types.String
     argument :password,    !types.String
-    argument :email,       types.String
+    argument :email,       !types.String
     argument :description, types.String
+    argument :gender,      GenderEnum
 
     resolve ->(*p) { UsersMutation.create(*p) }
   end
@@ -15,13 +16,22 @@ module UsersMutation
   UpdateUserField = GraphQL::Field.define do
     type -> { UserType }
 
-    argument :oldPassword, !types.String
     argument :displayName, types.String
-    argument :password,    types.String
     argument :email,       types.String
     argument :description, types.String
+    argument :avatar,      types.String
+    argument :gender,      GenderEnum
 
     resolve ->(*p) { UsersMutation.update(*p) }
+  end
+
+  UpdatePasswordField = GraphQL::Field.define do
+    type -> { UserType }
+
+    argument :oldPassword, !types.String
+    argument :password,    !types.String
+
+    resolve ->(*p) { UsersMutation.update_password(*p) }
   end
 
   FollowField = GraphQL::Field.define do
@@ -50,7 +60,17 @@ module UsersMutation
     def update(object, arguments, context)
       GraphQLAuthenticator.authenticate(object, arguments, context) do
         GraphQLAuthorizer.authorize current_user, object, :update?
+        update_arguments =
+          GraphQLArgumentProcessor.camel_keys_to_underscore arguments
 
+        object.update!(update_arguments)
+        object
+      end
+    end
+
+    def update_password(object, arguments, context)
+      GraphQLAuthenticator.authenticate(object, arguments, context) do
+        GraphQLAuthorizer.authorize current_user, object, :update?
         update_arguments =
           GraphQLArgumentProcessor.camel_keys_to_underscore arguments
 

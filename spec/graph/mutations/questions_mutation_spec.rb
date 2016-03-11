@@ -329,4 +329,28 @@ RSpec.describe QuestionsMutation do
       end
     end
   end
+
+  describe '::ReadField' do
+    let(:resolution) do
+      ::QuestionsMutation::ReadField.resolve(
+        question,
+        GraphQL::Query::Arguments.new(arguments),
+        context)
+    end
+
+    let(:context) { {current_user: current_user} }
+
+    context 'with proper argument and context' do
+      before do
+        @read_count = question.read_count.value
+      end
+
+      let(:arguments) { {} }
+      let(:current_user) { create(:user) }
+
+      it 'resolves correctly' do
+        expect(resolution.read_count.value).to eq(@read_count + 1)
+      end
+    end
+  end
 end

@@ -17,6 +17,8 @@ RSpec.describe CommentType do
       upVotesCount
       downVotesCount
       totalVotesCount
+      votedUp
+      votedDown
       mutation
     )
   end

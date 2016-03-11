@@ -3,32 +3,25 @@ UserType = GraphQL::MutableType.define do
   name 'User'
   description 'User'
 
-  field :id, !types.ID, 'ID'
-  field :createdAt, -> { DateType }, 'Create datetime', property: :created_at
-  field :updatedAt, -> { DateType }, 'Update datetime', property: :updated_at
-  field :deletedAt, -> { DateType }, 'Detele datetime', property: :deleted_at
+  BaseModelTypeMixin.apply(self)
 
   field :email, types.String, 'E-mail'
   field :displayName, types.String, 'Display name', property: :display_name
   field :description, types.String, 'Description'
-  field :gender, types.String, 'Gender'
+  field :gender, -> { GenderEnum }, 'Gender' do
+    resolve -> (object, _arguments, _context) { object.gender&.to_s }
+  end
+  field :avatar, types.String, 'Avatar'
 
   field :business, -> { BusinessType }, 'Business'
   field :location, -> { LocationType }, 'Location'
   field :employment, -> { EmploymentType }, 'Employment'
   field :education, -> { EducationType }, 'Education'
 
-  field :followers, field: PaginateField.create(User, property: :followers)
+  FollowableTypeMixin.apply(self)
+
   field :followees, field: PaginateField.create(User, property: :followees)
-  field :followersCount, types.Int, 'Follower count', property: :followers_count
   field :followeesCount, types.Int, 'Followee count', property: :followees_count
-  field :followed, types.Boolean, 'Is followed by current user' do
-    resolve lambda { |object, arguments, context|
-      GraphQLAuthenticator.execute(object, arguments, context) do
-        object.followed_by?(current_user)
-      end
-    }
-  end
 
   field :questions, field: PaginateField.create(Question, property: :questions)
   field :answers, field: PaginateField.create(Answer, property: :answers)
@@ -53,6 +46,7 @@ UserType = GraphQL::MutableType.define do
 
   mutation do
     field :update, field: UsersMutation::UpdateUserField
+    field :updatePassword, field: UsersMutation::UpdatePasswordField
 
     field :follow, field: UsersMutation::FollowField
     field :unfollow, field: UsersMutation::UnfollowField

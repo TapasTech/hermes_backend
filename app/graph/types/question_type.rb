@@ -3,10 +3,9 @@ QuestionType = GraphQL::MutableType.define do
   name 'Question'
   description 'Question'
 
-  field :id, !types.ID, 'ID'
-  field :createdAt, -> { DateType }, 'Create datetime', property: :created_at
-  field :updatedAt, -> { DateType }, 'Update datetime', property: :updated_at
-  field :deletedAt, -> { DateType }, 'Detele datetime', property: :deleted_at
+  BaseModelTypeMixin.apply(self)
+  DatableTypeMixin.apply(self)
+  RankableTypeMixin.apply(self)
 
   field :user, -> { UserType }, 'Questioner'
   field :title, types.String, 'Title'
@@ -17,25 +16,11 @@ QuestionType = GraphQL::MutableType.define do
     resolve -> (object, _arguments, _context) { object.read_count.value }
   end
 
-  field :dataSets, field: PaginateField.create(DataSet, property: :data_sets)
-  field :dataReports, field: PaginateField.create(DataReport, property: :data_reports)
   field :answers, field: PaginateField.create(Answer, property: :answers,
                                                       transform: ->(a) { a.order('confidence DESC NULLS LAST') })
   field :answersCount, types.Int, 'Answer count', property: :answers_count
 
-  field :upVotesCount, types.Int, 'Up vote count', property: :up_votes_count
-  field :downVotesCount, types.Int, 'Down vote count', property: :down_votes_count
-  field :totalVotesCount, types.Int, 'Total vote count', property: :total_votes_count
-
-  field :followers, field: PaginateField.create(User, property: :followers)
-  field :followersCount, types.Int, 'Follower count', property: :followers_count
-  field :followed, types.Boolean, 'Is followed by current user' do
-    resolve lambda { |object, arguments, context|
-      GraphQLAuthenticator.execute(object, arguments, context) do
-        object.followed_by?(current_user)
-      end
-    }
-  end
+  FollowableTypeMixin.apply(self)
 
   mutation do
     field :update, field: QuestionsMutation::UpdateQuestionField
@@ -56,5 +41,7 @@ QuestionType = GraphQL::MutableType.define do
     field :unfollow, field: QuestionsMutation::UnfollowField
 
     field :createAnswer, field: AnswersMutation::CreateAnswerField
+
+    field :read, field: QuestionsMutation::ReadField
   end
 end

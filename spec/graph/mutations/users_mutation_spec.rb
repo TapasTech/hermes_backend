@@ -21,6 +21,7 @@ RSpec.describe UsersMutation do
           displayName: 'Valid User',
           email: 'valid_user@user.com',
           description: 'I\'m Valid User',
+          gender: 'male',
           password: '12345678'
         }
       end
@@ -95,11 +96,10 @@ RSpec.describe UsersMutation do
 
     let(:proper_arguments) do
       {
-        oldPassword: '12345678',
         displayName: 'Neo Valid User',
         email: 'neo_valid_user@user',
         description: 'I\'m a Neo Valid User.',
-        password: '22345678'
+        gender: 'male'
       }
     end
 
@@ -114,17 +114,18 @@ RSpec.describe UsersMutation do
         expect(resolution).to be_truthy
         expect(resolution).to have_attributes(
           display_name: arguments[:displayName],
-          email: arguments[:email])
-        expect(resolution.authenticate(arguments[:password])).to be_truthy
+          email: arguments[:email],
+          description: arguments[:description],
+          gender: arguments[:gender].to_sym)
       end
     end
 
     context 'without displayName' do
       let(:arguments) do
         {
-          oldPassword: '12345678',
           email: 'neo_valid_user@user',
-          password: '22345678'
+          description: 'I\'m a Neo Valid User.',
+          gender: 'male'
         }
       end
 
@@ -136,16 +137,15 @@ RSpec.describe UsersMutation do
         expect(resolution).to have_attributes(
           display_name: old_attributes[:display_name],
           email: arguments[:email])
-        expect(resolution.authenticate(arguments[:password])).to be_truthy
       end
     end
 
     context 'without email' do
       let(:arguments) do
         {
-          oldPassword: '12345678',
           displayName: 'Neo Valid User',
-          password: '22345678'
+          description: 'I\'m a Neo Valid User.',
+          gender: 'male'
         }
       end
 
@@ -157,43 +157,6 @@ RSpec.describe UsersMutation do
         expect(resolution).to have_attributes(
           display_name: arguments[:displayName],
           email: old_attributes[:email])
-        expect(resolution.authenticate(arguments[:password])).to be_truthy
-      end
-    end
-
-    context 'without password' do
-      let(:arguments) do
-        {
-          oldPassword: '12345678',
-          displayName: 'Neo Valid User',
-          email: 'neo_valid_user@user'
-        }
-      end
-
-      let(:current_user) { user }
-
-      it 'resolves correctly' do
-        expect(resolution).to be_truthy
-        expect(resolution).to have_attributes(
-          display_name: arguments[:displayName],
-          email: arguments[:email])
-        expect(resolution.authenticate(arguments[:oldPassword])).to be_truthy
-      end
-    end
-
-    context 'without oldPassword' do
-      let(:arguments) do
-        {
-          displayName: 'Neo Valid User',
-          email: 'neo_valid_user@user',
-          password: '22345678'
-        }
-      end
-
-      let(:current_user) { user }
-
-      it 'raises CustomGraphQLErrors::WrongPasswordError' do
-        expect { resolution }.to raise_error(CustomGraphQLErrors::WrongPasswordError)
       end
     end
 

@@ -14,6 +14,7 @@ RSpec.describe UserType do
       displayName
       description
       gender
+      avatar
       business
       location
       employment
@@ -42,6 +43,7 @@ RSpec.describe UserType do
   let(:expected_mutation_fields) do
     %w(
       update
+      updatePassword
       follow
       unfollow
     )

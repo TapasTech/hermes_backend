@@ -22,6 +22,8 @@ RSpec.describe QuestionType do
       upVotesCount
       downVotesCount
       totalVotesCount
+      votedUp
+      votedDown
       followers
       followersCount
       followed
@@ -43,6 +45,7 @@ RSpec.describe QuestionType do
       follow
       unfollow
       createAnswer
+      read
     )
   end
 
