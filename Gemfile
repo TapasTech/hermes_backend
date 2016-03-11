@@ -70,7 +70,7 @@ group :development, :test, :staging do
   gem 'codeclimate-test-reporter', require: false
 
   # Documenting
-  gem "rails-erd"
+  gem 'rails-erd'
 end
 
 group :development, :staging do
