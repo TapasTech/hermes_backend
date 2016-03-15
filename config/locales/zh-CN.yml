@@ -1,0 +1,14 @@
+---
+zh-CN:
+  hello: "你好世界"
+  graphql:
+    errors:
+      messages:
+        custom_graphql_errors:
+          authentication_error: 登录信息错误
+          wrong_password_error: 密码错误
+  pundit:
+    errors:
+      message:
+        not_authorized: 没有权限进行此操作
+
