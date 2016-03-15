@@ -28,7 +28,7 @@ gem 'pundit'
 # Data querying and processing
 ## GraphQL
 gem 'graphql'
-gem 'graphql-mutable_type', github: 'TapasTech/graphql-mutable_type'
+gem 'graphql-mutable_type'
 ## Pagination
 gem 'kaminari'
 ## Object Serializer
@@ -68,6 +68,9 @@ group :development, :test, :staging do
   # Styling
   gem 'rubocop', require: false
   gem 'codeclimate-test-reporter', require: false
+
+  # Documenting
+  gem 'rails-erd'
 end
 
 group :development, :staging do

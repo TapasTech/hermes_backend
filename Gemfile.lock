@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/TapasTech/graphql-mutable_type.git
-  revision: 76b3eb17110e5065ff3bae3537d5574282d5c3a5
-  specs:
-    graphql-mutable_type (0.0.2)
-      graphql (~> 0.11.0)
-
-GIT
   remote: git://github.com/radar/paranoia.git
   revision: 9e0ec38e5f4d08d25c1bf1b63c1fe78208abe625
   branch: core
@@ -59,6 +52,7 @@ GEM
     blankslate (3.1.3)
     builder (3.2.2)
     byebug (8.2.2)
+    choice (0.2.0)
     codeclimate-test-reporter (0.5.0)
       simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.1)
@@ -85,6 +79,8 @@ GEM
       activesupport (>= 3.2, < 5.1)
     graphql (0.11.0)
       parslet (~> 1.6)
+    graphql-mutable_type (0.0.2)
+      graphql (~> 0.11.0)
     i18n (0.7.0)
     json (1.8.3)
     kaminari (0.16.3)
@@ -161,6 +157,11 @@ GEM
       activesupport (>= 4.2.0.beta, < 5.0)
       nokogiri (~> 1.6.0)
       rails-deprecated_sanitizer (>= 1.0.1)
+    rails-erd (1.4.6)
+      activerecord (>= 3.2)
+      activesupport (>= 3.2)
+      choice (~> 0.2.0)
+      ruby-graphviz (~> 1.2)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
     railties (5.0.0.beta3)
@@ -204,6 +205,7 @@ GEM
       rainbow (>= 1.99.1, < 3.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 0.3)
+    ruby-graphviz (1.2.2)
     ruby-hmac (0.4.0)
     ruby-progressbar (1.7.5)
     simple_enum (2.3.0)
@@ -247,7 +249,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.0)
   goldiloader
   graphql
-  graphql-mutable_type!
+  graphql-mutable_type
   kaminari
   listen (~> 3.0.5)
   lograge
@@ -264,6 +266,7 @@ DEPENDENCIES
   qiniu (~> 6.4.1)
   rack-cors
   rails (>= 5.0.0.beta3, < 5.1)
+  rails-erd
   redis-objects
   rolify
   rspec-rails (~> 3.5.0.beta1)

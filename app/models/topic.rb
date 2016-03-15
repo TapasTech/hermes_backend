@@ -5,9 +5,9 @@ class Topic < ApplicationRecord
   max_paginates_per 50
   paginates_per 50
 
-  belongs_to :origin, class_name: 'Origin',
+  belongs_to :origin, class_name: 'Topic',
                       required: false
-  has_many :aliases, class_name: 'Origin',
+  has_many :aliases, class_name: 'Topic',
                      foreign_key: 'origin_id'
 
   has_many :questions_topics

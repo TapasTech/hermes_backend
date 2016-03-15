@@ -5,3 +5,4 @@ set :repository, 'git@github.com:TapasTech/hermes_backend.git'
 set :branch, 'develop'
 set :user, 'oyster'
 set :rails_env, 'staging'
+set :rails_port, 23_000
