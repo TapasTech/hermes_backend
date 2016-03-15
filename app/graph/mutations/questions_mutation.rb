@@ -115,7 +115,7 @@ module QuestionsMutation
 
         update_arguments =
           GraphQLArgumentProcessor.camel_keys_to_underscore arguments
-
+        update_arguments[:edited_at] = Time.zone.now
         object.update!(update_arguments)
         object
       end

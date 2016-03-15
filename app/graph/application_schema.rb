@@ -9,6 +9,10 @@ ApplicationSchema.instance_exec do
     rescue_from error_klass, &:message
   end
 
+  rescue_from ActiveModel::Errors do |error|
+    error.full_messages.join("\n")
+  end
+
   rescue_from Pundit::NotAuthorizedError do
     ::I18n.t('pundit.errors.message.not_authorized')
   end

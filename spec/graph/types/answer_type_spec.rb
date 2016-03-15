@@ -10,6 +10,7 @@ RSpec.describe AnswerType do
       createdAt
       updatedAt
       deletedAt
+      editedAt
       user
       question
       content

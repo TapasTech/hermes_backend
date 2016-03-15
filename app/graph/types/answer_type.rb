@@ -7,6 +7,7 @@ AnswerType = GraphQL::MutableType.define do
   DatableTypeMixin.apply(self)
   RankableTypeMixin.apply(self)
 
+  field :editedAt, -> { DateType }, 'Edit datetime', property: :edited_at
   field :user, -> { UserType }, 'Answerer'
   field :question, -> { QuestionType }, 'Question'
   field :content, types.String, 'Content'

@@ -1,0 +1,138 @@
+---
+zh-CN:
+  activerecord:
+    models:
+      user: 用户
+      question: 问题
+      answer: 回答
+      comment: 评论
+      topic: 领域
+      data_set: 数据源
+      data_report: 数据集
+      business: 行业
+      location: 位置
+      education: 教育背景
+      employment: 职业
+      activity: 动态
+    attributes:
+      base: &base_attributes
+        id: ID
+        created_at: 创建时间
+        updated_at: 更新时间
+        deleted_at: 被删除时间
+      rankable: &rankable_attributes
+        up_votes_count: 被点赞数
+        down_votes_count: 被点水数
+      datable: &datable_attributes
+        data_sets: 数据源
+        data_reports: 数据集
+      editable: &editable_attributes
+        edited_at: 修改时间
+      user:
+        <<: *base_attributes
+        <<: *rankable_attributes
+        <<: *datable_attributes
+        email: 邮箱
+        password: 密码
+        display_name: 名称
+        description: 简介
+        avatar: 头像
+        gender: 性别
+        business: 行业
+        location: 位置
+        locations: 位置
+        education: 教育背景
+        educations: 教育背景
+        employment: 职业
+        employments: 职业
+        followers: 粉丝
+        followers_count: 粉丝数
+        followees: 关注
+        followees_count: 关注数
+        questions: 问题
+        questions_count: 提问数
+        answers: 回答
+        answers_count: 回答数
+        comments: 评论
+        reply_comments: 评论的回复
+        followee_questions: 关注的问题
+      question:
+        <<: *base_attributes
+        <<: *rankable_attributes
+        <<: *datable_attributes
+        <<: *editable_attributes
+        user: 题主
+        topics: 领域
+        title: 标题
+        content: 内容
+        answers: 回答
+        answers_count: 回答数
+        followers: 关注者
+        followers_count: 关注者数
+      answer:
+        <<: *base_attributes
+        <<: *rankable_attributes
+        <<: *datable_attributes
+        <<: *editable_attributes
+        user: 答主
+        question: 问题
+        content: 内容
+        comments: 评论
+        comments_count: 评论数
+      comment:
+        <<: *base_attributes
+        <<: *rankable_attributes
+        user: 评论者
+        reply_to: 回复给
+        answer: 回答
+        content: 内容
+      topic:
+        <<: *base_attributes
+        name: 名称
+        aliases: 别名
+        origins: 原名
+        questions: 问题
+      data_set:
+        <<: *base_attributes
+        user: 上传者
+        title: 标题
+        url: 链接
+        questions: 问题
+        answers: 回答
+      data_report:
+        <<: *base_attributes
+        user: 上传者
+        title: 标题
+        url: 链接
+        questions: 问题
+        answers: 回答
+      business:
+        <<: *base_attributes
+        name: 名称
+        parent_business: 父行业
+        child_businesses: 子行业
+      location:
+        <<: *base_attributes
+        user: 用户
+        name: 名称
+      education:
+        <<: *base_attributes
+        user: 用户
+        organization: 机构
+        direction: 方向
+      employment:
+        <<: *base_attributes
+        user: 用户
+        employment: 公司
+        position: 职位
+      activity:
+        <<: *base_attributes
+        user: 用户
+        verb: 行为
+        question: 问题
+        answer: 回答
+      activity/verb:
+        QUESTION_CREATE: 提问
+        QUESTION_FOLLOW: 关注问题
+        ANSWER_CREATE: 回答
+        ANSWER_VOTE_UP: 赞同回答

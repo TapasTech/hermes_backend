@@ -10,6 +10,7 @@ RSpec.describe QuestionType do
       createdAt
       updatedAt
       deletedAt
+      editedAt
       user
       title
       content
