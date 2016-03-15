@@ -60,7 +60,7 @@ task deploy: :environment do
       queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
       queue "touch #{deploy_to}/#{current_path}/tmp/restart.txt"
 
-      queue! "kill -9 `cat tmp/pids/server.pid`; #{rails} server -b 0.0.0.0 -p 23000 -d"
+      queue! "kill -9 `cat tmp/pids/server.pid`; #{rails} server -b 0.0.0.0 -p #{rails_port} -d"
     end
   end
 end
