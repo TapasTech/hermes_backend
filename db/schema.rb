@@ -105,12 +105,13 @@ ActiveRecord::Schema.define(version: 20_160_316_013_802) do
     t.datetime 'start_at'
     t.datetime 'expire_at'
     t.decimal  'award', precision: 11, scale: 2
-    t.text     'type'
-    t.datetime 'created_at',                           null: false
-    t.datetime 'updated_at',                           null: false
+    t.text     'competition_type'
+    t.datetime 'created_at',                                null: false
+    t.datetime 'updated_at',                                null: false
     t.datetime 'deleted_at'
   end
 
+  add_index 'competitions', ['created_at'], name: 'index_competitions_on_created_at', using: :btree
   add_index 'competitions', ['deleted_at'], name: 'index_competitions_on_deleted_at', using: :btree
   add_index 'competitions', ['title'], name: 'index_competitions_on_title', using: :btree
 
@@ -307,19 +308,6 @@ ActiveRecord::Schema.define(version: 20_160_316_013_802) do
   add_index 'users', ['confidence'], name: 'index_users_on_confidence', using: :btree
   add_index 'users', ['deleted_at'], name: 'index_users_on_deleted_at', using: :btree
 
-  create_table 'votes', force: :cascade do |t|
-    t.integer  'user_id'
-    t.string   'votable_type'
-    t.integer  'votable_id'
-    t.integer  'weight'
-    t.datetime 'created_at',   null: false
-    t.datetime 'updated_at',   null: false
-  end
-
-  add_index 'votes', ['user_id'], name: 'index_votes_on_user_id', using: :btree
-  add_index 'votes', %w(votable_type votable_id), name: 'index_votes_on_votable_type_and_votable_id', using: :btree
-  add_index 'votes', ['weight'], name: 'index_votes_on_weight', using: :btree
-
   add_foreign_key 'activities', 'answers'
   add_foreign_key 'activities', 'questions'
   add_foreign_key 'activities', 'users'
@@ -353,5 +341,4 @@ ActiveRecord::Schema.define(version: 20_160_316_013_802) do
   add_foreign_key 'solutions', 'users'
   add_foreign_key 'topics', 'topics', column: 'origin_id'
   add_foreign_key 'users', 'businesses'
-  add_foreign_key 'votes', 'users'
 end

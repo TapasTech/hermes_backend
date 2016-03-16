@@ -5,7 +5,7 @@ CompetitionType = GraphQL::MutableType.define do
 
   BaseModelTypeMixin.apply(self)
 
-  field :type, types.String, 'Competition type'
+  field :competitionType, types.String, 'Competition type', property: :competition_type
   field :title, types.String, 'Title'
   field :description, types.String, 'Description'
   field :logoURL, types.String, 'Logo', property: :logo_url

@@ -2,6 +2,8 @@
 class Competition < ApplicationRecord
   acts_as_paranoid
 
+  scope :active_when, ->(date) { where('start_at <= ? AND expire_at >= ?', date, date) }
+
   has_many :solutions
   has_one :data_set, -> { includes(:file_uploadeds) }
 
@@ -14,7 +16,10 @@ class Competition < ApplicationRecord
       report
     ).freeze
 
-  as_enum :type, TYPES, map: :string, source: :type
+  as_enum :competition_type, TYPES, map: :string, source: :competition_type
 
-  validates :type, presence: true
+  validates :title, presence: true
+  validates :start_at, presence: true
+  validates :expire_at, presence: true
+  validates :competition_type, presence: true
 end
