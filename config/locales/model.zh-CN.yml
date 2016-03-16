@@ -14,6 +14,9 @@ zh-CN:
       education: 教育背景
       employment: 职业
       activity: 动态
+      competition: 竞赛
+      solution: 解答
+      file_uploaded: 上传文件
     attributes:
       base: &base_attributes
         id: ID
@@ -136,3 +139,31 @@ zh-CN:
         QUESTION_FOLLOW: 关注问题
         ANSWER_CREATE: 回答
         ANSWER_VOTE_UP: 赞同回答
+      competition:
+        <<: *base_attributes
+        title: 标题
+        description: 描述
+        logo_url: 图标
+        start_at: 开始时间
+        expire_at: 结束时间
+        competition_type: 竞赛类型
+        award: 将近
+        data_set: 数据集
+        file_uploadeds: 数据文件
+        solutions: 解答
+      competition/competition_type:
+        competition: 竞赛
+        recruitment: 招聘
+        report: 报告
+      solution:
+        <<: *base_attributes
+        user: 解答者
+        competition: 竞赛
+        description: 简要描述
+        file_uploadeds: 解答文件
+      file_uploaded:
+        name: 文件名
+        size: 大小(Bytes)
+        description: 描述
+        format: 格式
+        url: 地址
