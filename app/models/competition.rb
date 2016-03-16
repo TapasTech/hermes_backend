@@ -3,7 +3,7 @@ class Competition < ApplicationRecord
   acts_as_paranoid
 
   has_many :solutions
-  has_one :data_set
+  has_one :data_set, -> { includes(:file_uploadeds) }
 
   delegate :file_uploadeds, to: :data_set
 

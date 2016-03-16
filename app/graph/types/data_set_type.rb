@@ -11,6 +11,9 @@ DataSetType = GraphQL::MutableType.define do
 
   field :questions, field: PaginateField.create(Question, property: :questions)
   field :answers, field: PaginateField.create(Answer, property: :answers)
+  field :competition, -> { CompetitionType }, 'Competition'
+
+  field :fileUploadeds, -> { types[FileUploadedType] }, 'Attachment files', property: :file_uploadeds
 
   mutation do
     field :update, field: DataSetsMutation::UpdateDataSetField
