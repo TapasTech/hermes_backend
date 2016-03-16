@@ -14,11 +14,13 @@ RSpec.describe SolutionType, type: :model do
       competition
       description
       fileUploadeds
+      mutation
     )
   end
 
   let(:expected_mutation_fields) do
     %w(
+      attachFile
     )
   end
 

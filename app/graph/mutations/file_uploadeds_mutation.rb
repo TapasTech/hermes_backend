@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 module FileUploadedsMutation
-  AttachFileField = GraphQL::Field.define do
+  CreateFileUploadedField = GraphQL::Field.define do
     type -> { FileUploadedType }
 
     argument :name, !types.String, 'Name'
@@ -19,7 +19,7 @@ module FileUploadedsMutation
         GraphQLAuthorizer.authorize(current_user, FileUploaded, :create?)
 
         build_arguments =
-            GraphQLArgumentProcessor.camel_keys_to_underscore arguments
+          GraphQLArgumentProcessor.camel_keys_to_underscore arguments
         build_arguments[:uploadable] = object
         FileUploaded.create!(build_arguments)
       end

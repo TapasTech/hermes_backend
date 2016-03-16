@@ -20,11 +20,13 @@ RSpec.describe CompetitionType, type: :model do
       dataSet
       fileUploadeds
       solutions
+      mutation
     )
   end
 
   let(:expected_mutation_fields) do
     %w(
+      createSolution
     )
   end
 

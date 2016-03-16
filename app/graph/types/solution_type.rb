@@ -12,6 +12,6 @@ SolutionType = GraphQL::MutableType.define do
         property: :file_uploadeds
 
   mutation do
-    field :attachFile, field: FileUploadedsMutation::AttachFileField
+    field :attachFile, field: FileUploadedsMutation::CreateFileUploadedField
   end
 end
