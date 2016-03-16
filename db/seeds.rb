@@ -84,7 +84,8 @@ competition_description = <<DESCRIPTION
 DESCRIPTION
 competition = Competition.create!(title: '工商银行顾客满意度调查',
                                   start_at: Time.zone.parse('2016-02-12 19:43'),
-                                  expire_at: Time.zone.parse('2016-4-12 23:59'),
+                                  expire_at: Time.zone.parse('2016-04-12 23:59'),
                                   competition_type: :competition,
                                   description: competition_description,
                                   award: 20_000)
+competition
