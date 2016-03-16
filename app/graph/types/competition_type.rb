@@ -18,4 +18,8 @@ CompetitionType = GraphQL::MutableType.define do
   field :dataSet, -> { DataSetType }, 'Attachment data sets', property: :data_set
   field :fileUploadeds, -> { types[FileUploadedType] }, 'Attachment data set files', property: :file_uploadeds
   field :solutions, -> { types[SolutionType] }, 'Solutions'
+
+  mutation do
+    field :createSolution, field: SolutionsMutation::CreateSolutionField
+  end
 end

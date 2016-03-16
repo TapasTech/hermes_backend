@@ -22,4 +22,8 @@ class Competition < ApplicationRecord
   validates :start_at, presence: true
   validates :expire_at, presence: true
   validates :competition_type, presence: true
+
+  def open?
+    ActiveSupport::TimeZone.now <= expire_at && ActiveSupport::TimeZone.now >= start_at
+  end
 end

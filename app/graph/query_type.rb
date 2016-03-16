@@ -13,6 +13,7 @@ QueryType = GraphQL::ObjectType.define do
   field :questions, field: PaginateField.create(Question, transform: ->(a) { a.order(created_at: :desc) })
   field :answer, field: FetchField.create(Answer)
   field :comment, field: FetchField.create(Comment)
+  field :competition, field: FetchField.create(Competition)
   field :competitions,
         field: PaginateField.create(
           Competition,

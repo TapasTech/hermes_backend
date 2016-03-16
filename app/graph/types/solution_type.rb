@@ -10,4 +10,8 @@ SolutionType = GraphQL::MutableType.define do
   field :description, types.String, 'Description'
   field :fileUploadeds, -> { types[FileUploadedType] }, 'Attachment solution files',
         property: :file_uploadeds
+
+  mutation do
+    field :attachFile, field: FileUploadedsMutation::AttachFileField
+  end
 end
