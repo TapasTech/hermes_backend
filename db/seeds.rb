@@ -7,6 +7,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# Users
 user_a = User.create!(email: 'adam@dtcj.com', password: '12345678', display_name: 'Adam')
 user_b = User.create!(email: 'betty@dtcj.com', password: '12345678', display_name: 'Betty')
 user_c = User.create!(email: 'cathy@dtcj.com', password: '12345678', display_name: 'Cathy')
@@ -29,6 +30,7 @@ user_d.follow(user_f)
 user_f.follow(user_a)
 user_f.follow(user_d)
 
+# Community
 t_p2p = Topic.create!(name: 'P2P')
 t_efinance = Topic.create!(name: '互联网金融')
 t_bigdata = Topic.create!(name: '大数据')
@@ -73,3 +75,16 @@ answer_2.vote_by(user_b, 1)
 answer_2.vote_by(user_d, -1)
 answer_2.vote_by(user_e, -1)
 answer_2.vote_by(user_f, -1)
+
+# Competition
+competition_description = <<DESCRIPTION
+  对于一线面向客户的支持团队来说, 客户的满意度是成功的关键. 不开心的客户不会坚持使用产品, 更甚的是, 不开心的客户在离开前都不表达不满.
+  中国工商银行向sayindata的同学们发来邀请, 来帮助他们在服务期间辨别不满意的顾客. 以便让中国工商银行采取积极措施, 以提高客户的满意度.
+  在这场竞争中, 你将接触到工商银行的大量匿名特征数据, 预测顾客在银行服务中是否会产生不满意的情绪.
+DESCRIPTION
+competition = Competition.create!(title: '工商银行顾客满意度调查',
+                                  start_at: Time.zone.parse('2016-02-12 19:43'),
+                                  expire_at: Time.zone.parse('2016-4-12 23:59'),
+                                  competition_type: :competition,
+                                  description: competition_description,
+                                  award: 20_000)
