@@ -47,7 +47,7 @@
 <text text-anchor="start" x="506.576" y="-147.5" font-family="Arial ItalicMT" font-size="10.00" fill="#999999">integer FK</text>
 </g>
 <!-- m_Answer&#45;&gt;m_Activity -->
-<g id="edge41" class="edge"><title>m_Answer&#45;&gt;m_Activity</title>
+<g id="edge43" class="edge"><title>m_Answer&#45;&gt;m_Activity</title>
 <path fill="none" stroke="black" d="M608.287,-186.201C788.943,-159.211 1259.18,-88.9589 1448.89,-60.6173"/>
 <polygon fill="black" stroke="black" points="1449.55,-63.7042 1457.98,-59.2589 1448.62,-57.4734 1449.55,-63.7042"/>
 </g>
@@ -126,10 +126,10 @@
 <path fill="none" stroke="black" d="M244,-308C244,-308 364,-308 364,-308 370,-308 376,-314 376,-320 376,-320 376,-390 376,-390 376,-396 370,-402 364,-402 364,-402 244,-402 244,-402 238,-402 232,-396 232,-390 232,-390 232,-320 232,-320 232,-314 238,-308 244,-308"/>
 <text text-anchor="start" x="282.127" y="-388.7" font-family="Arial BoldMT" font-size="11.00">DataSet</text>
 <polyline fill="none" stroke="black" points="232,-383 376,-383 "/>
-<text text-anchor="start" x="239" y="-369.5" font-family="ArialMT" font-size="10.00">deleted_at </text>
-<text text-anchor="start" x="288.487" y="-369.5" font-family="Arial ItalicMT" font-size="10.00" fill="#999999">datetime</text>
-<text text-anchor="start" x="239" y="-356.5" font-family="ArialMT" font-size="10.00">solution_id </text>
-<text text-anchor="start" x="289.591" y="-356.5" font-family="Arial ItalicMT" font-size="10.00" fill="#999999">integer</text>
+<text text-anchor="start" x="239" y="-369.5" font-family="ArialMT" font-size="10.00">competition_id </text>
+<text text-anchor="start" x="306.261" y="-369.5" font-family="Arial ItalicMT" font-size="10.00" fill="#999999">integer FK</text>
+<text text-anchor="start" x="239" y="-356.5" font-family="ArialMT" font-size="10.00">deleted_at </text>
+<text text-anchor="start" x="288.487" y="-356.5" font-family="Arial ItalicMT" font-size="10.00" fill="#999999">datetime</text>
 <text text-anchor="start" x="239" y="-343.5" font-family="ArialMT" font-size="10.00">title </text>
 <text text-anchor="start" x="257.34" y="-343.5" font-family="Arial ItalicMT" font-size="10.00" fill="#999999">text ∗</text>
 <text text-anchor="start" x="239" y="-330.5" font-family="ArialMT" font-size="10.00">url </text>
@@ -155,7 +155,7 @@
 <text text-anchor="start" x="904.187" y="-638" font-family="Arial ItalicMT" font-size="10.00" fill="#999999">integer FK</text>
 </g>
 <!-- m_Business&#45;&gt;m_Business -->
-<g id="edge42" class="edge"><title>m_Business&#45;&gt;m_Business</title>
+<g id="edge44" class="edge"><title>m_Business&#45;&gt;m_Business</title>
 <path fill="none" stroke="black" d="M956.895,-688.773C973.446,-686.305 985.5,-677.547 985.5,-662.5 985.5,-650.274 977.542,-642.201 965.681,-638.279"/>
 <polygon fill="black" stroke="black" points="966.376,-635.206 956.895,-636.227 964.943,-641.341 966.376,-635.206"/>
 </g>
@@ -195,23 +195,23 @@
 <polyline fill="none" stroke="black" points="59,-566 203,-566 "/>
 <text text-anchor="start" x="66" y="-553" font-family="ArialMT" font-size="10.00">award </text>
 <text text-anchor="start" x="96.0146" y="-553" font-family="Arial ItalicMT" font-size="10.00" fill="#999999">decimal (11,2)</text>
-<text text-anchor="start" x="66" y="-540" font-family="ArialMT" font-size="10.00">deleted_at </text>
-<text text-anchor="start" x="115.487" y="-540" font-family="Arial ItalicMT" font-size="10.00" fill="#999999">datetime</text>
-<text text-anchor="start" x="66" y="-527" font-family="ArialMT" font-size="10.00">description </text>
-<text text-anchor="start" x="117.138" y="-527" font-family="Arial ItalicMT" font-size="10.00" fill="#999999">text</text>
-<text text-anchor="start" x="66" y="-514" font-family="ArialMT" font-size="10.00">expire_at </text>
-<text text-anchor="start" x="109.916" y="-514" font-family="Arial ItalicMT" font-size="10.00" fill="#999999">datetime</text>
-<text text-anchor="start" x="66" y="-501" font-family="ArialMT" font-size="10.00">logo_url </text>
-<text text-anchor="start" x="104.359" y="-501" font-family="Arial ItalicMT" font-size="10.00" fill="#999999">text</text>
-<text text-anchor="start" x="66" y="-488" font-family="ArialMT" font-size="10.00">start_at </text>
-<text text-anchor="start" x="102.128" y="-488" font-family="Arial ItalicMT" font-size="10.00" fill="#999999">datetime</text>
-<text text-anchor="start" x="66" y="-475" font-family="ArialMT" font-size="10.00">title </text>
-<text text-anchor="start" x="84.3398" y="-475" font-family="Arial ItalicMT" font-size="10.00" fill="#999999">text</text>
-<text text-anchor="start" x="66" y="-462" font-family="ArialMT" font-size="10.00">type </text>
-<text text-anchor="start" x="87.6797" y="-462" font-family="Arial ItalicMT" font-size="10.00" fill="#999999">text ∗</text>
+<text text-anchor="start" x="66" y="-540" font-family="ArialMT" font-size="10.00">competition_type </text>
+<text text-anchor="start" x="144.379" y="-540" font-family="Arial ItalicMT" font-size="10.00" fill="#999999">text ∗</text>
+<text text-anchor="start" x="66" y="-527" font-family="ArialMT" font-size="10.00">deleted_at </text>
+<text text-anchor="start" x="115.487" y="-527" font-family="Arial ItalicMT" font-size="10.00" fill="#999999">datetime</text>
+<text text-anchor="start" x="66" y="-514" font-family="ArialMT" font-size="10.00">description </text>
+<text text-anchor="start" x="117.138" y="-514" font-family="Arial ItalicMT" font-size="10.00" fill="#999999">text</text>
+<text text-anchor="start" x="66" y="-501" font-family="ArialMT" font-size="10.00">expire_at </text>
+<text text-anchor="start" x="109.916" y="-501" font-family="Arial ItalicMT" font-size="10.00" fill="#999999">datetime ∗</text>
+<text text-anchor="start" x="66" y="-488" font-family="ArialMT" font-size="10.00">logo_url </text>
+<text text-anchor="start" x="104.359" y="-488" font-family="Arial ItalicMT" font-size="10.00" fill="#999999">text</text>
+<text text-anchor="start" x="66" y="-475" font-family="ArialMT" font-size="10.00">start_at </text>
+<text text-anchor="start" x="102.128" y="-475" font-family="Arial ItalicMT" font-size="10.00" fill="#999999">datetime ∗</text>
+<text text-anchor="start" x="66" y="-462" font-family="ArialMT" font-size="10.00">title </text>
+<text text-anchor="start" x="84.3398" y="-462" font-family="Arial ItalicMT" font-size="10.00" fill="#999999">text ∗</text>
 </g>
 <!-- m_Competition&#45;&gt;m_DataSet -->
-<g id="edge44" class="edge"><title>m_Competition&#45;&gt;m_DataSet</title>
+<g id="edge35" class="edge"><title>m_Competition&#45;&gt;m_DataSet</title>
 <path fill="none" stroke="black" d="M201.366,-451.812C219.233,-435.132 238.053,-417.563 254.628,-402.09"/>
 </g>
 <!-- m_Solution -->
@@ -229,12 +229,12 @@
 <text text-anchor="start" x="101.576" y="-324.5" font-family="Arial ItalicMT" font-size="10.00" fill="#999999">integer FK</text>
 </g>
 <!-- m_Competition&#45;&gt;m_Solution -->
-<g id="edge43" class="edge"><title>m_Competition&#45;&gt;m_Solution</title>
+<g id="edge34" class="edge"><title>m_Competition&#45;&gt;m_Solution</title>
 <path fill="none" stroke="black" d="M131,-451.812C131,-436.195 131,-419.799 131,-405.073"/>
 <polygon fill="black" stroke="black" points="134.15,-404.662 131,-395.662 127.85,-404.662 134.15,-404.662"/>
 </g>
 <!-- m_DataReport&#45;&gt;m_AnswersDataReport -->
-<g id="edge39" class="edge"><title>m_DataReport&#45;&gt;m_AnswersDataReport</title>
+<g id="edge41" class="edge"><title>m_DataReport&#45;&gt;m_AnswersDataReport</title>
 <path fill="none" stroke="black" d="M1669.01,-314.208C1688.34,-264.761 1710.69,-180.834 1666,-131 1654.81,-118.52 1184.8,-73.7925 992.117,-55.9379"/>
 <polygon fill="black" stroke="black" points="992.406,-52.8013 983.154,-55.1082 991.825,-59.0744 992.406,-52.8013"/>
 </g>
@@ -249,12 +249,12 @@
 <text text-anchor="start" x="1567.93" y="-180.5" font-family="Arial ItalicMT" font-size="10.00" fill="#999999">integer FK</text>
 </g>
 <!-- m_DataReport&#45;&gt;m_QuestionsDataReport -->
-<g id="edge38" class="edge"><title>m_DataReport&#45;&gt;m_QuestionsDataReport</title>
+<g id="edge40" class="edge"><title>m_DataReport&#45;&gt;m_QuestionsDataReport</title>
 <path fill="none" stroke="black" d="M1632.65,-314.486C1621.14,-289.722 1606.45,-258.084 1595.34,-234.187"/>
 <polygon fill="black" stroke="black" points="1598.08,-232.595 1591.43,-225.76 1592.37,-235.249 1598.08,-232.595"/>
 </g>
 <!-- m_DataSet&#45;&gt;m_AnswersDataSet -->
-<g id="edge35" class="edge"><title>m_DataSet&#45;&gt;m_AnswersDataSet</title>
+<g id="edge37" class="edge"><title>m_DataSet&#45;&gt;m_AnswersDataSet</title>
 <path fill="none" stroke="black" d="M245.981,-307.865C234.194,-295.334 223.443,-280.807 217,-265 192.631,-205.208 200.966,-128.176 209.088,-83.9637"/>
 <polygon fill="black" stroke="black" points="212.196,-84.4787 210.806,-75.0453 206.01,-83.2869 212.196,-84.4787"/>
 </g>
@@ -281,7 +281,7 @@
 <text text-anchor="start" x="20.8916" y="-141.5" font-family="Arial ItalicMT" font-size="10.00" fill="#999999">text</text>
 </g>
 <!-- m_DataSet&#45;&gt;m_FileUploaded -->
-<g id="edge36" class="edge"><title>m_DataSet&#45;&gt;m_FileUploaded</title>
+<g id="edge38" class="edge"><title>m_DataSet&#45;&gt;m_FileUploaded</title>
 <path fill="none" stroke="black" d="M231.669,-308.11C210.4,-294.412 187.166,-279.248 166,-265 161.332,-261.858 156.551,-258.606 151.739,-255.308"/>
 <polygon fill="black" stroke="black" points="153.362,-252.602 144.162,-250.095 149.791,-257.792 153.362,-252.602"/>
 </g>
@@ -296,7 +296,7 @@
 <text text-anchor="start" x="292.931" y="-180.5" font-family="Arial ItalicMT" font-size="10.00" fill="#999999">integer FK</text>
 </g>
 <!-- m_DataSet&#45;&gt;m_QuestionsDataSet -->
-<g id="edge34" class="edge"><title>m_DataSet&#45;&gt;m_QuestionsDataSet</title>
+<g id="edge36" class="edge"><title>m_DataSet&#45;&gt;m_QuestionsDataSet</title>
 <path fill="none" stroke="black" d="M304,-307.915C304,-284.594 304,-256.706 304,-234.988"/>
 <polygon fill="black" stroke="black" points="307.15,-234.786 304,-225.786 300.85,-234.786 307.15,-234.786"/>
 </g>
@@ -369,7 +369,7 @@
 <text text-anchor="start" x="1257.58" y="-311.5" font-family="Arial ItalicMT" font-size="10.00" fill="#999999">integer FK</text>
 </g>
 <!-- m_Question&#45;&gt;m_Activity -->
-<g id="edge40" class="edge"><title>m_Question&#45;&gt;m_Activity</title>
+<g id="edge42" class="edge"><title>m_Question&#45;&gt;m_Activity</title>
 <path fill="none" stroke="black" d="M1280.83,-301.323C1278.01,-252.074 1281.76,-179.097 1320,-131 1351.37,-91.5468 1404.25,-70.9118 1449.1,-60.1452"/>
 <polygon fill="black" stroke="black" points="1449.89,-63.1976 1457.96,-58.1208 1448.48,-57.056 1449.89,-63.1976"/>
 </g>
@@ -429,7 +429,7 @@
 <polygon fill="black" stroke="black" points="1382.6,-234.649 1385.58,-225.592 1377.61,-230.812 1382.6,-234.649"/>
 </g>
 <!-- m_Solution&#45;&gt;m_FileUploaded -->
-<g id="edge37" class="edge"><title>m_Solution&#45;&gt;m_FileUploaded</title>
+<g id="edge39" class="edge"><title>m_Solution&#45;&gt;m_FileUploaded</title>
 <path fill="none" stroke="black" d="M115.959,-314.486C111.181,-301.933 105.73,-287.614 100.332,-273.432"/>
 <polygon fill="black" stroke="black" points="103.13,-271.927 96.9842,-264.637 97.2421,-274.168 103.13,-271.927"/>
 </g>
