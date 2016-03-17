@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316013802) do
+ActiveRecord::Schema.define(version: 20160317070919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,11 +38,12 @@ ActiveRecord::Schema.define(version: 20160316013802) do
     t.integer  "question_id"
     t.text     "content"
     t.datetime "edited_at"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.datetime "deleted_at"
     t.float    "confidence"
     t.float    "hot"
+    t.integer  "comments_count", default: 0, null: false
   end
 
   add_index "answers", ["confidence"], name: "index_answers_on_confidence", using: :btree
@@ -214,10 +215,11 @@ ActiveRecord::Schema.define(version: 20160316013802) do
     t.text     "title"
     t.text     "content"
     t.datetime "edited_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.datetime "deleted_at"
     t.float    "hot"
+    t.integer  "answers_count", default: 0, null: false
   end
 
   add_index "questions", ["deleted_at"], name: "index_questions_on_deleted_at", using: :btree
@@ -296,12 +298,16 @@ ActiveRecord::Schema.define(version: 20160316013802) do
     t.text     "display_name"
     t.text     "gender"
     t.integer  "business_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.datetime "deleted_at"
     t.text     "description"
     t.float    "confidence"
     t.string   "avatar"
+    t.integer  "questions_count", default: 0, null: false
+    t.integer  "answers_count",   default: 0, null: false
+    t.integer  "followers_count", default: 0, null: false
+    t.integer  "followees_count", default: 0, null: false
   end
 
   add_index "users", ["business_id"], name: "index_users_on_business_id", using: :btree
