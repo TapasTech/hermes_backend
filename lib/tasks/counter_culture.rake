@@ -6,5 +6,6 @@ namespace :counter_culture do
     Answer.counter_culture_fix_counts
     Question.counter_culture_fix_counts
     Followment.counter_culture_fix_counts
+    QuestionsFollowment.counter_culture_fix_counts
   end
 end

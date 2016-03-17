@@ -15,9 +15,6 @@ module UserActions
       has_many :followees, class_name: 'User',
                            through: :followments,
                            inverse_of: :followers
-
-      delegate :count, to: :followers, prefix: true
-      delegate :count, to: :followees, prefix: true
     end
 
     def follow(followee)

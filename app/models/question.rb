@@ -24,8 +24,6 @@ class Question < ApplicationRecord
                        class_name: 'User',
                        inverse_of: :followee_questions
 
-  delegate :count, to: :followers, prefix: true
-
   def followed_by?(user)
     followers.exists?(user&.id)
   end
