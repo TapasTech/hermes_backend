@@ -11,8 +11,8 @@ class Activity < ApplicationRecord
   VERBS.each { |verb| const_set(verb, verb) }
 
   belongs_to :user
-  belongs_to :question
-  belongs_to :answer, required: false
+  belongs_to :question, -> { includes(:user).includes(:topics) }
+  belongs_to :answer, -> { includes(:user) }, required: false
 
   as_enum :verb, VERBS, map: :string, source: :verb
   validates :verb, presence: true

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe DataSetType do
+RSpec.describe FileUploadedType, type: :model do
   let(:fields) { described_class.fields }
   let(:mutation_fields) { fields['mutation']&.type&.fields }
   let(:expected_fields) do
@@ -10,20 +10,16 @@ RSpec.describe DataSetType do
       createdAt
       updatedAt
       deletedAt
-      user
-      title
+      name
+      size
+      description
+      format
       url
-      questions
-      answers
-      competition
-      fileUploadeds
-      mutation
     )
   end
 
   let(:expected_mutation_fields) do
     %w(
-      update
     )
   end
 
