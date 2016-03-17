@@ -4,7 +4,7 @@ class Answer < ApplicationRecord
   acts_as_paranoid
 
   belongs_to :user
-  belongs_to :question
+  belongs_to :question, -> { includes(:user).includes(:topics) }
 
   has_many :answers_data_sets
   has_many :data_sets, through: :answers_data_sets
