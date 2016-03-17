@@ -224,7 +224,7 @@ module QuestionsMutation
 
     # Reading
     def read(object, arguments, context)
-      GraphQLAuthenticator.authenticate(object, arguments, context) do
+      GraphQLAuthenticator.execute(object, arguments, context) do
         GraphQLAuthorizer.authorize current_user, object, :show?
 
         object.tap(&:read)
