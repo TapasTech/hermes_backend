@@ -24,9 +24,7 @@ before_install:
   - cd libgraphqlparser-0.4.1/ && sudo cmake . && sudo make && sudo make install
   - gem update --system
   - gem install bundler
+  - cd ..
 before_script:
   - psql -c 'create database hermes_backend_test;' -U postgres
-  - pwd
-  - ls -l
   - cp config/database.travis.yml config/database.yml
-
