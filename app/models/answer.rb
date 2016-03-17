@@ -11,7 +11,7 @@ class Answer < ApplicationRecord
 
   has_many :answers_data_reports
   has_many :data_reports, through: :answers_data_reports
-  has_many :comments
+  has_many :comments, -> { includes(:user).includes(:reply_to) }
   delegate :count, to: :comments, prefix: true
 
   validates :content, presence: true
