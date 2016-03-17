@@ -31,6 +31,7 @@ gem 'pundit'
 ## GraphQL
 gem 'graphql'
 gem 'graphql-mutable_type'
+gem 'graphql-libgraphqlparser', require: 'graphql/libgraphqlparser'
 ## Pagination
 gem 'kaminari'
 ## Object Serializer

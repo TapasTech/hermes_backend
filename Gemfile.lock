@@ -79,6 +79,8 @@ GEM
       activesupport (>= 3.2, < 5.1)
     graphql (0.11.1)
       parslet (~> 1.6)
+    graphql-libgraphqlparser (0.2.2)
+      graphql (~> 0.11.0)
     graphql-mutable_type (0.0.2)
       graphql (~> 0.11.0)
     i18n (0.7.0)
@@ -252,6 +254,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.0)
   goldiloader
   graphql
+  graphql-libgraphqlparser
   graphql-mutable_type
   kaminari
   listen (~> 3.0.5)
