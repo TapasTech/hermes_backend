@@ -26,5 +26,7 @@ before_install:
   - gem install bundler
 before_script:
   - psql -c 'create database hermes_backend_test;' -U postgres
-  - cp config/database.travis.yml config/database.yml
+  - pwd
   - ls -l
+  - cp config/database.travis.yml config/database.yml
+
