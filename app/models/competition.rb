@@ -3,6 +3,7 @@ class Competition < ApplicationRecord
   acts_as_paranoid
 
   scope :active_when, ->(date) { where('start_at <= ? AND expire_at >= ?', date, date) }
+  scope :inactive_when, ->(date) { where('expire_at < ?', date) }
 
   has_many :solutions
   has_one :data_set, -> { includes(:file_uploadeds) }
