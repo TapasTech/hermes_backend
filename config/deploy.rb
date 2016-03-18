@@ -16,6 +16,9 @@ task :environment do
 end
 
 task setup: :environment do
+  queue! %(mkdir -p "#{deploy_to}/public")
+  queue! %(chmod g+rx,u+rwx "#{deploy_to}/public")
+
   queue! %(mkdir -p "#{deploy_to}/#{shared_path}/log")
   queue! %(chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/log")
 
