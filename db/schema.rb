@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_160_317_071_828) do
+ActiveRecord::Schema.define(version: 20_160_318_040_057) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -110,6 +110,8 @@ ActiveRecord::Schema.define(version: 20_160_317_071_828) do
     t.datetime 'created_at',                                null: false
     t.datetime 'updated_at',                                null: false
     t.datetime 'deleted_at'
+    t.text     'thumb_logo_url'
+    t.text     'summary'
   end
 
   add_index 'competitions', ['created_at'], name: 'index_competitions_on_created_at', using: :btree
@@ -137,6 +139,7 @@ ActiveRecord::Schema.define(version: 20_160_317_071_828) do
     t.datetime 'deleted_at'
     t.integer  'user_id'
     t.integer  'competition_id'
+    t.text     'description'
   end
 
   add_index 'data_sets', ['competition_id'], name: 'index_data_sets_on_competition_id', using: :btree
