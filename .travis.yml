@@ -4,10 +4,27 @@ rvm:
   - 2.3.0
 addons:
   postgresql: "9.4"
+  apt:
+    packages:
+    - cmake
 env: CODECLIMATE_REPO_TOKEN=eabaf4117a558b1fca7d8a9711d4ade101a2623c9442d694130a5735ae60637f
 services:
   - postgresql
   - redis-server
+before_install:
+  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+  - sudo apt-get -qq update
+  - sudo apt-get install build-essential
+  - sudo apt-get -qq install g++-5
+  - sudo unlink /usr/bin/g++ && sudo ln -s /usr/bin/g++-5 /usr/bin/g++
+  - g++ --version
+  - sudo apt-get install bison
+  - wget https://github.com/graphql/libgraphqlparser/archive/v0.4.1.tar.gz
+  - tar -xzvf v0.4.1.tar.gz
+  - cd libgraphqlparser-0.4.1/ && sudo cmake . && sudo make && sudo make install
+  - gem update --system
+  - gem install bundler
+  - cd ..
 before_script:
   - psql -c 'create database hermes_backend_test;' -U postgres
   - cp config/database.travis.yml config/database.yml

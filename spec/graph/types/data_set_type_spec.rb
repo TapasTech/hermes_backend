@@ -12,6 +12,7 @@ RSpec.describe DataSetType do
       deletedAt
       user
       title
+      description
       url
       questions
       answers

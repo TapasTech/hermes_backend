@@ -13,6 +13,9 @@ Backend Graphql Server
 ### System dependencies
 
 + PostgreSQL: ~> 9.4
++ libgraphqlparser: 0.4.0
+
+Installation of libgraphqlparser see [graphql-libgraphqlparser#Installation](https://github.com/rmosolgo/graphql-libgraphqlparser-ruby#installation)
 
 ### Configuration
 

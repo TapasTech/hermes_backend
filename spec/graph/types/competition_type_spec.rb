@@ -11,7 +11,9 @@ RSpec.describe CompetitionType, type: :model do
       updatedAt
       deletedAt
       title
+      summary
       description
+      thumbLogoURL
       logoURL
       startAt
       expireAt

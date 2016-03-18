@@ -15,6 +15,7 @@ RSpec.describe QueryType do
       answer
       comment
       competition
+      ongoingCompetitions
       competitions
       dataSets
       dataReports

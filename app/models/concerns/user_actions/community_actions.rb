@@ -19,9 +19,6 @@ module UserActions
                                     through: :questions_followments,
                                     inverse_of: :followers
 
-      delegate :count, to: :questions, prefix: true
-      delegate :count, to: :answers, prefix: true
-
       ## Votes get from answer
       counter :up_votes_count
       counter :down_votes_count

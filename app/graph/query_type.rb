@@ -14,10 +14,11 @@ QueryType = GraphQL::ObjectType.define do
   field :answer, field: FetchField.create(Answer)
   field :comment, field: FetchField.create(Comment)
   field :competition, field: FetchField.create(Competition)
+  field :ongoingCompetitions, field: OngoingCompetitionsField
   field :competitions,
         field: PaginateField.create(
           Competition,
-          transform: ->(a) { a.active_when(Time.zone.now).order(competition_type: :asc, created_at: :desc) })
+          transform: ->(a) { a.order(expire_at: :desc) })
 
   field :dataSets, field: PaginateField.create(DataSet, transform: ->(a) { a.order(created_at: :desc) })
   field :dataReports, field: PaginateField.create(DataReport, transform: ->(a) { a.order(created_at: :desc) })

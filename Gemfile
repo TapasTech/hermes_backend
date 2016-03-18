@@ -17,6 +17,8 @@ gem 'pg', '~> 0.18'
 gem 'bcrypt', '~> 3.1.7'
 ## Automatically Eager Load
 gem 'goldiloader'
+## Cache Counter
+gem 'counter_culture'
 ## Soft deletion
 gem 'paranoia', github: 'radar/paranoia', branch: 'core'
 ## Enum Field
@@ -31,6 +33,7 @@ gem 'pundit'
 ## GraphQL
 gem 'graphql'
 gem 'graphql-mutable_type'
+gem 'graphql-libgraphqlparser', require: 'graphql/libgraphqlparser'
 ## Pagination
 gem 'kaminari'
 ## Object Serializer
