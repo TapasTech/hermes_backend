@@ -18,7 +18,7 @@ QueryType = GraphQL::ObjectType.define do
   field :competitions,
         field: PaginateField.create(
           Competition,
-          transform: ->(a) { a.order(end_at: :desc) })
+          transform: ->(a) { a.order(expire_at: :desc) })
 
   field :dataSets, field: PaginateField.create(DataSet, transform: ->(a) { a.order(created_at: :desc) })
   field :dataReports, field: PaginateField.create(DataReport, transform: ->(a) { a.order(created_at: :desc) })
