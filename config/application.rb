@@ -37,5 +37,8 @@ module HermesBackend
 
     # Set I19n default locale
     config.i18n.default_locale = :'zh-CN'
+
+    # timezone
+    config.active_record.default_timezone = :local
   end
 end
