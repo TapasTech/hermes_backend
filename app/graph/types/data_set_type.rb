@@ -7,6 +7,7 @@ DataSetType = GraphQL::MutableType.define do
 
   field :user, -> { UserType }, 'Uploader'
   field :title, types.String, 'Title'
+  field :description, types.String, 'Description'
   field :url, types.String, 'Link'
 
   field :questions, field: PaginateField.create(Question, property: :questions)
