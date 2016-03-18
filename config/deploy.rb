@@ -57,7 +57,7 @@ task deploy: :environment do
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
     invoke :'rails:db_migrate'
-    queue "cp #{deploy_to}/public ./public"
+    queue "cp -r #{deploy_to}/public ./public"
     invoke :'deploy:cleanup'
 
     to :launch do
