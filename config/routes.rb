@@ -2,7 +2,8 @@
 Rails.application.routes.draw do
   get  'graphql', to: 'graphql#introspection'
   post 'graphql', to: 'graphql#query'
-  get '_puttoken', to: 'put_tokens#create'
+  
+  resources :put_tokens, only: [:show]
   # Serve websocket cable requests in-process
   # mount ActionCable.server => '/cable'
 end

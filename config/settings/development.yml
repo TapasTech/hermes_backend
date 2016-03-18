@@ -10,3 +10,6 @@ qiniu:
   access_key: <%= ENV["HERMES_QINIU_ACCESS_KEY"] %>
   secret_key: <%= ENV["HERMES_QINIU_SECRET_KEY"] %>
   bucket: <%= ENV["HERMES_QINIU_BUCKET"] %>
+  save_key:
+    image: hermes/images/$(etag)
+    data: hermes/data/$(etag)
