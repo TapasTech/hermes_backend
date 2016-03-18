@@ -2,7 +2,7 @@
 require 'rails_helper'
 
 RSpec.describe SolutionPolicy do
-  subject { QuestionPolicy.new(user, solution) }
+  subject { SolutionPolicy.new(user, solution) }
 
   let(:solution) { create(:solution) }
 
