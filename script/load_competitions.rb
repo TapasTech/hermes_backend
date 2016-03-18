@@ -1,6 +1,4 @@
 # frozen_string_literal: true
-file = '/Users/Karloku/Workspace/Tapas/_Documents/Hermes/1.yml'
-
 def load_competitions!(file)
   competitions = YAML.load(open(file).read)
 
@@ -27,5 +25,5 @@ def prepare_file_uploadeds!(data_set)
     FileUploaded.create!(file_uploaded)
   end
 end
-
+file = ARGV[0]
 load_competitions!(file)
