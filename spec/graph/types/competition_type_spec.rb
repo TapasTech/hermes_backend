@@ -21,7 +21,8 @@ RSpec.describe CompetitionType, type: :model do
       competitionType
       dataSet
       fileUploadeds
-      solutions
+      mySolution
+      solutionsCount
       mutation
     )
   end

@@ -9,6 +9,14 @@ module SolutionsMutation
     resolve ->(*p) { SolutionsMutation.create(*p) }
   end
 
+  UpdateSolutionField = GraphQL::Field.define do
+    type -> { SolutionType }
+
+    argument :description, !types.String
+
+    resolve ->(*p) { SolutionsMutation.update(*p) }
+  end
+
   # Methods that resolves
   module ResolverMethods
     def create(object, arguments, context)
@@ -21,6 +29,17 @@ module SolutionsMutation
         GraphQLAuthorizer.authorize(current_user, solution, :create?)
 
         solution.tap(&:save!)
+      end
+    end
+
+    def update(object, arguments, context)
+      GraphQLAuthenticator.authenticate(object, arguments, context) do
+        GraphQLAuthorizer.authorize(current_user, object, :update?)
+        build_arguments =
+          GraphQLArgumentProcessor.camel_keys_to_underscore arguments
+
+        object.update!(build_arguments)
+        object
       end
     end
   end

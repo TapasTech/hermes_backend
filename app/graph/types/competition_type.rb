@@ -19,7 +19,16 @@ CompetitionType = GraphQL::MutableType.define do
 
   field :dataSet, -> { DataSetType }, 'Attachment data sets', property: :data_set
   field :fileUploadeds, -> { types[FileUploadedType] }, 'Attachment data set files', property: :file_uploadeds
-  field :solutions, -> { types[SolutionType] }, 'Solutions'
+
+  field :solutionsCount, types.Int, 'Solutions count', property: :solutions_count
+
+  field :mySolution, -> { SolutionType }, 'Current user solution' do
+    resolve lambda { |object, arguments, context|
+              GraphQLAuthenticator.execute(object, arguments, context) do
+                object.mySolution current_user
+              end
+            }
+  end
 
   mutation do
     field :createSolution, field: SolutionsMutation::CreateSolutionField

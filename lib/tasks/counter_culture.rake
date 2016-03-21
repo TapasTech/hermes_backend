@@ -6,6 +6,7 @@ namespace :counter_culture do
     question
     followment
     questions_followment
+    solution
   )
 
   desc 'Fix counter caches'

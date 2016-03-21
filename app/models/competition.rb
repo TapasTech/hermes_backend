@@ -27,4 +27,8 @@ class Competition < ApplicationRecord
   def open?
     Time.zone.now <= expire_at && Time.zone.now >= start_at
   end
+
+  def my_solution(user)
+    solutions.find_or_initialize_by(user: user)
+  end
 end

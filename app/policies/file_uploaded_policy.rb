@@ -4,6 +4,10 @@ class FileUploadedPolicy < ApplicationPolicy
     user.present?
   end
 
+  def remove?
+    user.present? && record.uploadable.user == user
+  end
+
   # Authorized Visible Scope
   class Scope < Scope
     def resolve

@@ -4,6 +4,8 @@ class Solution < ApplicationRecord
 
   has_many :file_uploadeds, as: :uploadable
   belongs_to :competition
+  counter_culture :competition
+
   belongs_to :user
 
   validates :description, presence: true

@@ -21,6 +21,8 @@ RSpec.describe SolutionType, type: :model do
   let(:expected_mutation_fields) do
     %w(
       attachFile
+      removeFile
+      update
     )
   end
 
